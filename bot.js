@@ -12,6 +12,10 @@ const client = new Discord.Client();
 
 var game;
 
+var writeathon = {};
+
+var words = ["you" , "I" , "to" , "the" , "and" , "that" , "of" , "me" , "in" , "this" , "for" , "no" , "have" , "my" , "just" , "not" , "do" , "be" , "on" , "your" , "was" , "we" , "with" , "but" , "all" , "well" , "he" , "about" , "right" , "get" , "here" , "out" , "if" , "her" , "she" , "can" , "up" , "want" , "now" , "go" , "him" , "there" , "one" , "why" , "see" , "come" , "good" , "they" , "really" , "when" , "back" , "from" , "were" , "yes" , "his" , "or" , "who" , "because" , "some" , "then" , "say" , "an" , "way" , "us" , "little" , "never" , "too" , "sure" , "more" , "over" , "our" , "sorry" , "where" , "let" , "maybe" , "down" , "man" , "very" , "by" , "anything" , "much" , "any" , "life" , "even" , "off" , "please" , "thank" , "only" , "help" , "two" , "talk" , "people" , "God" , "still" , "wait" , "into" , "find" , "again" , "thing" , "call" , "told" , "great" , "before" , "better" , "ever" , "night" , "than" , "away" , "first" , "believe" , "fine" , "home" , "after" , "last" , "these" , "put" , "around" , "stop" , "long" , "always" , "listen" , "those" , "big" , "lot" , "kind" , "wrong" , "through" , "new" , "guess" , "care" , "bad" , "mom" , "remember" , "together" , "dad" , "leave" , "mother" , "place" , "understand" , "actually" , "hear" , "baby" , "nice" , "father" , "else" , "stay" , "their" , "course" , "might" , "mind" , "every" , "enough" , "try" , "hell" , "came" , "someone" , "own" , "family" , "whole" , "another" , "house" , "yourself" , "idea" , "ask" , "best" , "must" , "old" , "woman" , "hello" , "which" , "room" , "money" , "left" , "tonight" , "real" , "son" , "hope" , "name" , "same" , "happy" , "pretty" , "girl" , "sir" , "show" , "already" , "may" , "next" , "three" , "found" , "world" , "honey" , "myself" , "exactly" , "probably" , "hurt" , "both" , "while" , "dead" , "alone" , "since" , "excuse" , "start" , "kill" , "hard" , "today" , "car" , "ready" , "until" , "without" , "whatever" , "deal" , "took" , "once" , "friend" , "head" , "stuff" , "most" , "worry" , "second" , "part" , "truth" , "school" , "face" , "forget" , "business" , "each" , "cause" , "soon" , "wife" , "use" , "chance" , "run" , "move" , "anyone" , "person" , "bye" , "somebody" , "heart" , "such" , "point" , "later" , "meet" , "anyway" , "phone" , "reason" , "lost" , "look" , "bring" , "case" , "wish" , "tomorrow" , "trust" , "check" , "end" , "late" , "anymore" , "five" , "least" , "town" , "year" , "make" , "mean" , "play" , "hate" , "ago" , "beautiful" , "fact" , "crazy" , "party" , "sit" , "open" , "afraid" , "between" , "important" , "rest" , "fun" , "kid" , "glad" , "everyone" , "day" , "sister" , "minute" , "everybody" , "bit" , "couple" , "either" , "daughter" , "under" , "break" , "door" , "set" , "close" , "easy" , "doctor" , "far" , "walk" , "need" , "trouble" , "mine" , "though" , "time" , "different" , "hospital" , "anybody" , "alright" , "wedding" , "shut" , "able" , "die" , "perfect" , "police" , "stand" , "hit" , "story" , "dinner" , "against" , "funny" , "husband" , "almost" , "stupid" , "pay" , "answer" , "four" , "office" , "cool" , "news" , "child" , "half" , "yours" , "moment" , "sleep" , "young" , "men" , "sonny" , "lucky" , "pick" , "sometimes" , "them" , "bed" , "also" , "date" , "line" , "lose" , "fire" , "free" , "hand" , "serious" , "shit" , "behind" , "inside" , "high" , "ahead" , "wonderful" , "fight" , "past" , "cut" , "quite" , "number" , "sick" , "game" , "eat" , "nobody" , "death" , "along" , "finally" , "upset" , "seem" , "safe" , "children" , "front" , "shot" , "love" , "clear" , "hot" , "six" , "drink" , "absolutely" , "how" , "sweet" , "alive" , "sense" , "happen" , "special" , "bet" , "blood" , "lie" , "full" , "meeting" , "dear" , "coffee" , "sound" , "fault" , "water" , "ten" , "women" , "welcome" , "buy" , "hour" , "speak" , "think" , "Christmas" , "body" , "order" , "outside" , "hang" , "worse" , "company" , "mistake" , "handle" , "spend" , "totally" , "control" , "marriage" , "power" , "president" , "unless" , "send" , "picture" , "hundred" , "change" , "explain" , "certainly" , "sign" , "boy" , "relationship" , "hair" , "choice" , "anywhere" , "secret" , "future" , "weird" , "luck" , "touch" , "crane" , "question" , "obviously" , "pain" , "straight" , "grace" , "white" , "fast" , "word" , "food" , "none" , "drive" , "work" , "marry" , "light" , "test" , "drop" , "frank" , "sent" , "city" , "dream" , "protect" , "twenty" , "class" , "surprise" , "forever" , "poor" , "mad" , "except" , "gun" , "know" , "dance" , "take" , "especially" , "situation" , "besides" , "week" , "himself" , "act" , "worth" , "top" , "expect" , "rather" , "involve" , "swear" , "piece" , "busy" , "law" , "black" , "movie" , "catch" , "country" , "less" , "perhaps" , "step" , "fall" , "dog" , "win" , "personal" , "admit" , "problem" , "murder" , "strong" , "evil" , "feel" , "honest" , "eye" , "broke" , "miss" , "tired" , "evening" , "human" , "red" , "entire" , "trip" , "club" , "suppose" , "calm" , "imagine" , "fair" , "blame" , "street" , "apartment" , "court" , "terrible" , "clean" , "learn" , "relax" , "million" , "charity" , "accident" , "prove" , "smart" , "message" , "small" , "interest" , "table" , "become" , "mouth" , "pregnant" , "middle" , "ring" , "careful" , "shall" , "team" , "ride" , "figure" , "wear" , "shoot" , "stick" , "ray" , "follow" , "angry" , "instead" , "buddy" , "write" , "early" , "angel" , "nick" , "ran" , "war" , "forgive" , "jail" , "lunch" , "eight" , "thousand" , "music" , "tough" , "tape" , "count" , "college" , "boyfriend" , "proud" , "agree" , "birthday" , "bill" , "seven" , "history" , "share" , "offer" , "hurry" , "feet" , "wonder" , "simple" , "decision" , "building" , "finish" , "voice" , "herself" , "would" , "list" , "mess" , "deserve" , "cute" , "dress" , "interesting" , "Jesus" , "hotel" , "enjoy" , "quiet" , "road" , "eve" , "short" , "beat" , "mention" , "clothe" , "neither" , "fix" , "respect" , "spent" , "prison" , "attention" , "near" , "bar" , "pass" , "gift" , "dark" , "self" , "normal" , "aunt" , "dollar" , "lawyer" , "apart" , "certain" , "plan" , "girlfriend" , "floor" , "whether" , "everything" , "present" , "earth" , "private" , "box" , "cover" , "judge" , "sake" , "mommy" , "possibly" , "worst" , "station" , "accept" , "blow" , "strange" , "save" , "plane" , "yesterday" , "quick" , "lately" , "stuck" , "lovely" , "security" , "report" , "difference" , "store" , "bag" , "ball" , "single" , "doubt" , "blue" , "deep" , "park" , "record" , "lord" , "join" , "key" , "captain" , "card" , "crime" , "window" , "return" , "guilty" , "difficult" , "soul" , "joke" , "service" , "magic" , "uncle" , "promise" , "public" , "bother" , "island" , "seriously" , "cell" , "lead" , "broken" , "advice" , "somehow" , "push" , "concern" , "usually" , "boss" , "rule" , "summer" , "thirty" , "risk" , "letting" , "officer" , "support" , "afternoon" , "born" , "apologise" , "seat" , "nervous" , "across" , "song" , "charge" , "patient" , "boat" , "brain" , "hide" , "general" , "nine" , "huge" , "breakfast" , "horrible" , "age" , "awful" , "pleasure" , "driving" , "system" , "sell" , "quit" , "dying" , "chief" , "faith" , "gay" , "month" , "visit" , "screw" , "letter" , "decide" , "double" , "sad" , "press" , "forward" , "fool" , "smell" , "spell" , "memory" , "mark" , "slow" , "hungry" , "board" , "position" , "hearing" , "rose" , "kitchen" , "force" , "fly" , "during" , "space" , "kick" , "other" , "grab" , "discuss" , "third" , "cat" , "fifty" , "mile" , "fat" , "reading" , "idiot" , "rock" , "suddenly" , "agent" , "bunch" , "destroy" , "track" , "shoes" , "scene" , "peace" , "demon" , "low" , "consider" , "drunk" , "tell" , "knock" , "bell" , "cash" , "give" , "department" , "nose" , "turn" , "keep" , "beer" , "sooner" , "plenty" , "extra" , "attack" , "ground" , "whose" , "weekend" , "matter" , "wrote" , "type" , "opportunity" , "king" , "impossible" , "book" , "machine" , "waste" , "pretend" , "danger" , "wall" , "jump" , "proof" , "complete" , "arrest" , "perfectly" , "warm" , "pull" , "twice" , "easier" , "suit" , "romantic" , "drug" , "comfortable" , "fit" , "divorce" , "begin" , "closely" , "ruin" , "although" , "smile" , "laugh" , "fish" , "treat" , "fear" , "amber" , "guy" , "otherwise" , "excited" , "mail" , "green" , "stole" , "notice" , "excellent" , "pop" , "paper" , "bottom" , "note" , "sudden" , "church" , "bathroom" , "sing" , "glass" , "tree" , "contact" , "shop" , "reach" , "cry" , "cake" , "partner" , "bus" , "computer" , "study" , "star" , "area" , "wind" , "chicken" , "dry" , "hero" , "error" , "are" , "build" , "sea" , "Saturday" , "add" , "birth" , "bird" , "grandmother" , "heavy" , "west" , "lesson" , "heat" , "speed" , "milk" , "rain" , "sugar" , "market" , "process" , "stone" , "serve" , "river" , "super" , "monkey" , "pig" , "chat" , "signal" , "cup" , "bee" , "a" , "above" , "addition" , "among" , "amount" , "angle" , "animal" , "appear" , "apple" , "art" , "as" , "at" , "bank" , "base" , "bear" , "belong" , "block" , "bone" , "brown" , "cannot" , "capital" , "carry" , "centre" , "century" , "circle" , "cloud" , "cost" , "cold" , "column" , "common" , "compere" , "condition" , "contain" , "continue" , "cook" , "copy" , "cow" , "create" , "cross" , "crowd" , "describe" , "desert" , "design" , "detail" , "dictionary" , "direction" , "ear" , "east" , "like" , "edge" , "effect" , "egg" , "element" , "energy" , "engine" , "England" , "English" , "example" , "express" , "famous" , "farm" , "field" , "finger" , "flat" , "flower" , "foot" , "forest" , "form" , "fresh" , "fruit" , "garden" , "gas" , "gold" , "group" , "grow" , "hat" , "hole" , "horse" , "hunt" , "ice" , "inch" , "include" , "increase" , "indicate" , "information" , "insect" , "instrument" , "iron" , "is" , "itself" , "job" , "lady" , "lake" , "land" , "language" , "large" , "lay" , "leg" , "length" , "level" , "lift" , "main" , "many" , "map" , "march" , "bacon" , "gap" , "pan"];
+
 var books = [
   {
     "title": "The Man Who Loved Children",
@@ -90,6 +94,10 @@ var books = [
   }
 ];
 
+var backspeakListening = false;
+
+var gameList = [".synopsis", ".backspeak"];
+
 function isEmpty(obj) {
   for(var key in obj) {
       if(obj.hasOwnProperty(key))
@@ -109,6 +117,10 @@ function addSummaryMessage(id) {
 client.on('ready', () => {
   console.log('I am ready!');
   game = {};
+  shuffle(gameList);
+  client.user.setActivity(gameList[1], {
+    type: "PLAYING"
+  });
 });
 
 // Create an event listener for messages
@@ -122,6 +134,57 @@ client.on('message', message => {
       switch(cmd.toLowerCase()) {
         case "hello":
           message.channel.send('Hey there! Nice to meet you!');
+          break;
+        case "words":
+          switch(args[0]) {
+            case "intro":
+              message.channel.send("__**Write-a-thon Rules**__\nWhenever you write, use the command `.words add [n]` to add your word count to the leaderboard (example: `.words add 1971`). When you want to see the rankings, use `.words leaderboard`.\nThe leaderboard will be reset weekly.");
+              break;
+            case "add":
+              if (writeathon[message.author.tag]) {
+                writeathon[message.author.tag] += parseInt(args[1]);
+              } else {
+                writeathon[message.author.tag] = parseInt(args[1]);
+              }
+              message.channel.send("Added **" + args[1] + " words** to your wordcount. Run `.words leaderboard` to see the rankings!");
+              break;
+            case "leaderboard":
+              var leaderboard = "Here are the rankings so far:\n";
+              var l = 1;
+              for (var player in writeathon) {
+                leaderboard += "\n" + l + ". " + player + ": " + writeathon[player] + " words written";
+                l++;
+              }
+              if (isEmpty(writeathon)) {
+                leaderboard += "\nNo one's written anything yet. Come on, y'all! You can do better than that.";
+              }
+              leaderboard += "\n";
+              message.channel.send(leaderboard);
+              break;
+            case "reset":
+              if (message.author.id == "530925903757443094") {
+                writeathon = {};
+                message.channel.send("Leaderboard reset.");
+              } else {
+                message.channel.send("You do not have permission to reset the leaderboard.");
+              }
+              break;
+            default:
+              message.channel.send('Hmm... I don\'t know that command. Try `.help` to get a list of commands.');
+              break;
+          }
+          break;
+        case "backspeak":
+          switch(args[0]) {
+            case "intro":
+              message.channel.send("__**Backspeak Rules**__\nBackspeak is really a very simple game. When you run `.backspeak`, I will post a random string of words to the chat. The first person to post the words reversed in order in the chat wins.");
+              break;
+            default:
+              shuffle(words);
+              message.channel.send(words.slice(0,10).join(" "));
+              backspeakListening = words.slice(0,10).reverse().join(" ");
+              break;
+          }
           break;
         case "synopsis":
           switch(args[0]) {
@@ -183,7 +246,7 @@ client.on('message', message => {
                     message.channel.send("Can we give all of those wonderful synopses a big round of applause? :clap: :clap: :clap:");
                     setTimeout(function () {
                       message.channel.send("Thank you.");
-                      message.channel.send("Now, vote for the synopsis you think is the real one by ticking the ✅. You have forty-five seconds. If you guess correctly, you get 2 points! You can vote for your own, but you don't get any points for it.\nIf you haven't been playing up till now, you can join in here! The title of the book is _" + game.book.title + "_. Can you guess which synopsis is the correct one?");
+                      message.channel.send("Now, vote for the synopsis you think is the real one by ticking the ✅. You have forty-five seconds. If you guess correctly, you get 2 points! You can vote for your own, but it's worth less points than guessing the right one and it might give you away.\nIf you haven't been playing up till now, you can join in here! The title of the book is _" + game.book.title + "_. Can you guess which synopsis is the correct one?");
                       message.guild.roles.forEach(role => {
                         if (role.id == "693515167840993371") {
                           message.channel.overwritePermissions(role, {'SEND_MESSAGES': true});
@@ -268,7 +331,7 @@ client.on('message', message => {
             case "end":
               if (isEmpty(game)) {
                 message.channel.send("There is no game running. Run `.synopsis start` to start a new game!");
-              } else if (message.author.id == game.owner.id) {
+              } else if (message.author.id == game.owner.id || message.author.id == "530925903757443094") {
                 game = {};
                 message.channel.send("The game is over! Thanks for playing!");
               } else {
@@ -280,8 +343,15 @@ client.on('message', message => {
               break;
           }
           break;
+        case "shoot":
+          message.channel.send('Violence is never the answer. Do... Do you need a `.hug`?');
+          break;
+        case "hug":
+          message.channel.send("_hugs " + message.author + "_\nDon't worry, it'll be all right.");
+          break;
         case "help":
-          message.channel.send("This bot is still under development and is not ready for you to use yet. Please be patient!");
+          message.channel.send("__**Finriq Commands List**__\n`.help`: Displays command list.\n`.hello`: Says hello.\n`.shoot [user]`: Shoots _user_\n`.hug`: Finriq gives user a hug\n\n**Guess that Synopsis!**\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after _min-players_ (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far. `.synopsis end`: Ends the current game. Requires game creator. DO NOT RUN WHILE ROUND IS IN PROGESS\n\n**Backspeak**\n`.backspeak intro`: Gives an intro to the game\n`.backspeak`: Starts a round of backspeak. Only one round at a time, please.\n\n**Word-a-thon**\n`.words intro`: Introduces Word-a-thon.\n`.words add [n]` Adds _n_ words to the user's total.\n`.words leaderboard`: Views the rankings.\n`.words reset`: Resets the leaderboard. Requires privs.");
+          break;
       }
   } else if (game.acceptingSummaries && message.author.bot == false && message.channel.type === 'dm') {
     var submitted = false;
@@ -295,6 +365,11 @@ client.on('message', message => {
     if (!submitted) {
       game.summaries.push({author:message.author,summary:message.content});
       message.channel.send("I have recorded your response. To change it, send another message here before the time limit runs out.");
+    }
+  } else if (backspeakListening) {
+    if (message.content == backspeakListening) {
+      message.channel.send("And the winner is... " + message.author + "!");
+      backspeakListening = false;
     }
   }
 });
