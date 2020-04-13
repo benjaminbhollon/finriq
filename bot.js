@@ -359,7 +359,7 @@ client.on('message', message => {
       if (game.summaries[p].author.id == message.author.id) {
         game.summaries[p].summary = message.content;
         submitted = true;
-        message.channel.send("Your sumission has been updated.");
+        message.channel.send("Your submission has been updated.");
       }
     }
     if (!submitted) {
