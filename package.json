@@ -1,0 +1,12 @@
+{
+  "name": "finriq",
+  "version": "0.1.0",
+  "description": "Bot designed for The Bookery",
+  "main": "bot.js",
+  "author": "Benjamin Hollon",
+  "dependencies": {
+    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "discord.js": "^11.5.1",
+    "winston": "^3.2.1"
+  }
+}
