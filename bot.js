@@ -98,6 +98,24 @@ var backspeakListening = false;
 
 var gameList = [".synopsis", ".backspeak"];
 
+function sortProperties(obj)
+{
+  // convert object into array
+	var sortable=[];
+	for(var key in obj)
+		if(obj.hasOwnProperty(key))
+			sortable.push([key, obj[key]]); // each item is an array in format [key, value]
+	
+	// sort items by value
+	sortable.sort(function(a, b)
+	{
+		var x=a[1].toLowerCase(),
+			y=b[1].toLowerCase();
+		return x<y ? -1 : x>y ? 1 : 0;
+	});
+	return sortable; // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
+}
+
 function isEmpty(obj) {
   for(var key in obj) {
       if(obj.hasOwnProperty(key))
@@ -146,6 +164,7 @@ client.on('message', message => {
               } else {
                 writeathon[message.author.tag] = parseInt(args[1]);
               }
+              sortProperties(writeathon);
               message.channel.send("Added **" + args[1] + " words** to your wordcount. Run `.words leaderboard` to see the rankings!");
               break;
             case "leaderboard":
@@ -222,7 +241,7 @@ client.on('message', message => {
                 message.channel.send("Here comes your prompt! _(Cue drumroll)_");
                 setTimeout(function () {
                   game.book = books[Math.floor(Math.random() * books.length)];
-                  message.channel.send("The title is _" + game.book.title + "_!\nMake up a synopsis for this story and DM it to me. You have three minutes.");
+                  message.channel.send("The title is _" + game.book.title + "_!\nMake up a synopsis for this story and DM it to me. You have five minutes.");
                   game.summaries = [{author:false,summary:game.book.summary}];
                   game.acceptingSummaries = true;
                   setTimeout(function () {
@@ -292,6 +311,7 @@ client.on('message', message => {
                             });
                           }
                         }
+                        game.leaderboard = sortProperties(game.leaderboard);
                         var leaderboard = "Here are the rankings so far:\n";
                         var l = 1;
                         for (var player in game.leaderboard) {
@@ -306,7 +326,7 @@ client.on('message', message => {
                         message.channel.send("<@" + game.owner.id + "> You can start a new round by running `.synopsis round` or you can end the game now with `.synopsis end`.");
                       }, 45000);
                     }, 5000);
-                  }, 180000);
+                  }, 300000);
                 }, 5000);
               } else if (game.roundInProgress) {
                 message.channel.send("There is already a round in progress. Finish the round before starting a new one.");
@@ -350,7 +370,7 @@ client.on('message', message => {
           message.channel.send("_hugs " + message.author + "_\nDon't worry, it'll be all right.");
           break;
         case "help":
-          message.channel.send("__**Finriq Commands List**__\n`.help`: Displays command list.\n`.hello`: Says hello.\n`.shoot [user]`: Shoots _user_\n`.hug`: Finriq gives user a hug\n\n**Guess that Synopsis!**\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after _min-players_ (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far. `.synopsis end`: Ends the current game. Requires game creator. DO NOT RUN WHILE ROUND IS IN PROGESS\n\n**Backspeak**\n`.backspeak intro`: Gives an intro to the game\n`.backspeak`: Starts a round of backspeak. Only one round at a time, please.\n\n**Word-a-thon**\n`.words intro`: Introduces Word-a-thon.\n`.words add [n]` Adds _n_ words to the user's total.\n`.words leaderboard`: Views the rankings.\n`.words reset`: Resets the leaderboard. Requires privs.");
+          message.channel.send("__**Finriq Commands List**__\n`.help`: Displays command list.\n`.hello`: Says hello.\n`.shoot [user]`: Shoots _user_\n`.hug`: Finriq gives user a hug\n\n**Guess that Synopsis!**\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after _min-players_ (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far. `.synopsis end`: Ends the current game. Requires game creator. DO NOT RUN WHILE ROUND IS IN PROGESS\n\n**Backspeak**\n`.backspeak intro`: Gives an intro to the game\n`.backspeak`: Starts a round of backspeak. Only one round at a time, please.\n\n**Write-a-thon**\n`.words intro`: Introduces Write-a-thon.\n`.words add [n]` Adds _n_ words to the user's total.\n`.words leaderboard`: Views the rankings.\n`.words reset`: Resets the leaderboard. Requires privs.");
           break;
       }
   } else if (game.acceptingSummaries && message.author.bot == false && message.channel.type === 'dm') {
