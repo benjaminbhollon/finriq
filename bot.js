@@ -94,6 +94,8 @@ var books = [
   }
 ];
 
+var bookNo = -1;
+
 var backspeakListening = false;
 
 var gameList = [".synopsis", ".backspeak", ".rps"];
@@ -136,6 +138,7 @@ client.on('ready', () => {
   console.log('I am ready!');
   game = {};
   shuffle(gameList);
+  shuffle(books);
   client.user.setActivity(gameList[1], {
     type: "PLAYING"
   });
@@ -240,7 +243,8 @@ client.on('message', message => {
                 message.channel.send("__**Round " + game.round + "**__\nYou can join in at any time, simply by following the instructions. You will automatically be added to the leaderboard.");
                 message.channel.send("Here comes your prompt! _(Cue drumroll)_");
                 setTimeout(function () {
-                  game.book = books[Math.floor(Math.random() * books.length)];
+                  bookNo++;
+                  game.book = books[bookNo % books.length];
                   message.channel.send("The title is _" + game.book.title + "_!\nMake up a synopsis for this story and DM it to me. You have five minutes.");
                   game.summaries = [{author:false,summary:game.book.summary}];
                   game.acceptingSummaries = true;
