@@ -174,7 +174,7 @@ client.on('message', message => {
               var leaderboard = "Here are the rankings so far:\n";
               var l = 1;
               for (var player in writeathon) {
-                leaderboard += "\n" + l + ". " + player + ": " + writeathon[player] + " words written";
+                leaderboard += "\n" + l + ". " + writeathon[player][0] + ": " + writeathon[player][1] + " words written";
                 l++;
               }
               if (isEmpty(writeathon)) {
@@ -319,7 +319,7 @@ client.on('message', message => {
                         var leaderboard = "Here are the rankings so far:\n";
                         var l = 1;
                         for (var player in game.leaderboard) {
-                          leaderboard += "\n" + l + ". " + player + ": " + game.leaderboard[player] + " points";
+                          leaderboard += "\n" + l + ". " + game.leaderboard[player][0] + ": " + game.leaderboard[player][1] + " points";
                           l++;
                         }
                         if (isEmpty(game.leaderboard)) {
@@ -328,9 +328,9 @@ client.on('message', message => {
                         leaderboard += "\n\nYou can view the leaderboard at any time by running `.synopsis leaderboard`.";
                         message.channel.send(leaderboard);
                         message.channel.send("<@" + game.owner.id + "> You can start a new round by running `.synopsis round` or you can end the game now with `.synopsis end`.");
-                      }, 45000);
+                      }, 5000);//45000);
                     }, 5000);
-                  }, 300000);
+                  }, 1000);//300000);
                 }, 5000);
               } else if (game.roundInProgress) {
                 message.channel.send("There is already a round in progress. Finish the round before starting a new one.");
@@ -344,7 +344,7 @@ client.on('message', message => {
                 var leaderboard = "Here are the rankings so far:\n";
                 var l = 1;
                 for (var player in game.leaderboard) {
-                  leaderboard += "\n" + l + ". " + player + ": " + game.leaderboard[player] + " points";
+                  leaderboard += "\n" + l + ". " + game.leaderboard[player][0] + ": " + game.leaderboard[player][1] + " points";
                   l++;
                 }
                 if (isEmpty(game.leaderboard)) {
