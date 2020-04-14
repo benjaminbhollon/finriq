@@ -369,8 +369,8 @@ client.on('message', message => {
             message.channel.send('**Paper...**');
             setTimeout(function () {
               message.channel.send('**Scissors!!!**');
-            }, 2000);
-          }, 2000);
+            }, 4000);
+          }, 4000);
           break;
         case "shoot":
           message.channel.send('Violence is never the answer. Do... Do you need a `.hug`?');
