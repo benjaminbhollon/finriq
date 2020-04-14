@@ -96,7 +96,7 @@ var books = [
 
 var backspeakListening = false;
 
-var gameList = [".synopsis", ".backspeak"];
+var gameList = [".synopsis", ".backspeak", ".rps"];
 
 function sortProperties(obj)
 {
@@ -363,6 +363,14 @@ client.on('message', message => {
               break;
           }
           break;
+        case "rps":
+          message.channel.send('**Rock...**');
+          setTimeout(function () {
+            message.channel.send('**Paper...**');
+            setTimeout(function () {
+              message.channel.send('**Scissors!!!**');
+            }, 2000);
+          }, 2000);
         case "shoot":
           message.channel.send('Violence is never the answer. Do... Do you need a `.hug`?');
           break;
@@ -370,7 +378,7 @@ client.on('message', message => {
           message.channel.send("_hugs " + message.author + "_\nDon't worry, it'll be all right.");
           break;
         case "help":
-          message.channel.send("__**Finriq Commands List**__\n`.help`: Displays command list.\n`.hello`: Says hello.\n`.shoot [user]`: Shoots _user_\n`.hug`: Finriq gives user a hug\n\n**Guess that Synopsis!**\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after _min-players_ (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far. `.synopsis end`: Ends the current game. Requires game creator. DO NOT RUN WHILE ROUND IS IN PROGESS\n\n**Backspeak**\n`.backspeak intro`: Gives an intro to the game\n`.backspeak`: Starts a round of backspeak. Only one round at a time, please.\n\n**Write-a-thon**\n`.words intro`: Introduces Write-a-thon.\n`.words add [n]` Adds _n_ words to the user's total.\n`.words leaderboard`: Views the rankings.\n`.words reset`: Resets the leaderboard. Requires privs.");
+          message.channel.send("__**Finriq Commands List**__\n`.help`: Displays command list.\n`.hello`: Says hello.\n`.shoot [user]`: Shoots _user_\n`.hug`: Finriq gives user a hug\n\n**Guess that Synopsis!**\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after _min-players_ (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far. `.synopsis end`: Ends the current game. Requires game creator. DO NOT RUN WHILE ROUND IS IN PROGESS\n\n**Backspeak**\n`.backspeak intro`: Gives an intro to the game\n`.backspeak`: Starts a round of backspeak. Only one round at a time, please.\n\n**Write-a-thon**\n`.words intro`: Introduces Write-a-thon.\n`.words add [n]` Adds _n_ words to the user's total.\n`.words leaderboard`: Views the rankings.\n`.words reset`: Resets the leaderboard. Requires privs.\n\n__**Rock, Paper, Scissors**__\n`.rps`: Referees a RPS game.");
           break;
       }
   } else if (game.acceptingSummaries && message.author.bot == false && message.channel.type === 'dm') {
