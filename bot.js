@@ -371,6 +371,7 @@ client.on('message', message => {
               message.channel.send('**Scissors!!!**');
             }, 2000);
           }, 2000);
+          break;
         case "shoot":
           message.channel.send('Violence is never the answer. Do... Do you need a `.hug`?');
           break;
