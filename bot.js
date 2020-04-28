@@ -412,6 +412,8 @@ client.on('message', message => {
   } else if (message.content.toLowerCase().indexOf("zachoo") != -1 && message.author.bot == false) {
     message.react("❤");
     message.channel.send("Zachoo!!!");
+  } else if (message.content.toLowerCase().indexOf(":slight_smile:") != -1 || message.content.toLowerCase().indexOf("🙂") != -1) {
+    message.react("🙃");
   }
 });
 
