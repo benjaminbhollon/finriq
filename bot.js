@@ -148,12 +148,13 @@ client.on('ready', () => {
 client.on('message', message => {
   // Our bot needs to know if it will execute a command
   // It will listen for messages that will start with `!`
-  if (message.content.substring(0,1).toLowerCase() == '.') {
+  if (message.content.substring(0,1).toLowerCase() == '.' && message.channel.id == "693561975887888444") {
       var args = message.content.substring(1).split(' ');
       var cmd = args[0];
       args = args.splice(1);
       switch(cmd.toLowerCase()) {
         case "hello":
+          if (message.channel.id == "693561975887888444") console.log(message.content);
           message.channel.send('Hey there! Nice to meet you!');
           break;
         case "words":
@@ -406,7 +407,7 @@ client.on('message', message => {
     }
   } else if (message.content.toLowerCase().indexOf("goodnight") != -1 || message.content.toLowerCase().indexOf("good night") != -1) {
     message.react("💤");
-  } else if (message.content.toLowerCase().indexOf("zachoo") != -1) {
+  } else if (message.content.toLowerCase().indexOf("zachoo") != -1 && message.author.bot == false) {
     message.react("♥");
     message.channel.send("Zachoo!!!");
   }
