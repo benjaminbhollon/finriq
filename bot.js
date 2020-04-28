@@ -404,7 +404,7 @@ client.on('message', message => {
       message.channel.send("And the winner is... " + message.author + "!");
       backspeakListening = false;
     }
-  } else if (message.toLowerCase().indexOf("goodnight") || message.toLowerCase().indexOf("good night")) {
+  } else if (message.content.toLowerCase().indexOf("goodnight") != -1 || message.content.toLowerCase().indexOf("good night") != -1) {
     message.react("💤");
   }
 });
