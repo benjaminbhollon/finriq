@@ -407,6 +407,8 @@ client.on('message', message => {
     }
   } else if (message.content.toLowerCase().indexOf("goodnight") != -1 || message.content.toLowerCase().indexOf("sleep") != -1 || message.content.toLowerCase().indexOf("good night") != -1) {
     message.react("💤");
+  } else if (message.content.toLowerCase().indexOf("morning") != -1 || message.content.toLowerCase().indexOf("sunrise") != -1 || message.content.toLowerCase().indexOf("wake up") != -1 || message.content.toLowerCase().indexOf("woke up") != -1) {
+    message.react("🌅");
   } else if (message.content.toLowerCase().indexOf("zachoo") != -1 && message.author.bot == false) {
     message.react("♥");
     message.channel.send("Zachoo!!!");
