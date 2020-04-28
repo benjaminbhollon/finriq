@@ -406,6 +406,9 @@ client.on('message', message => {
     }
   } else if (message.content.toLowerCase().indexOf("goodnight") != -1 || message.content.toLowerCase().indexOf("good night") != -1) {
     message.react("💤");
+  } else if (message.content.toLowerCase().indexOf("zachoo") != -1) {
+    message.react("♥");
+    message.channel.send("Zachoo!!!");
   }
 });
 
