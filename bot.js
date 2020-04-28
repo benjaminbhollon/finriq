@@ -410,7 +410,7 @@ client.on('message', message => {
   } else if (message.content.toLowerCase().indexOf("morning") != -1 || message.content.toLowerCase().indexOf("sunrise") != -1 || message.content.toLowerCase().indexOf("wake up") != -1 || message.content.toLowerCase().indexOf("woke up") != -1) {
     message.react("🌅");
   } else if (message.content.toLowerCase().indexOf("zachoo") != -1 && message.author.bot == false) {
-    message.react("♥");
+    message.react("❤");
     message.channel.send("Zachoo!!!");
   }
 });
