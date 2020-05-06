@@ -5,11 +5,6 @@ var auth = require('./auth.json');
 // Create an instance of a Discord client
 const client = new Discord.Client();
 
-/**
- * The ready event is vital, it means that only _after_ this will your bot start reacting to information
- * received from Discord
- */
-
 var game;
 
 var writeathon = {};
@@ -148,13 +143,12 @@ client.on('ready', () => {
 client.on('message', message => {
   // Our bot needs to know if it will execute a command
   // It will listen for messages that will start with `!`
-  if (message.content.substring(0,1).toLowerCase() == '.' && message.channel.id == "693561975887888444") {
+  if (message.content.substring(0,1).toLowerCase() == '.') {
       var args = message.content.substring(1).split(' ');
       var cmd = args[0];
       args = args.splice(1);
       switch(cmd.toLowerCase()) {
         case "hello":
-          if (message.channel.id == "693561975887888444") console.log(message.content);
           message.channel.send('Hey there! Nice to meet you!');
           break;
         case "words":
@@ -210,7 +204,7 @@ client.on('message', message => {
           }
           break;
         case "synopsis":
-          switch(args[0]) {
+          /*switch(args[0]) {
             case "intro":
               message.channel.send("__**Guess That Synopsis! Rules**__\nWhen the game starts, I will give everyone a random book title. Each player will DM me a made-up summary of what the book is about.\nOnce everyone has sent in their summaries, I'll list them in the chat where everyone can see them, but no one will see who posted which summary. In addition, I will throw in the _real_ summary of the book. Everyone will vote on what they think the real summary is.\nOnce people have voted, I tally up the points. If someone thinks your summary is the real one, you get one point. If you guess the correct summary, you get three points. Points carry over into the next round until the `.synopsis end` command is run.\nSound fun? run `.synopsis start [min-players]` to start!");
               break;
@@ -368,6 +362,9 @@ client.on('message', message => {
               break;
           }
           break;
+          */
+         message.channel.send("I'm sorry, but Name That Synopsis! is currently out of order.");
+         break;
         case "rps":
           message.channel.send('**Rock...**');
           setTimeout(function () {
@@ -381,10 +378,27 @@ client.on('message', message => {
           message.channel.send('Violence is never the answer. Do... Do you need a `.hug`?');
           break;
         case "hug":
-          message.channel.send("_hugs " + message.author + "_\nDon't worry, it'll be all right.");
+          if (args[0] && args[0].toLowerCase() != "me") {
+            if (parseInt(args[0])) {
+              message.channel.send("_hugs <@" + args[0] + ">_\nDon't worry, it'll be all right.");
+            } else {
+              function setName(input) {
+                name = input;
+              }
+              var name = args.join(" ");
+              //Replace with mention if possible
+              message.channel.members.forEach(member => {
+                if (member.displayName.toLowerCase().indexOf(name.toLowerCase()) != -1 || member.user.username.toLowerCase().indexOf(name.toLowerCase()) != -1) name = "<@" + member.id + ">";
+              });
+              message.channel.send("_hugs " + name + "_\nDon't worry, it'll be all right.");
+            }
+          } else {
+            message.channel.send("_hugs " + message.author + "_\nDon't worry, it'll be all right.");
+          }
+          message.delete();
           break;
         case "help":
-          message.channel.send("__**Finriq Commands List**__\n`.help`: Displays command list.\n`.hello`: Says hello.\n`.shoot [user]`: Shoots _user_\n`.hug`: Finriq gives user a hug\n\n**Guess that Synopsis!**\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after _min-players_ (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far. `.synopsis end`: Ends the current game. Requires game creator. DO NOT RUN WHILE ROUND IS IN PROGESS\n\n**Backspeak**\n`.backspeak intro`: Gives an intro to the game\n`.backspeak`: Starts a round of backspeak. Only one round at a time, please.\n\n**Write-a-thon**\n`.words intro`: Introduces Write-a-thon.\n`.words add [n]` Adds _n_ words to the user's total.\n`.words leaderboard`: Views the rankings.\n`.words reset`: Resets the leaderboard. Requires privs.\n\n__**Rock, Paper, Scissors**__\n`.rps`: Referees a RPS game.");
+          message.channel.send("__**Finriq Commands List**__\n`.help`: Displays command list.\n`.hello`: Says hello.\n`.shoot [user]`: Shoots _user_\n`.hug [user]`: hugs _user_ if present, if not hugs author of command\n\n**Guess that Synopsis!**\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after _min-players_ (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far.\n`.synopsis end`: Ends the current game. Requires game creator. DO NOT RUN WHILE ROUND IS IN PROGESS\n\n**Backspeak**\n`.backspeak intro`: Gives an intro to the game\n`.backspeak`: Starts a round of backspeak. Only one round at a time, please.\n\n**Write-a-thon**\n`.words intro`: Introduces Write-a-thon.\n`.words add [n]` Adds _n_ words to the user's total.\n`.words leaderboard`: Views the rankings.\n`.words reset`: Resets the leaderboard. Requires privs.\n\n__**Rock, Paper, Scissors**__\n`.rps`: Referees a RPS game.");
           break;
       }
   } else if (game.acceptingSummaries && message.author.bot == false && message.channel.type === 'dm') {
@@ -405,14 +419,14 @@ client.on('message', message => {
       message.channel.send("And the winner is... " + message.author + "!");
       backspeakListening = false;
     }
-  } else if (message.content.toLowerCase().indexOf("goodnight") != -1 || message.content.toLowerCase().indexOf("sleep") != -1 || message.content.toLowerCase().indexOf("good night") != -1) {
-    message.react("💤");
-  } else if (message.content.toLowerCase().indexOf("morning") != -1 || message.content.toLowerCase().indexOf("sunrise") != -1 || message.content.toLowerCase().indexOf("wake up") != -1 || message.content.toLowerCase().indexOf("woke up") != -1) {
-    message.react("🌅");
-  } else if (message.content.toLowerCase().indexOf("zachoo") != -1 && message.author.bot == false) {
+  } else if ((message.content.toLowerCase().indexOf("goodnight") != -1 || message.content.toLowerCase().indexOf("good night") != -1) && message.content.toLowerCase().indexOf("bookery") != -1) {
+    message.react("🌛");
+  } else if (message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1) {
+    message.react("🌄");
+  } else if (message.content.toLowerCase().indexOf("zachoo") != -1 && message.author.bot == false && message.channel.id != "693498873083330654") {
     message.react("❤");
     message.channel.send("Zachoo!!!");
-  } else if (message.content.toLowerCase().indexOf(":slight_smile:") != -1 || message.content.toLowerCase().indexOf("🙂") != -1) {
+  } else if (message.content.toLowerCase() == ":slight_smile:"|| message.content.toLowerCase() == "🙂") {
     message.react("🙃");
   }
 });
