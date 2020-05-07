@@ -93,7 +93,11 @@ var bookNo = -1;
 
 var backspeakListening = false;
 
-var gameList = [".synopsis", ".backspeak", ".rps"];
+var gameList = [".synopsis start", ".backspeak", ".rps"];
+
+var afk = [];
+
+//word-a-thon
 
 function sortProperties(obj)
 {
@@ -137,12 +141,46 @@ client.on('ready', () => {
   client.user.setActivity(gameList[1], {
     type: "PLAYING"
   });
+  setInterval(function () {
+    shuffle(gameList);
+    client.user.setActivity(gameList[1], {
+      type: "PLAYING"
+    });
+  }, 600000);
 });
 
 // Create an event listener for messages
 client.on('message', message => {
   // Our bot needs to know if it will execute a command
   // It will listen for messages that will start with `!`
+
+  message.mentions.users.forEach(user => {
+    if (afk.indexOf(user.id) != -1) {
+      message.channel.send(user.tag + " is away right now and may not see your message. Try sending them a DM if it's important to ensure they'll be able to find the message when they return.");
+    }
+  });
+  var mentionsAfk = false;
+
+  if (afk.indexOf(message.author.id) != -1) {
+    message.author.send("It appears that you are no longer AFK. Would you like to turn AFK off? If so, react with a ✅ to this message. This message will be deleted in 30 seconds if you do not reply.").then(response => {
+      var lastMessage;
+      message.author.dmChannel.fetchMessages({ limit: 1 }).then(messages => {
+        lastMessage = messages.first();
+        lastMessage.react("✅");
+        const filter = () => {
+          return true;
+        };
+        lastMessage.awaitReactions(filter, {max:2, time:30000,errors:['time']}).then(collected => {
+          afk.splice(afk.indexOf(message.author.id), 1);
+          message.author.send("AFK has been turned off.");
+        })
+        .catch(collected => {
+          lastMessage.delete();
+        });
+      });
+    });
+  }
+
   if (message.content.substring(0,1).toLowerCase() == '.') {
       var args = message.content.substring(1).split(' ');
       var cmd = args[0];
@@ -154,7 +192,7 @@ client.on('message', message => {
         case "words":
           switch(args[0]) {
             case "intro":
-              message.channel.send("__**Write-a-thon Rules**__\nWhenever you write, use the command `.words add [n]` to add your word count to the leaderboard (example: `.words add 1971`). When you want to see the rankings, use `.words leaderboard`.\nThe leaderboard will be reset weekly.");
+              message.channel.send("__**Word-a-thon Rules**__\nWhenever you write, use the command `.words add [n]` to add your word count to the leaderboard (example: `.words add 1971`). When you want to see the rankings, use `.words leaderboard`.\nThe leaderboard will be reset weekly.");
               break;
             case "add":
               if (writeathon[message.author.tag]) {
@@ -348,13 +386,17 @@ client.on('message', message => {
                 message.channel.send(leaderboard);
               break;
             case "end":
-              if (isEmpty(game)) {
-                message.channel.send("There is no game running. Run `.synopsis start` to start a new game!");
-              } else if (message.author.id == game.owner.id || message.author.id == "530925903757443094") {
-                game = {};
-                message.channel.send("The game is over! Thanks for playing!");
+              if (game.roundInProgress == false) {
+                if (isEmpty(game)) {
+                  message.channel.send("There is no game running. Run `.synopsis start` to start a new game!");
+                } else if (message.author.id == game.owner.id || message.author.id == "530925903757443094") {
+                  game = {};
+                  message.channel.send("The game is over! Thanks for playing!");
+                } else {
+                  message.channel.send("Only the game owner can end the game.");
+                }
               } else {
-                message.channel.send("Only the game owner can end the game.");
+                message.channel.send("Please wait until the round is over to end the game.");
               }
               break;
             default:
@@ -397,8 +439,18 @@ client.on('message', message => {
           }
           message.delete();
           break;
+        case "afk":
+          if (afk.indexOf(message.author.id) == -1) {
+            afk.push(message.author.id);
+            message.author.send("You have been marked as Away-From-Keyboard and anyone pinging you will be notified that you are unable to respond.");
+            message.delete();
+          } else {
+            message.channel.send("You are already marked as AFK.");
+            message.delete();
+          }
+          break;
         case "help":
-          message.channel.send("__**Finriq Commands List**__\n`.help`: Displays command list.\n`.hello`: Says hello.\n`.shoot [user]`: Shoots _user_\n`.hug [user]`: hugs _user_ if present, if not hugs author of command\n\n**Guess that Synopsis!**\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after _min-players_ (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far.\n`.synopsis end`: Ends the current game. Requires game creator. DO NOT RUN WHILE ROUND IS IN PROGESS\n\n**Backspeak**\n`.backspeak intro`: Gives an intro to the game\n`.backspeak`: Starts a round of backspeak. Only one round at a time, please.\n\n**Write-a-thon**\n`.words intro`: Introduces Write-a-thon.\n`.words add [n]` Adds _n_ words to the user's total.\n`.words leaderboard`: Views the rankings.\n`.words reset`: Resets the leaderboard. Requires privs.\n\n__**Rock, Paper, Scissors**__\n`.rps`: Referees a RPS game.");
+          message.channel.send("__**Finriq Commands List**__\n`.help`: Displays command list.\n`.hello`: Says hello.\n`.shoot [user]`: Shoots _user_\n`.hug [user]`: hugs _user_ if present, if not hugs author of command\n\n**Guess that Synopsis!**\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after _min-players_ (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far.\n`.synopsis end`: Ends the current game. Requires game creator. DO NOT RUN WHILE ROUND IS IN PROGESS\n\n**Backspeak**\n`.backspeak intro`: Gives an intro to the game\n`.backspeak`: Starts a round of backspeak. Only one round at a time, please.\n\n**Word-a-thon**\n`.words intro`: Introduces Word-a-thon.\n`.words add [n]` Adds _n_ words to the user's total.\n`.words leaderboard`: Views the rankings.\n`.words reset`: Resets the leaderboard. Requires privs.\n\n__**Rock, Paper, Scissors**__\n`.rps`: Referees a RPS game.\n\n© 2020 Benjamin Hollon. All rights reserved.");
           break;
       }
   } else if (game.acceptingSummaries && message.author.bot == false && message.channel.type === 'dm') {
@@ -414,6 +466,8 @@ client.on('message', message => {
       game.summaries.push({author:message.author,summary:message.content});
       message.channel.send("I have recorded your response. To change it, send another message here before the time limit runs out.");
     }
+  } else if (mentionsAfk) {
+    
   } else if (backspeakListening) {
     if (message.content == backspeakListening) {
       message.channel.send("And the winner is... " + message.author + "!");
