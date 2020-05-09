@@ -236,8 +236,17 @@ client.on('message', message => {
               break;
             default:
               shuffle(words);
-              message.channel.send(words.slice(0,10).join(" "));
-              backspeakListening = words.slice(0,10).reverse().join(" ");
+              message.channel.send('**3...**');
+              setTimeout(function () {
+                message.channel.send('**2...**');
+                setTimeout(function () {
+                  message.channel.send('**1...**');
+                  setTimeout(function () {
+                    message.channel.send(words.slice(0,10).join(" "));
+                    backspeakListening = words.slice(0,10).reverse().join(" ");
+                  }, 1000);
+                }, 1000);
+              }, 1000);
               break;
           }
           break;
