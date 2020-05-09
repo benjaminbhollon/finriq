@@ -161,7 +161,7 @@ client.on('message', message => {
   });
   var mentionsAfk = false;
 
-  if (afk.indexOf(message.author.id) != -1) {
+  if (afk.indexOf(message.author.id) != -1 && !(message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1)) {
     message.author.send("It appears that you are no longer AFK. Would you like to turn AFK off? If so, react with a ✅ to this message. This message will be deleted in 30 seconds if you do not reply.").then(response => {
       var lastMessage;
       message.author.dmChannel.fetchMessages({ limit: 1 }).then(messages => {
@@ -473,7 +473,7 @@ client.on('message', message => {
           message.channel.send(Math.random() < 0.5 ? ":coffee:" : ":coffin:");
           break;
         case "help":
-          message.channel.send("__**Finriq Commands List**__\n`.afk`: Notifies users who try to ping you that you are away and can't reply to messages at the moment.\n`.coffee`: Replies with a random choice of :coffee: or :coffin: (Finriq version of Russian Roulette)\n`.help`: Displays command list.\n`.hello`: Says hello.\n`.jail [user]`: puts _user_ in jail, or author if _user_ not present\n`.shoot [user]`: Shoots _user_\n`.hug [user]`: hugs _user_ if present, if not hugs author of command\n\n**Guess that Synopsis!**\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after _min-players_ (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far.\n`.synopsis end`: Ends the current game. Requires game creator. DO NOT RUN WHILE ROUND IS IN PROGESS\n\n**Backspeak**\n`.backspeak intro`: Gives an intro to the game\n`.backspeak`: Starts a round of backspeak. Only one round at a time, please.\n\n**Word-a-thon**\n`.words intro`: Introduces Word-a-thon.\n`.words add [n]` Adds _n_ words to the user's total.\n`.words leaderboard`: Views the rankings.\n`.words reset`: Resets the leaderboard. Requires privs.\n\n__**Rock, Paper, Scissors**__\n`.rps`: Referees a RPS game.\n\n© 2020 Benjamin Hollon. All rights reserved.");
+          message.channel.send("__**Finriq Commands List**__\n`.afk`: Notifies users who try to ping you that you are away and can't reply to messages at the moment. AFK is automatically turned on when you send \"Good morning, Bookery!\" and off when you send \"Good night, Bookery!\" \n`.coffee`: Replies with a random choice of :coffee: or :coffin: (Finriq version of Russian Roulette)\n`.help`: Displays command list.\n`.hello`: Says hello.\n`.jail [user]`: puts _user_ in jail, or author if _user_ not present\n`.shoot [user]`: Shoots _user_\n`.hug [user]`: hugs _user_ if present, if not hugs author of command\n\n**Guess that Synopsis!**\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after _min-players_ (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far.\n`.synopsis end`: Ends the current game. Requires game creator. DO NOT RUN WHILE ROUND IS IN PROGESS\n\n**Backspeak**\n`.backspeak intro`: Gives an intro to the game\n`.backspeak`: Starts a round of backspeak. Only one round at a time, please.\n\n**Word-a-thon**\n`.words intro`: Introduces Word-a-thon.\n`.words add [n]` Adds _n_ words to the user's total.\n`.words leaderboard`: Views the rankings.\n`.words reset`: Resets the leaderboard. Requires privs.\n\n__**Rock, Paper, Scissors**__\n`.rps`: Referees a RPS game.\n\n© 2020 Benjamin Hollon. All rights reserved.");
           break;
       }
   } else if (game.acceptingSummaries && message.author.bot == false && message.channel.type === 'dm') {
@@ -489,8 +489,6 @@ client.on('message', message => {
       game.summaries.push({author:message.author,summary:message.content});
       message.channel.send("I have recorded your response. To change it, send another message here before the time limit runs out.");
     }
-  } else if (mentionsAfk) {
-    
   } else if (backspeakListening) {
     if (message.content == backspeakListening) {
       message.channel.send("And the winner is... " + message.author + "!");
@@ -498,8 +496,14 @@ client.on('message', message => {
     }
   } else if ((message.content.toLowerCase().indexOf("goodnight") != -1 || message.content.toLowerCase().indexOf("good night") != -1) && message.content.toLowerCase().indexOf("bookery") != -1) {
     message.react("🌛");
+    if (afk.indexOf(message.author.id) == -1) {
+      afk.push(message.author.id);
+      message.author.send("You have been marked as Away-From-Keyboard and anyone pinging you will be notified that you are unable to respond.");
+    }
   } else if (message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1) {
     message.react("🌄");
+    afk.splice(afk.indexOf(message.author.id), 1);
+    message.author.send("AFK has been turned off.");
   } else if (message.content.toLowerCase().indexOf("zachoo") != -1 && message.author.bot == false && message.channel.id != "693498873083330654") {
     message.react("❤");
     message.channel.send("Zachoo!!!");
