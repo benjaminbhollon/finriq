@@ -494,13 +494,13 @@ client.on('message', message => {
       message.channel.send("And the winner is... " + message.author + "!");
       backspeakListening = false;
     }
-  } else if ((message.content.toLowerCase().indexOf("goodnight") != -1 || message.content.toLowerCase().indexOf("good night") != -1) && message.content.toLowerCase().indexOf("bookery") != -1) {
+  } else if ((message.content.toLowerCase().indexOf("goodnight") != -1 || message.content.toLowerCase().indexOf("good night") != -1) && message.content.toLowerCase().indexOf("bookery") != -1 && !message.author.bot) {
     message.react("🌛");
     if (afk.indexOf(message.author.id) == -1) {
       afk.push(message.author.id);
       message.author.send("You have been marked as Away-From-Keyboard and anyone pinging you will be notified that you are unable to respond.");
     }
-  } else if (message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1) {
+  } else if (message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1 && !message.author.bot) {
     message.react("🌄");
     afk.splice(afk.indexOf(message.author.id), 1);
     message.author.send("AFK has been turned off.");
