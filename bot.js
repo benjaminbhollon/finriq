@@ -502,8 +502,10 @@ client.on('message', message => {
     }
   } else if (message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1 && !message.author.bot) {
     message.react("🌄");
-    afk.splice(afk.indexOf(message.author.id), 1);
-    message.author.send("AFK has been turned off.");
+    if (afk.indexOf(message.author.id) != -1) {
+      afk.splice(afk.indexOf(message.author.id), 1);
+      message.author.send("AFK has been turned off.");
+    }
   } else if (message.content.toLowerCase().indexOf("zachoo") != -1 && message.author.bot == false && message.channel.id != "693498873083330654") {
     message.react("❤");
     message.channel.send("Zachoo!!!");
