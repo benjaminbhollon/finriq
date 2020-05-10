@@ -1,2 +1,2 @@
-# finriq
-A Discord bot for The Bookery.
+# Finriq
+A custom Discord bot for The Bookery.
