@@ -93,9 +93,10 @@ var bookNo = -1;
 
 var backspeakListening = false;
 
-var gameList = [".synopsis start", ".backspeak", ".rps"];
+var gameList = [".synopsis start", ".backspeak", ".rps", ".coffee"];
 
 var afk = [];
+var afkCooldown = [];
 
 //word-a-thon
 
@@ -161,8 +162,12 @@ client.on('message', message => {
   });
   var mentionsAfk = false;
 
-  if (afk.indexOf(message.author.id) != -1 && !(message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1)) {
+  if (afk.indexOf(message.author.id) != -1 && afkCooldown.indexOf(message.author.id) == -1 && !(message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1)) {
     message.author.send("It appears that you are no longer AFK. Would you like to turn AFK off? If so, react with a ✅ to this message. This message will be deleted in 30 seconds if you do not reply.").then(response => {
+      afkCooldown.push(message.author.id);
+      setTimeout(function () {
+        afkCooldown.splice(afkCooldown.indexOf(message.author.id), 1);
+      }, 300000);
       var lastMessage;
       message.author.dmChannel.fetchMessages({ limit: 1 }).then(messages => {
         lastMessage = messages.first();
@@ -472,6 +477,10 @@ client.on('message', message => {
           if (afk.indexOf(message.author.id) == -1) {
             afk.push(message.author.id);
             message.author.send("You have been marked as Away-From-Keyboard and anyone pinging you will be notified that you are unable to respond.");
+            afkCooldown.push(message.author.id);
+            setTimeout(function () {
+              afkCooldown.splice(afkCooldown.indexOf(message.author.id), 1);
+            }, 300000);
             message.delete();
           } else {
             message.channel.send("You are already marked as AFK.");
@@ -507,6 +516,10 @@ client.on('message', message => {
     message.react("🌛");
     if (afk.indexOf(message.author.id) == -1) {
       afk.push(message.author.id);
+      afkCooldown.push(message.author.id);
+      setTimeout(function () {
+        afkCooldown.splice(afkCooldown.indexOf(message.author.id), 1);
+      }, 300000);
       message.author.send("You have been marked as Away-From-Keyboard and anyone pinging you will be notified that you are unable to respond.");
     }
   } else if (message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1 && !message.author.bot) {
