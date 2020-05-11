@@ -506,6 +506,7 @@ client.on('message', message => {
             message.channel.send("_:candle: " + message.author + " summons nobody :candle:_");
           }
           message.delete();
+          break;
         case "coffee":
           message.channel.send(Math.random() < 0.5 ? ":coffee:" : ":coffin:");
           break;
