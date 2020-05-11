@@ -456,7 +456,7 @@ client.on('message', message => {
           case "jail":
             if (args[0] && args[0].toLowerCase() != "me") {
               if (parseInt(args[0])) {
-                message.channel.send("_puts " + message.author + " in jail_");
+                message.channel.send("_puts <@" + args[0] + "> in jail_");
               } else {
                 function setName(input) {
                   name = input;
@@ -487,11 +487,30 @@ client.on('message', message => {
             message.delete();
           }
           break;
+        case "summon":
+          if (args[0] && args[0].toLowerCase() != "me") {
+            if (parseInt(args[0])) {
+              message.channel.send("_:candle: " + message.author + " summons <@" + args[0] + "> :candle:_");
+            } else {
+              function setName(input) {
+                name = input;
+              }
+              var name = args.join(" ");
+              //Replace with mention if possible
+              message.channel.members.forEach(member => {
+                if (member.displayName.toLowerCase().indexOf(name.toLowerCase()) != -1 || member.user.username.toLowerCase().indexOf(name.toLowerCase()) != -1) name = "<@" + member.id + ">";
+              });
+              message.channel.send("_:candle: " + message.author + " summons " + name + " :candle:_");
+            }
+          } else {
+            message.channel.send("_:candle: " + message.author + " summons nobody :candle:_");
+          }
+          message.delete();
         case "coffee":
           message.channel.send(Math.random() < 0.5 ? ":coffee:" : ":coffin:");
           break;
         case "help":
-          message.channel.send("__**Finriq Commands List**__\n`.afk`: Notifies users who try to ping you that you are away and can't reply to messages at the moment. AFK is automatically turned on when you send \"Good night, Bookery!\" and off when you send \"Good morning, Bookery!\" \n`.coffee`: Replies with a random choice of :coffee: or :coffin: (Finriq version of Russian Roulette)\n`.help`: Displays command list.\n`.hello`: Says hello.\n`.jail [user]`: puts _user_ in jail, or author if _user_ not present\n`.shoot [user]`: Shoots _user_\n`.hug [user]`: hugs _user_ if present, if not hugs author of command\n\n**Guess that Synopsis!**\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after _min-players_ (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far.\n`.synopsis end`: Ends the current game. Requires game creator. DO NOT RUN WHILE ROUND IS IN PROGESS\n\n**Backspeak**\n`.backspeak intro`: Gives an intro to the game\n`.backspeak`: Starts a round of backspeak. Only one round at a time, please.\n\n**Word-a-thon**\n`.words intro`: Introduces Word-a-thon.\n`.words add [n]` Adds _n_ words to the user's total.\n`.words leaderboard`: Views the rankings.\n`.words reset`: Resets the leaderboard. Requires privs.\n\n__**Rock, Paper, Scissors**__\n`.rps`: Referees a RPS game.\n\n© 2020 Benjamin Hollon. All rights reserved.");
+          message.channel.send("__**Finriq Commands List**__\n`.afk`: Notifies users who try to ping you that you are away and can't reply to messages at the moment. AFK is automatically turned on when you send \"Good night, Bookery!\" and off when you send \"Good morning, Bookery!\" \n`.coffee`: Replies with a random choice of :coffee: or :coffin: (Finriq version of Russian Roulette)\n`.help`: Displays command list.\n`.hello`: Says hello.\n`.jail [user]`: puts _user_ in jail, or author if _user_ not present\n`.shoot [user]`: Shoots _user_\n`.summon [user]`: summons _user_\n`.hug [user]`: hugs _user_ if present, if not hugs author of command\n\n**Guess that Synopsis!**\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after _min-players_ (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far.\n`.synopsis end`: Ends the current game. Requires game creator. DO NOT RUN WHILE ROUND IS IN PROGESS\n\n**Backspeak**\n`.backspeak intro`: Gives an intro to the game\n`.backspeak`: Starts a round of backspeak. Only one round at a time, please.\n\n**Word-a-thon**\n`.words intro`: Introduces Word-a-thon.\n`.words add [n]` Adds _n_ words to the user's total.\n`.words leaderboard`: Views the rankings.\n`.words reset`: Resets the leaderboard. Requires privs.\n\n__**Rock, Paper, Scissors**__\n`.rps`: Referees a RPS game.\n\n© 2020 Benjamin Hollon. All rights reserved.");
           break;
       }
   } else if (game.acceptingSummaries && message.author.bot == false && message.channel.type === 'dm') {
