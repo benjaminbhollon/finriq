@@ -527,6 +527,10 @@ client.on('message', message => {
       game.summaries.push({author:message.author,summary:message.content});
       message.channel.send("I have recorded your response. To change it, send another message here before the time limit runs out.");
     }
+  } else if (message.channel.id == "711269048591056916") {
+    message.react("👋");
+  } else if (message.channel.id == "705240176842113024") {
+    message.react("💯");
   } else if (backspeakListening) {
     if (message.content == backspeakListening) {
       message.channel.send("And the winner is... " + message.author + "!");
