@@ -560,9 +560,6 @@ client.on('message', message => {
       afk.splice(afk.indexOf(message.author.id), 1);
       message.author.send("AFK has been turned off.");
     }
-  } else if (message.content.toLowerCase().indexOf("zachoo") != -1 && message.author.bot == false && message.channel.id != "693498873083330654") {
-    message.react("❤");
-    message.channel.send("Zachoo!!!");
   } else if (message.content.toLowerCase() == ":slight_smile:"|| message.content.toLowerCase() == "🙂") {
     message.react("🙃");
   }
