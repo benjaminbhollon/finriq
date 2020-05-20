@@ -197,7 +197,7 @@ client.on('message', message => {
     });
   }
 
-  if (message.content.substring(0,1).toLowerCase() == '.') {
+  if (message.content.substring(0,1).toLowerCase() == '.' || message.content.substring(0,2).toLowerCase() == '. ') {
       var args = message.content.substring(1).split(' ');
       var cmd = args[0];
       args = args.splice(1);
