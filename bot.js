@@ -28,8 +28,6 @@ var backspeakListening = false;
 var afk = [];
 var afkCooldown = [];
 
-//word-a-thon
-
 function sortProperties(obj)
 {
   // convert object into array
@@ -412,14 +410,15 @@ client.on('message', message => {
         case "afk":
           if (afk.indexOf(message.author.id) == -1) {
             afk.push(message.author.id);
-            message.author.send("You have been marked as Away-From-Keyboard and anyone pinging you will be notified that you are unable to respond.");
+            message.author.send("You have been marked as FK and anyone pinging you will be notified that you are unable to respond.");
             afkCooldown.push(message.author.id);
             setTimeout(function () {
               afkCooldown.splice(afkCooldown.indexOf(message.author.id), 1);
             }, 300000);
             message.delete();
           } else {
-            message.channel.send("You are already marked as AFK.");
+            afk.splice(afk.indexOf(message.author.id), 1);
+            message.author.send("AFK has been turned off.");
             message.delete();
           }
           break;
