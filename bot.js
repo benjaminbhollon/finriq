@@ -267,7 +267,7 @@ client.on('message', message => {
           }
           break;
         case "synopsis":
-          /*switch(args[0]) {
+          switch(args[0]) {
             case "intro":
               message.channel.send("__**Guess That Synopsis! Rules**__\nWhen the game starts, I will give everyone a random book title. Each player will DM me a made-up summary of what the book is about.\nOnce everyone has sent in their summaries, I'll list them in the chat where everyone can see them, but no one will see who posted which summary. In addition, I will throw in the _real_ summary of the book. Everyone will vote on what they think the real summary is.\nOnce people have voted, I tally up the points. If someone thinks your summary is the real one, you get one point. If you guess the correct summary, you get three points. Points carry over into the next round until the `.synopsis end` command is run.\nSound fun? run `.synopsis start [min-players]` to start!");
               break;
@@ -429,8 +429,6 @@ client.on('message', message => {
               break;
           }
           break;
-          */
-         message.channel.send("I'm sorry, but Name That Synopsis! is currently out of order.");
          break;
         case "rps":
           message.channel.send('**Rock...**');
@@ -530,9 +528,14 @@ client.on('message', message => {
           break;
         case "help":
           if (!args.length) {
-            message.channel.send("__**Finriq Commands**__\n*Please use `.help [category]` for commands under that category.*\n`General`\n`Games`\nWord-a-Thon\nRead-a-Thon")
+            message.channel.send("__**Finriq Commands**__\n*Use `.help [category]` for commands under that category.*\n`General`\n`Games`\n`Word-a-Thon`\n`Read-a-Thon`")
           } else if (args[0].toLowerCase() == "general") {
-            message.channel.send("__**General**__\n`.afk`: Notifies users who try to ping you that you are away and can't reply to messages at the moment. AFK is automatically turned on when you send \"Good night, Bookery!\" and off when you send \"Good morning, Bookery!\" `.help <category>`: Displays category list, or commands under a category if one is specified.\n`.hello`: Says hello. Use to test if bot is online.\n`.jail [user]`: puts _user_ in jail, or author if _user_ not present\n`.shoot [user]`: Shoots _user_\n`.summon [user]`: summons _user_\n`.hug [user]`: hugs _user_ if present, if not hugs author of command");
+            message.channel.send("__**General Commands**__\n`.afk`: Notifies users who try to ping you that you are away and can't reply to messages at the moment. AFK is automatically turned on when you send \"Good night, Bookery!\" and off when you send \"Good morning, Bookery!\"\n`.help [category | command]`: Displays category list, or commands under a category if one is specified.\n`.hello`: Says hello. Use to test if bot is online.\n`.jail [user]`: puts _user_ in jail, or author if _user_ not present\n`.shoot [user]`: Shoots _user_\n`.summon [user]`: summons _user_\n`.hug [user]`: hugs _user_ if present, if not hugs author of command");
+          } else if (args[0].toLowerCase() == "games") {
+            message.channel.send("__**Game Commands**__\n`.backspeak`: Starts a round of backspeak.\n`.rps`: Starts a rock paper scissors game.");
+          } else if (args[0].toLowerCase().replace('-', '') == "wordathon" || args[0].toLowerCase() == "wat") {
+            message.channel.send('__**Word-a-Thon Commands**__\n*Under construction. Use at your own risk.*\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after min-players (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far.\n`.synopsis end`: Ends the current game. Requires game creator. (Cannot be run while game is in progress)\n')
+          } else if (args[0].toLowerCase().replace('-', '') == "readathon" || args[0].toLowerCase() == "rat") {
           }
           break;
       }
