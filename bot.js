@@ -491,7 +491,7 @@ client.on('message', message => {
             message.channel.send("```" + args[0] + "```");
             if (parseInt(args[0])) {
               message.channel.send("1");
-              if (args[0] != "@everyone") {
+              if (args[0] != guild.id) {
                 message.channel.send("_:candle: " + message.author + " summons <@" + args[0] + "> :candle:_");
               } else {
                 message.channel.send("_:candle: " + message.author + " summons the entire server :candle:_");
@@ -506,6 +506,7 @@ client.on('message', message => {
               message.channel.members.forEach(member => {
                 if (member.displayName.toLowerCase().indexOf(name.toLowerCase()) != -1 || member.user.username.toLowerCase().indexOf(name.toLowerCase()) != -1) name = "<@" + member.id + ">";
               });
+              message.channel.send("```" + name + "```");
               message.channel.send("_:candle: " + message.author + " summons " + name + " :candle:_");
             }
           } else {
