@@ -4,6 +4,18 @@ const Discord = require('discord.js');
 // Create an instance of a Discord client
 const client = new Discord.Client();
 
+// Connect to database
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+  host     : process.env.DB_HOST,
+  port     : '3306',
+  user     : process.env.DB_USER,
+  password : process.env.DB_PASS,
+  database : process.env.DB,
+  charset : 'utf8mb4'
+});
+
 var game;
 
 var writeathon = {};
@@ -147,6 +159,15 @@ client.on('ready', () => {
       type: "PLAYING"
     });
   }, 600000);
+});
+
+connection.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  connection.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Result: " + result);
+  });
 });
 
 // Create an event listener for messages
