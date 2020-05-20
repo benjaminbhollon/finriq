@@ -204,10 +204,10 @@ client.on('message', message => {
         args = args.splice(1);
       } else {
         var args = message.content.substring(2).split(' ');
+        message.channel.send(args);
         var cmd = args[0];
         args = args.splice(2);
       }
-      message.channel.send(cmd);
       switch(cmd.toLowerCase()) {
         case "hello":
           message.channel.send('Hey there! Nice to meet you!');
