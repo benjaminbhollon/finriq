@@ -198,9 +198,15 @@ client.on('message', message => {
   }
 
   if (message.content.substring(0,1).toLowerCase() == '.' || message.content.substring(0,2).toLowerCase() == '. ') {
-      var args = message.content.substring(1).split(' ');
-      var cmd = args[0];
-      args = args.splice(1);
+      if (message.content.substring(0,1).toLowerCase() == '.') {
+        var args = message.content.substring(1).split(' ');
+        var cmd = args[0];
+        args = args.splice(1);
+      } else {
+        var args = message.content.substring(2).split(' ');
+        var cmd = args[0];
+        args = args.splice(1);
+      }
       switch(cmd.toLowerCase()) {
         case "hello":
           message.channel.send('Hey there! Nice to meet you!');
