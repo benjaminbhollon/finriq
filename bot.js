@@ -198,6 +198,7 @@ client.on('message', message => {
   }
 
   if (message.content.substring(0,1).toLowerCase() == '.') {
+    console.log("Howdy!");
       if (message.content.substring(0,2).toLowerCase() == '. ') {
         message.channel.send(args);
         var cmd = args[0];
