@@ -490,7 +490,7 @@ client.on('message', message => {
           if (args[0] && args[0].toLowerCase() != "me") {
             message.channel.send("```" + args[0] + "```");
             if (parseInt(args[0])) {
-              if (args[0] != guild.id) {
+              if (args[0] != "@everyone") {
                 message.channel.send("_:candle: " + message.author + " summons <@" + args[0] + "> :candle:_");
               } else {
                 message.channel.send("_:candle: " + message.author + " summons the entire server :candle:_");
