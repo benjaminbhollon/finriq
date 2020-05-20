@@ -198,15 +198,16 @@ client.on('message', message => {
   }
 
   if (message.content.substring(0,1).toLowerCase() == '.') {
-    console.log("Howdy!");
       if (message.content.substring(0,2).toLowerCase() == '. ') {
         message.channel.send(args);
         var cmd = args[0];
         args = args.splice(1);
+        console.log("1");
       } else {
         var args = message.content.substring(1).split(' ');
         var cmd = args[0];
         args = args.splice(1);
+        console.log("2");
       }
       switch(cmd.toLowerCase()) {
         case "hello":
