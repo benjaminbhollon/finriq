@@ -79,5 +79,3 @@ var books = [
 ];
 
 var gameList = [".synopsis start", ".backspeak", ".rps", ".coffee"];
-
-export {gameList, books, words};
