@@ -489,6 +489,7 @@ client.on('message', message => {
         case "summon":
           if (args[0] && args[0].toLowerCase() != "me") {
             if (parseInt(args[0])) {
+              message.channel.send(args[0]);
               if (args[0] != guild.id) {
                 message.channel.send("_:candle: " + message.author + " summons <@" + args[0] + "> :candle:_");
               } else {
