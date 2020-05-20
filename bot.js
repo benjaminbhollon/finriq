@@ -490,12 +490,14 @@ client.on('message', message => {
           if (args[0] && args[0].toLowerCase() != "me") {
             message.channel.send("```" + args[0] + "```");
             if (parseInt(args[0])) {
+              message.channel.send("1");
               if (args[0] != "@everyone") {
                 message.channel.send("_:candle: " + message.author + " summons <@" + args[0] + "> :candle:_");
               } else {
                 message.channel.send("_:candle: " + message.author + " summons the entire server :candle:_");
               }
             } else {
+              message.channel.send("2");
               function setName(input) {
                 name = input;
               }
