@@ -198,7 +198,6 @@ client.on('message', message => {
   }
 
   if (message.content.substring(0,1).toLowerCase() == '.' || message.content.substring(0,2).toLowerCase() == '. ') {
-    message.channel.send('Hello world');
       if (message.content.substring(0,1).toLowerCase() == '.') {
         var args = message.content.substring(1).split(' ');
         var cmd = args[0];
@@ -206,8 +205,9 @@ client.on('message', message => {
       } else {
         var args = message.content.substring(2).split(' ');
         var cmd = args[0];
-        args = args.splice(1);
+        args = args.splice(2);
       }
+      message.channel.send(cmd);
       switch(cmd.toLowerCase()) {
         case "hello":
           message.channel.send('Hey there! Nice to meet you!');
