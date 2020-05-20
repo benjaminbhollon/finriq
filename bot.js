@@ -19,7 +19,7 @@ var game;
 
 var writeathon = {};
 
-import {gameList, books, words} from './arrays.js';
+const arrays = new require('./arrays.js');
 
 var bookNo = -1;
 
@@ -65,14 +65,14 @@ function addSummaryMessage(id) {
 client.on('ready', () => {
   console.log('I am ready!');
   game = {};
-  shuffle(gameList);
-  shuffle(books);
-  client.user.setActivity(gameList[1], {
+  shuffle(arrays.gameList);
+  shuffle(arrays.books);
+  client.user.setActivity(arrays.gameList[1], {
     type: "PLAYING"
   });
   setInterval(function () {
-    shuffle(gameList);
-    client.user.setActivity(gameList[1], {
+    shuffle(arrays.gameList);
+    client.user.setActivity(arrays.gameList[1], {
       type: "PLAYING"
     });
   }, 600000);
@@ -176,15 +176,15 @@ client.on('message', message => {
               message.channel.send("__**Backspeak Rules**__\nBackspeak is really a very simple game. When you run `.backspeak`, I will post a random string of words to the chat. The first person to post the words reversed in order in the chat wins.");
               break;
             default:
-              shuffle(words);
+              shuffle(arrays.words);
               message.channel.send('**3...**');
               setTimeout(function () {
                 message.channel.send('**2...**');
                 setTimeout(function () {
                   message.channel.send('**1...**');
                   setTimeout(function () {
-                    message.channel.send(words.slice(0,10).join(" "));
-                    backspeakListening = words.slice(0,10).reverse().join(" ");
+                    message.channel.send(arrays.words.slice(0,10).join(" "));
+                    backspeakListening = arrays.words.slice(0,10).reverse().join(" ");
                   }, 1000);
                 }, 1000);
               }, 1000);
@@ -227,7 +227,7 @@ client.on('message', message => {
                 message.channel.send("Here comes your prompt! _(Cue drumroll)_");
                 setTimeout(function () {
                   bookNo++;
-                  game.book = books[bookNo % books.length];
+                  game.book = arrays.books[bookNo % arrays.books.length];
                   message.channel.send("The title is _" + game.book.title + "_!\nMake up a synopsis for this story and DM it to me. You have five minutes.");
                   game.summaries = [{author:false,summary:game.book.summary}];
                   game.acceptingSummaries = true;
