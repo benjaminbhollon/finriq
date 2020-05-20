@@ -529,7 +529,7 @@ client.on('message', message => {
           message.channel.send(Math.random() < 0.5 ? ":tea:" : ":deciduous_tree:");
           break;
         case "help":
-          if (args[0] == "") {
+          if (!args.length) {
             message.channel.send("__**Finriq Commands**__\n*Please use `.help [category]` for commands under that category.*\n`General`\n`Games`\nWord-a-Thon\nRead-a-Thon")
           } else if (args[0].toLowerCase() == "general") {
             message.channel.send("__**General**__\n`.afk`: Notifies users who try to ping you that you are away and can't reply to messages at the moment. AFK is automatically turned on when you send \"Good night, Bookery!\" and off when you send \"Good morning, Bookery!\" `.help <category>`: Displays category list, or commands under a category if one is specified.\n`.hello`: Says hello. Use to test if bot is online.\n`.jail [user]`: puts _user_ in jail, or author if _user_ not present\n`.shoot [user]`: Shoots _user_\n`.summon [user]`: summons _user_\n`.hug [user]`: hugs _user_ if present, if not hugs author of command");
