@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 // Create an instance of a Discord client
 const client = new Discord.Client();
 
-// Connect to database
+/*// Connect to database
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
@@ -14,7 +14,7 @@ const connection = mysql.createConnection({
   password : process.env.DB_PASS,
   database : process.env.DB,
   charset : 'utf8mb4'
-});
+});*/
 
 var game;
 
@@ -159,15 +159,6 @@ client.on('ready', () => {
       type: "PLAYING"
     });
   }, 600000);
-});
-
-connection.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-  connection.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Result: " + result);
-  });
 });
 
 // Create an event listener for messages
@@ -533,6 +524,9 @@ client.on('message', message => {
           break;
         case "coffee":
           message.channel.send(Math.random() < 0.5 ? ":coffee:" : ":coffin:");
+          break;
+        case "tea":
+          message.channel.send(Math.random() < 0.5 ? ":tea:" : ":deciduous_tree:");
           break;
         case "help":
           // if (args[0] && args[0].toLowerCase() )
