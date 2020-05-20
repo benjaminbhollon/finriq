@@ -199,7 +199,7 @@ client.on('message', message => {
 
   if (message.content.substring(0,1).toLowerCase() == '.') {
       if (message.content.substring(0,2).toLowerCase() == '. ') {
-        message.channel.send(args);
+        var args = message.content.substring(2).split(' ');
         var cmd = args[0];
         args = args.splice(1);
         console.log("1");
