@@ -507,7 +507,11 @@ client.on('message', message => {
                 if (member.displayName.toLowerCase().indexOf(name.toLowerCase()) != -1 || member.user.username.toLowerCase().indexOf(name.toLowerCase()) != -1) name = "<@" + member.id + ">";
               });
               message.channel.send("```" + name + "```");
-              message.channel.send("_:candle: " + message.author + " summons " + name + " :candle:_");
+              if (name != "@everyone") {
+                message.channel.send("_:candle: " + message.author + " summons " + name + " :candle:_");
+              } else {
+                message.channel.send("_:candle: " + message.author + " summons the entire server :candle:_");
+              }
             }
           } else {
             message.channel.send("_:candle: " + message.author + " summons nobody :candle:_");
