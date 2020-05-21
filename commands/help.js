@@ -31,6 +31,7 @@ module.exports.execute = async (client, message, args) => {
 
 		if (command) {
 			if (modules.includes(command)) {
+				console.log("Yes");
 				let helpMessage = new Discord.RichEmbed()
 				.setColor('#750384')
 				.setTitle(`${command}`)
