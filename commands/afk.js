@@ -15,7 +15,7 @@ module.exports.execute = async (client, message, args) => {
 			sender.send('I have marked you as AFK. Safe travels!').then(msg => msg.delete(5000).catch());
 		}).catch(err => {
 			if (err.name == 'SequelizeUniqueConstraintError') {
-				return;
+			console.error('Afk sequelize error: ', err);
 			}
 			console.error('Afk sequelize error: ', err);
 		}));
@@ -25,5 +25,5 @@ module.exports.config = {
 	name: 'afk',
 	aliases: ['afk', 'away'],
 	description: 'I will mark you as being away. When people tag you, they will be notified that you are not present.',
-	usage: ['afk message']
+	usage: ['afk [message]']
 };
