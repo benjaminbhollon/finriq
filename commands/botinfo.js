@@ -1,3 +1,4 @@
+const Discord = require("discord.js");
 const fields = require("../config.json");
 const version = fields.version;
 const versioninfo = fields.versioninfo;
