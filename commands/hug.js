@@ -17,6 +17,7 @@ module.exports.execute = async (client, message, args) => {
 
 module.exports.config = {
   name: 'hug',
+  aliases: ['hug'],
   description: 'Hugs specified user.',
   usage: ['hug [user]']
 };
