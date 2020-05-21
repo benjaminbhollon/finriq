@@ -1,9 +1,19 @@
 // Import the discord.js module
 const Discord = require('discord.js');
-var auth = require('./auth.json');
 
 // Create an instance of a Discord client
 const client = new Discord.Client();
+
+/*// Connect to database
+const mysql = require('mysql');
+const connection = mysql.createConnection({
+  host     : process.env.DB_HOST,
+  port     : '3306',
+  user     : process.env.DB_USER,
+  password : process.env.DB_PASS,
+  database : process.env.DB,
+  charset : 'utf8mb4'
+});*/
 
 var game;
 
@@ -89,16 +99,14 @@ var books = [
   }
 ];
 
+var gameList = [".synopsis start", ".backspeak", ".rps", ".coffee"];
+
 var bookNo = -1;
 
 var backspeakListening = false;
 
-var gameList = [".synopsis start", ".backspeak", ".rps", ".coffee"];
-
 var afk = [];
 var afkCooldown = [];
-
-//word-a-thon
 
 function sortProperties(obj)
 {
@@ -127,7 +135,14 @@ function isEmpty(obj) {
 }
 
 function shuffle(array) {
-  array.sort(() => Math.random() - 0.5);
+  for(let i = array.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * i)
+    const temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+  }
+
+  return array;
 }
 
 function addSummaryMessage(id) {
@@ -187,9 +202,17 @@ client.on('message', message => {
   }
 
   if (message.content.substring(0,1).toLowerCase() == '.') {
-      var args = message.content.substring(1).split(' ');
-      var cmd = args[0];
-      args = args.splice(1);
+      if (message.content.substring(0,2).toLowerCase() == '. ') {
+        var args = message.content.substring(2).split(' ');
+        var cmd = args[0];
+        args = args.splice(1);
+        console.log("1");
+      } else {
+        var args = message.content.substring(1).split(' ');
+        var cmd = args[0];
+        args = args.splice(1);
+        console.log("2");
+      }
       switch(cmd.toLowerCase()) {
         case "hello":
           message.channel.send('Hey there! Nice to meet you!');
@@ -256,7 +279,8 @@ client.on('message', message => {
           }
           break;
         case "synopsis":
-          /*switch(args[0]) {
+          /*
+          switch(args[0]) {
             case "intro":
               message.channel.send("__**Guess That Synopsis! Rules**__\nWhen the game starts, I will give everyone a random book title. Each player will DM me a made-up summary of what the book is about.\nOnce everyone has sent in their summaries, I'll list them in the chat where everyone can see them, but no one will see who posted which summary. In addition, I will throw in the _real_ summary of the book. Everyone will vote on what they think the real summary is.\nOnce people have voted, I tally up the points. If someone thinks your summary is the real one, you get one point. If you guess the correct summary, you get three points. Points carry over into the next round until the `.synopsis end` command is run.\nSound fun? run `.synopsis start [min-players]` to start!");
               break;
@@ -385,7 +409,8 @@ client.on('message', message => {
                 message.channel.send("You are not the owner of the game. Only the owner of the game can start a new round.");
               } else {
                 message.channel.send("There is no game running. Run `.synopsis start` to start a new game!");
-              }
+              }*/
+              message.channel.send("Currently under construction. Check back later!");
               break;
             case "leaderboard":
                 var leaderboard = "Here are the rankings so far:\n";
@@ -418,8 +443,6 @@ client.on('message', message => {
               break;
           }
           break;
-          */
-         message.channel.send("I'm sorry, but Name That Synopsis! is currently out of order.");
          break;
         case "rps":
           message.channel.send('**Rock...**');
@@ -476,14 +499,15 @@ client.on('message', message => {
         case "afk":
           if (afk.indexOf(message.author.id) == -1) {
             afk.push(message.author.id);
-            message.author.send("You have been marked as Away-From-Keyboard and anyone pinging you will be notified that you are unable to respond.");
+            message.author.send("You have been marked as AFK and anyone pinging you will be notified that you are unable to respond.");
             afkCooldown.push(message.author.id);
             setTimeout(function () {
               afkCooldown.splice(afkCooldown.indexOf(message.author.id), 1);
             }, 300000);
             message.delete();
           } else {
-            message.channel.send("You are already marked as AFK.");
+            afk.splice(afk.indexOf(message.author.id), 1);
+            message.author.send("AFK has been turned off.");
             message.delete();
           }
           break;
@@ -500,7 +524,11 @@ client.on('message', message => {
               message.channel.members.forEach(member => {
                 if (member.displayName.toLowerCase().indexOf(name.toLowerCase()) != -1 || member.user.username.toLowerCase().indexOf(name.toLowerCase()) != -1) name = "<@" + member.id + ">";
               });
-              message.channel.send("_:candle: " + message.author + " summons " + name + " :candle:_");
+              if (name != "@everyone") {
+                message.channel.send("_:candle: " + message.author + " summons " + name + " :candle:_");
+              } else {
+                message.channel.send("_:candle: " + message.author + " summons the entire server :candle:_");
+              }
             }
           } else {
             message.channel.send("_:candle: " + message.author + " summons nobody :candle:_");
@@ -510,8 +538,20 @@ client.on('message', message => {
         case "coffee":
           message.channel.send(Math.random() < 0.5 ? ":coffee:" : ":coffin:");
           break;
+        case "tea":
+          message.channel.send(Math.random() < 0.5 ? ":tea:" : ":deciduous_tree:");
+          break;
         case "help":
-          message.channel.send("__**Finriq Commands List**__\n`.afk`: Notifies users who try to ping you that you are away and can't reply to messages at the moment. AFK is automatically turned on when you send \"Good night, Bookery!\" and off when you send \"Good morning, Bookery!\" \n`.coffee`: Replies with a random choice of :coffee: or :coffin: (Finriq version of Russian Roulette)\n`.help`: Displays command list.\n`.hello`: Says hello.\n`.jail [user]`: puts _user_ in jail, or author if _user_ not present\n`.shoot [user]`: Shoots _user_\n`.summon [user]`: summons _user_\n`.hug [user]`: hugs _user_ if present, if not hugs author of command\n\n**Guess that Synopsis!**\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after _min-players_ (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far.\n`.synopsis end`: Ends the current game. Requires game creator. DO NOT RUN WHILE ROUND IS IN PROGESS\n\n**Backspeak**\n`.backspeak intro`: Gives an intro to the game\n`.backspeak`: Starts a round of backspeak. Only one round at a time, please.\n\n**Word-a-thon**\n`.words intro`: Introduces Word-a-thon.\n`.words add [n]` Adds _n_ words to the user's total.\n`.words leaderboard`: Views the rankings.\n`.words reset`: Resets the leaderboard. Requires privs.\n\n__**Rock, Paper, Scissors**__\n`.rps`: Referees a RPS game.\n\n© 2020 Benjamin Hollon. All rights reserved.");
+          if (!args.length) {
+            message.channel.send("__**Finriq Commands**__\n*Use `.help [category]` for commands under that category.*\n`General`\n`Games`\n`Word-a-Thon`\n`Read-a-Thon`")
+          } else if (args[0].toLowerCase() == "general") {
+            message.channel.send("__**General Commands**__\n`.afk`: Notifies users who try to ping you that you are away and can't reply to messages at the moment. AFK is automatically turned on when you send \"Good night, Bookery!\" and off when you send \"Good morning, Bookery!\"\n`.help [category | command]`: Displays category list, or commands under a category if one is specified.\n`.hello`: Says hello. Use to test if bot is online.\n`.jail [user]`: puts _user_ in jail, or author if _user_ not present\n`.shoot [user]`: Shoots _user_\n`.summon [user]`: summons _user_\n`.hug [user]`: hugs _user_ if present, if not hugs author of command");
+          } else if (args[0].toLowerCase() == "games") {
+            message.channel.send("__**Game Commands**__\n`.backspeak`: Starts a round of backspeak.\n`.rps`: Starts a rock paper scissors game.");
+          } else if (args[0].toLowerCase().replace('-', '') == "wordathon" || args[0].toLowerCase() == "wat") {
+            message.channel.send('__**Word-a-Thon Commands**__\n*Under construction. Use at your own risk.*\n`.synopsis intro`: Gives an intro to the game.\n`.synopsis start [min-players]`: Starts a new game after min-players (default 2) players join.\n`.synopsis round`: Starts the next round of the game. Requires game creator.\n`.synopsis leaderboard`: Views the rankings so far.\n`.synopsis end`: Ends the current game. Requires game creator. (Cannot be run while game is in progress)\n')
+          } else if (args[0].toLowerCase().replace('-', '') == "readathon" || args[0].toLowerCase() == "rat") {
+          }
           break;
       }
   } else if (game.acceptingSummaries && message.author.bot == false && message.channel.type === 'dm') {
@@ -552,13 +592,10 @@ client.on('message', message => {
       afk.splice(afk.indexOf(message.author.id), 1);
       message.author.send("AFK has been turned off.");
     }
-  } else if (message.content.toLowerCase().indexOf("zachoo") != -1 && message.author.bot == false && message.channel.id != "693498873083330654") {
-    message.react("❤");
-    message.channel.send("Zachoo!!!");
   } else if (message.content.toLowerCase() == ":slight_smile:"|| message.content.toLowerCase() == "🙂") {
     message.react("🙃");
   }
 });
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
-client.login(auth.token);
+client.login(process.env.BOT_TOKEN);
