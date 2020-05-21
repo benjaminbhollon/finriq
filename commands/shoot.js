@@ -29,6 +29,6 @@ module.exports.execute = async (client, message, args) => {
 module.exports.config = {
   name: 'shoot',
   aliases: ['gun'],
-  description: 'Shoots *user*.',
-  usage: ['shoot user']
+  description: 'Shoots specified user.',
+  usage: ['shoot [user]']
 };
