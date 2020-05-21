@@ -6,7 +6,7 @@ const client = new Discord.Client();
 
 //fs = require('fs');
 
-let prompt = require('syncprompt');
+//let prompt = require('syncprompt');
 
 /*// Connect to database
 const mysql = require('mysql');
