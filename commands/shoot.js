@@ -7,9 +7,6 @@ module.exports.execute = async (client, message, args) => {
     if (parseInt(args[0])) {
       return await message.channel.send("_Shoots <@" + args[0] + "> violently._");
     } else {
-      function setName(input) {
-        name = input;
-      }
       var name = args.join(" ");
       //Replace with mention if possible
       message.channel.members.forEach(member => {
