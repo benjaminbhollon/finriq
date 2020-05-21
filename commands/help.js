@@ -23,6 +23,7 @@ module.exports.execute = async (client, message, args) => {
 		modules.forEach(module => {
 			modulelist.concat(`${module}\n`);
 		});
+		console.log(modulelist);
 		helpMessage.addField(`All Modules`, `${modulelist}`);
 		try {
 			return await message.channel.send(helpMessage);
