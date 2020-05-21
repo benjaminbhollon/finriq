@@ -8,7 +8,6 @@
     "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
     "discord.js": "^11.5.1",
     "winston": "^3.2.1",
-    "dotenv": "^8.2.0",
-    "syncprompt": "^2.0.0"
+    "liora": "^1.2.0"
   }
 }
