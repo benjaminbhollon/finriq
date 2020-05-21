@@ -47,6 +47,7 @@ module.exports.execute = async (client, message, args) => {
 				console.log(err);
 			}
 		} else {
+			console.log(cleanmodules);
 			if (cleanmodules.includes(args[0].toLowerCase())) {
 				commands.forEach(command => {
 					if (command.config.module == args[0].toLowerCase()) {
