@@ -10,6 +10,7 @@ module.exports.execute = async (client, message, args) => {
 			  .attachFiles(['https://bookery.codingprojects.org/images/bookery-logo.png'])
 	      .setImage('attachment://bookery-logo.png')
         .setColor('#750384');
+        return await message.channel.send(brandEmbed);
     } else {
       const brandEmbed = new Discord.RichEmbed()
         .setTitle('The Bookery Branding')
@@ -19,10 +20,9 @@ module.exports.execute = async (client, message, args) => {
         .setImage('attachment://color_medium.png')
         .setImage('attachment://color_dark.png')
         .setColor('#750384');
+        return await message.channel.send(brandEmbed);
     }
   }
-  
-  return await message.channel.send(brandEmbed);
 }
 
 module.exports.config = {
