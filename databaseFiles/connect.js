@@ -17,9 +17,9 @@ module.exports.instantiateConnection = function (){
 	sequelize
 		.authenticate()
 		.then(() => {
-			console.log('Horace reporting... connection to database successful!');
+			console.log('Finriq reports connection to database successful!');
 		})
 		.catch(err => {
-			console.error('Horace reporting... connection to database could not be established!', err);
+			console.error('Finriq reports connection to database could not be established!', err);
 		});
 };
