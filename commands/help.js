@@ -15,7 +15,7 @@ module.exports.execute = async (client, message, args) => {
 
 	if (!args || args.length === 0) {
 		let helpMessage = new Discord.RichEmbed()
-			.setColor('#ff0000')
+			.setColor('#750384')
 			.setTitle('List of available commands')
 			.setDescription('Commands available in' + message.guild.name);
 		commands.forEach(command => {
@@ -36,7 +36,7 @@ module.exports.execute = async (client, message, args) => {
 
 		if (command) {
 			let helpMessage = new Discord.RichEmbed()
-				.setColor('#ff0000')
+				.setColor('#750384')
 				.setTitle(`${prefix}${command.config.name}`)
 				.setDescription(`You asked for information on ${prefix}${command.config.name}`);
 			helpMessage.addField('Description:', command.config.description);

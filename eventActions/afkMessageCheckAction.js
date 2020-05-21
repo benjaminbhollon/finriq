@@ -78,7 +78,7 @@ class afkMessageCheckAction {
 							const embed = new Discord.RichEmbed()
 								.setTitle(`${name} is not here`)
 								.addField('AFK Message:',result[0].message)
-								.setColor('#FFEC09');
+								.setColor('#750384');
 							message.channel.send(embed).then(msg => msg.delete(5000).catch(() => console.log('Tried deleting afk message that was already deleted')));
 						});
 					}
