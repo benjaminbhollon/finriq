@@ -4,6 +4,19 @@ const Discord = require('discord.js');
 
 const client = new Discord.Client();
 
+fs.readdir('./events/', (err, files) => {
+	if (err) return console.error(err);
+	const jsfile = files.filter((f) => f.split('.').pop() === 'js');
+	if (jsfile.length <= 0) {
+		return console.log('No errors have been loaded!');
+	}
+	jsfile.forEach((file) => {
+		const event = require(`./events/${file}`);
+		const eventName = file.split('.')[0];
+		client.on(eventName, event.bind(null, client));
+	});
+})
+
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 
