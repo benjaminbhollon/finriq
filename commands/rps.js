@@ -1,11 +1,15 @@
 module.exports.execute = async (client, message, args) => {
-  await message.channel.send('**Rock...**');
-  setTimeout(function () {
-    await message.channel.send('**Paper...**');
+  try {
+    message.channel.send('**Rock...**');
     setTimeout(function () {
-      await message.channel.send('**Scissors!!!**');
+      message.channel.send('**Paper...**');
+      setTimeout(function () {
+        message.channel.send('**Scissors!!!**');
+      }, 4000);
     }, 4000);
-  }, 4000);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports.config = {
