@@ -3,8 +3,8 @@
   "modules": [
     "Utility",
     "Fun",
-    "Games",
-    "Word-a-Thon",
-    "Read-a-Thon"
-  ]
+    "Games"
+  ],
+  "version": "2.0.0",
+  "versioninfo": "Complete rehaul behind the scenes for Finriq."
 }
