@@ -1,5 +1,3 @@
-console.log("hug");
-
 module.exports.execute = async (client, message, args) => {
   if (parseInt(args[0])) {
     return await message.channel.send(`_Hugs ${args[0]}._\n_Don't worry, it'll be alright._`);
@@ -22,5 +20,3 @@ module.exports.config = {
   description: 'Hugs specified user.',
   usage: ['hug [user]']
 };
-
-console.log("hug2");
