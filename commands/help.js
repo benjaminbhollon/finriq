@@ -2,6 +2,8 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const config = require('../config.json');
 
+var prefix = config.prefix;
+
 
 module.exports.execute = async (client, message, args) => {
 
@@ -9,7 +11,6 @@ module.exports.execute = async (client, message, args) => {
 	let commands = client.commands;
 	let modules = config.modules;
 	var cleanmodules = modules.map(v => v.toLowerCase());
-	let prefix = config.prefix;
 	let commandNames = [];
 
 	if (!args || args.length === 0) {
