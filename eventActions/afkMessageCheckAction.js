@@ -2,7 +2,6 @@
 const Afks = require('../databaseFiles/afkTable.js');
 const Discord = require('discord.js');
 const config = require('../config.json');
-const connect = require('./databaseFiles/connect.js');
 
 class afkMessageCheckAction {
 	static async checkIfUserIsAFK(message) {
