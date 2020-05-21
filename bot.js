@@ -279,6 +279,7 @@ client.on('message', message => {
           }
           break;
         case "synopsis":
+          /*
           switch(args[0]) {
             case "intro":
               message.channel.send("__**Guess That Synopsis! Rules**__\nWhen the game starts, I will give everyone a random book title. Each player will DM me a made-up summary of what the book is about.\nOnce everyone has sent in their summaries, I'll list them in the chat where everyone can see them, but no one will see who posted which summary. In addition, I will throw in the _real_ summary of the book. Everyone will vote on what they think the real summary is.\nOnce people have voted, I tally up the points. If someone thinks your summary is the real one, you get one point. If you guess the correct summary, you get three points. Points carry over into the next round until the `.synopsis end` command is run.\nSound fun? run `.synopsis start [min-players]` to start!");
@@ -408,7 +409,8 @@ client.on('message', message => {
                 message.channel.send("You are not the owner of the game. Only the owner of the game can start a new round.");
               } else {
                 message.channel.send("There is no game running. Run `.synopsis start` to start a new game!");
-              }
+              }*/
+              message.channel.send("Currently under construction. Check back later!");
               break;
             case "leaderboard":
                 var leaderboard = "Here are the rankings so far:\n";
@@ -497,7 +499,7 @@ client.on('message', message => {
         case "afk":
           if (afk.indexOf(message.author.id) == -1) {
             afk.push(message.author.id);
-            message.author.send("You have been marked as FK and anyone pinging you will be notified that you are unable to respond.");
+            message.author.send("You have been marked as AFK and anyone pinging you will be notified that you are unable to respond.");
             afkCooldown.push(message.author.id);
             setTimeout(function () {
               afkCooldown.splice(afkCooldown.indexOf(message.author.id), 1);
