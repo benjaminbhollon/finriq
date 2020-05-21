@@ -4,6 +4,10 @@ const Discord = require('discord.js');
 // Create an instance of a Discord client
 const client = new Discord.Client();
 
+fs = require('fs');
+
+let prompt = require('syncprompt');
+
 /*// Connect to database
 const mysql = require('mysql');
 const connection = mysql.createConnection({
