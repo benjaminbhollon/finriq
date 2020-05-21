@@ -66,7 +66,7 @@ module.exports.execute = async (client, message, args) => {
 
 				commands.forEach(command => {
 					if (command.config.module.toLowerCase() == args[0].toLowerCase()) {
-						helpMessage.addField(`**${prefix}${command.config.name}**`);
+						helpMessage.addField(`**${prefix}${command.config.name}**`, `${command.config.description}`);
 					}
 				});
 				try {
