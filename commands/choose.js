@@ -1,5 +1,3 @@
-console.log("Loaded choose!");
-
 module.exports.execute = async (client, message, args) => {
 	if (args.length) {
 		args = args.join(' ').split(/,+ */);
