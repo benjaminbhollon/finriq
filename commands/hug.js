@@ -2,6 +2,9 @@ module.exports.execute = async (client, message, args) => {
   if (parseInt(args[0])) {
     return await message.channel.send(`_Hugs ${args[0]}._\n_Don't worry, it'll be alright._`);
   } else {
+    function setName(input) {
+      name = input;
+    }
     var name = args.join(" ");
     //Replace with mention if possible
     message.channel.members.forEach(member => {
