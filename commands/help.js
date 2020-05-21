@@ -9,7 +9,7 @@ module.exports.execute = async (client, message, args) => {
 
 
 	let commands = client.commands;
-	let modules = config.modules;
+	var modules = config.modules;
 	var cleanmodules = modules.map(v => v.toLowerCase());
 	let commandNames = [];
 
