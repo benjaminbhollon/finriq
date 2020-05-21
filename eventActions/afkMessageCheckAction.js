@@ -20,13 +20,11 @@ class afkMessageCheckAction {
 					}).then(result => {
 						// User successfully removed from table
 						if (result == 1) {
-							sender.send(`Welcome back, ${message.member.nickname ? message.member.nickname : message.author.username}!`).then(message => message.delete(5000));
-							reaction.message.delete().catch(() => console.log('Tried deleting afk message that was already deleted'));
+							sender.send(`Welcome back, ${message.member.nickname ? message.member.nickname : message.author.username}!`);
 							return;
 						}
 					});
 				} else if (reaction.emoji.name === '❌') {
-					reaction.message.delete().catch(() => console.log('Tried deleting afk message that was already deleted'));
 					return;
 				} else {
 					return;
@@ -79,7 +77,7 @@ class afkMessageCheckAction {
 								.setTitle(`${name} is not here`)
 								.addField('AFK Message:',result[0].message)
 								.setColor('#750384');
-							message.channel.send(embed).then(msg => msg.delete(5000).catch(() => console.log('Tried deleting afk message that was already deleted')));
+							message.channel.send(embed);
 						});
 					}
 				});
