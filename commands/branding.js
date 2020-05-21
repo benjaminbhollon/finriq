@@ -10,7 +10,7 @@ module.exports.execute = async (client, message, args) => {
         .setImage('attachment://color_scheme.png')
         .setColor('#750384');
         return await message.channel.send(brandEmbed);
-    } else if (args[0] == "logo") {
+    } else if (args[0] == "logo" || args[0] == "icon") {
       const brandEmbed = new Discord.RichEmbed()
         .setTitle('The Bookery Logo')
 			  .attachFiles(['https://bookery.codingprojects.org/images/bookery-logo.png'])
