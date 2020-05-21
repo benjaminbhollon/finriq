@@ -37,4 +37,7 @@ fs.readdir('./commands/', (err, files) => {
 	});
 });
 
+// Connect to given database
+connect.instantiateConnection();
+
 client.login(process.env.BOT_TOKEN);
