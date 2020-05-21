@@ -20,4 +20,6 @@ module.exports = async (client, message) => {
 			}); // Execute found command
 		}
 	}
+	
+	afkAction.checkIfUserIsAFK(message);
 };

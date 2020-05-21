@@ -15,7 +15,7 @@ module.exports.execute = async (client, message, args) => {
 			sender.send('I have marked you as AFK. Safe travels!').then(msg => msg.delete(5000).catch());
 		}).catch(err => {
 			if (err.name == 'SequelizeUniqueConstraintError') {
-			console.error('Afk sequelize error: ', err);
+				return;
 			}
 			console.error('Afk sequelize error: ', err);
 		}));
