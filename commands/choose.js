@@ -7,7 +7,7 @@ module.exports.execute = async (client, message, args) => {
 		}
 
 		const choiceIndex = Math.floor(Math.random() * args.length);
-		return await message.channel.send('Finriq chose **' + args[choiceIndex] + '**!');
+		return await message.channel.send('I choose **' + args[choiceIndex] + '**!');
 	}
 
 	return await message.channel.send('Please specify the options I should choose from!\nHint: `.choose option1, option2, ..., optionX`');

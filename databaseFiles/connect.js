@@ -17,9 +17,9 @@ module.exports.instantiateConnection = function (){
 	sequelize
 		.authenticate()
 		.then(() => {
-			console.log('Finriq reports connection to database successful!');
+			console.log('My reports show that the connection to database successful!');
 		})
 		.catch(err => {
-			console.error('Finriq reports connection to database could not be established!', err);
+			console.error('My reports show that the connection to database could not be established!', err);
 		});
 };
