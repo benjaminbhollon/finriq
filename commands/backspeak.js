@@ -1,21 +1,10 @@
 module.exports.execute = async (client, message, args) => {
-	if (args.length) {
-		args = args.join(' ').split(/,+ */);
-
-		if (args.includes('')) {
-			return await message.channel.send('Choices cannot be empty!');
-		}
-
-		const choiceIndex = Math.floor(Math.random() * args.length);
-		return await message.channel.send('Finriq chose **' + args[choiceIndex] + '**!');
-	}
-
-	return await message.channel.send('Please specify the options I should choose from!\nHint: `.choose option1, option2, ..., optionX`');
+  return await message.channel.send("Hey there!");
 };
 
 module.exports.config = {
-	name: 'choose',
-	aliases: ['choose', 'pick'],
-	description: 'I will choose one of your options at random.',
-	usage: ['choose option1, option2, ..., optionX']
+  name: 'hello',
+  aliases: ['hey', 'greetings'],
+  description: 'Says hello. Use to test if bot is online.',
+  usage: ['hello']
 };
