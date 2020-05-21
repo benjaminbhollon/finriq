@@ -1,7 +1,6 @@
 // Load dependencies
 const fs = require('fs');
 const Discord = require('discord.js');
-const connect = require('./databaseFiles/connect.js');
 
 const client = new Discord.Client();
 
