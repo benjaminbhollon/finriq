@@ -10,9 +10,10 @@ module.exports.execute = async (client, message, args) => {
 
 		Afks.create({
 			message: afkMessage,
-			user: sender.id
+			user: sender.id,
+			cooldown: 300000
 		}).then(() => {
-			sender.send('I have marked you as AFK. Safe travels!').then(msg => msg.delete(5000).catch());
+			sender.send('I have marked you as AFK. Anyone who pings you will be notified you are away.');
 		}).catch(err => {
 			if (err.name == 'SequelizeUniqueConstraintError') {
 				return;

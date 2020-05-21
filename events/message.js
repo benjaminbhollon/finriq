@@ -15,9 +15,7 @@ module.exports = async (client, message) => {
 			client.commands.get(client.aliases.get(command));
 
 		if (commandfile) {
-			commandfile.execute(client, message, args).then(() => {
-				message.delete(1500);
-			}); // Execute found command
+			commandfile.execute(client, message, args); // Execute found command
 		}
 	}
 	
