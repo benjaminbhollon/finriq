@@ -47,13 +47,21 @@ module.exports.execute = async (client, message, args) => {
 				console.log(err);
 			}
 		} else {
+			function capitalizeFLetter() { 
+				var input = document.getElementById("input"); 
+				var x = document.getElementById("div"); 
+				var string = input.value; 
+				x.innerHTML = string[0].toUpperCase() +  
+					string.slice(1); 
+			} 
+			
 			console.log(cleanmodules);
 			if (cleanmodules.includes(args[0].toLowerCase())) {
 				modCmd = args[0].toLowerCase(); // User input
 
 				let helpMessage = new Discord.RichEmbed()
 					.setColor('#750384')
-					.setTitle(`${command}`)
+					.setTitle(`${capitalizeFLetter(modCmd)}`)
 					.setDescription(`You asked for commands under the ${modCmd} module`);
 
 				commands.forEach(command => {
