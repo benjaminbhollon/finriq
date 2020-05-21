@@ -1,0 +1,10 @@
+{
+  "prefix": ".",
+  "modules": [
+    "Utility",
+    "Fun",
+    "Games"
+  ],
+  "version": "2.0.0",
+  "versioninfo": "Complete rehaul behind the scenes for Finriq."
+}

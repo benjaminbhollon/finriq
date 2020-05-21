@@ -5,8 +5,13 @@
   "main": "bot.js",
   "author": "Benjamin Hollon",
   "dependencies": {
-    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "data-store": "^4.0.3",
     "discord.js": "^11.5.1",
-    "winston": "^3.2.1"
+    "eslint-plugin-jest": "^22.17.0",
+    "habitica": "^4.0.0",
+    "mysql2": "^2.0.2",
+    "rss-parser": "^3.7.2",
+    "sequelize": "^5.21.3",
+    "sqlite3": "^4.1.1"
   }
 }
