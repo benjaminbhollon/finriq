@@ -14,7 +14,7 @@ module.exports.execute = async (client, message, args) => {
 	let commandNames = [];
 
 	if (!args || args.length === 0) {
-		let modulelist = "";
+		var modulelist = "";
 		
 		let helpMessage = new Discord.RichEmbed()
 			.setColor('#750384')
