@@ -1,8 +1,8 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 let prefix;
+console.log(require('../config.json').prefix);
 if (fs.existsSync('../config.json')) {
-	console.log(require('../config.json').prefix);
 	prefix = require('../config.json').prefix;
 } else {
 	prefix = '!';
