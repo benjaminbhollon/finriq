@@ -443,8 +443,8 @@ client.on('message', message => {
           }
           break;*/
         
-        message.channel.send("Currently under construction. Check back later!");
-         break;
+          message.channel.send("Currently under construction. Check back later!");
+          break;
         case "rps":
           message.channel.send('**Rock...**');
           setTimeout(function () {
@@ -546,7 +546,7 @@ client.on('message', message => {
           if (!args.length) {
             message.channel.send("__**Finriq Commands**__\n*Use `.help [category]` for commands under that category.*\n`General`\n`Games`\n`Word-a-Thon`\n`Read-a-Thon`")
           } else if (args[0].toLowerCase() == "general") {
-            message.channel.send("__**General Commands**__\n`.afk`: Notifies users who try to ping you that you are away and can't reply to messages at the moment. AFK is automatically turned on when you send \"Good night, Bookery!\" and off when you send \"Good morning, Bookery!\"\n`.help [category | command]`: Displays category list, or commands under a category if one is specified.\n`.hello`: Says hello. Use to test if bot is online.\n`.jail [user]`: puts _user_ in jail, or author if _user_ not present\n`.shoot [user]`: Shoots _user_\n`.summon [user]`: summons _user_\n`.hug [user]`: hugs _user_ if present, if not hugs author of command");
+            message.channel.send("__**General Commands**__\n`.afk`: Notifies users who try to ping you that you are away and can't reply to messages at the moment. AFK is automatically turned on when you send \"Good night, Bookery!\" and off when you send \"Good morning, Bookery!\"\n`.help [category | command]`: Displays category list, or commands under a category if one is specified.\n`.hello`: Says hello. Use to test if bot is online.\n`.jail [user]`: puts _user_ in jail, or author if _user_ not present\n`.shoot [user]`: Shoots _user_\n`.summon [user]`: summons _user_\n`.hug [user]`: hugs _user_ if present, if not hugs author of command\n`.coffee`: Replies with a random choice of :coffee: or :coffin: (Finriq version of Russian Roulette)\n`.tea`: Replies with a random choice of :tea: or :deciduous_tree: (tea-drinker version of the coffee command)");
           } else if (args[0].toLowerCase() == "games") {
             message.channel.send("__**Game Commands**__\n`.backspeak`: Starts a round of backspeak.\n`.rps`: Starts a rock paper scissors game.");
           } else if (args[0].toLowerCase().replace('-', '') == "wordathon" || args[0].toLowerCase() == "wat") {
