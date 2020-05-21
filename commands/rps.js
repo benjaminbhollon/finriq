@@ -15,6 +15,7 @@ module.exports.execute = async (client, message, args) => {
 module.exports.config = {
   name: 'rockpaperscissors',
   aliases: ['rps'],
+  module: "Games",
   description: 'Starts a rock paper scissors game.',
   usage: ['rockpaperscissors']
 };

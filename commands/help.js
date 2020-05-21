@@ -1,21 +1,23 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-var prefix = require('../config.json').prefix;
+const config = require('../config.json');
 
 
 module.exports.execute = async (client, message, args) => {
 
 
 	let commands = client.commands;
+	let modules = config.modules;
+	let prefix = config.prefix;
 	let commandNames = [];
 
 	if (!args || args.length === 0) {
 		let helpMessage = new Discord.RichEmbed()
 			.setColor('#750384')
-			.setTitle('List of available commands')
-			.setDescription('Commands available in ' + message.guild.name);
-		commands.forEach(command => {
-			helpMessage.addField(`**${prefix}${command.config.name}**`, `${command.config.description}`);
+			.setTitle('List of available modules')
+			.setDescription(`Modules available in ${message.guild.name}. Use \`.help [module]\` for more about a specific module.`);
+		modules.forEach(module => {
+			helpMessage.addField(`**${module}**`);
 		});
 		try {
 			return await message.channel.send(helpMessage);
@@ -25,22 +27,34 @@ module.exports.execute = async (client, message, args) => {
 		}
 	} else if (args.length === 1) {
 		let command = commands.find(command => command.config.name === args[0].toLowerCase()
-            || command.config.aliases.find(alias => alias === args[0].toLowerCase()));
+						|| command.config.aliases.find(alias => alias === args[0].toLowerCase()));
 
 		if (command) {
-			let helpMessage = new Discord.RichEmbed()
+			if (modules.includes(command)) {
+				let helpMessage = new Discord.RichEmbed()
 				.setColor('#750384')
 				.setTitle(`${prefix}${command.config.name}`)
-				.setDescription(`You asked for information on \`${prefix}${command.config.name}\``);
-			helpMessage.addField('Description:', command.config.description);
-			helpMessage.addField('Aliases:', command.config.aliases);
-			helpMessage.addField('Usage:', command.config.usage);
+				.setDescription(`You asked for commands under the \`${prefix}${command.config.name}\` module`);
+				commands.forEach(command => {
+					if (command.config.module == command) {
+						helpMessage.addField(`**${prefix}${command.config.name}**`, `${command.config.description}`);
+					}
+				});
+			} else {
+				let helpMessage = new Discord.RichEmbed()
+					.setColor('#750384')
+					.setTitle(`${prefix}${command.config.name}`)
+					.setDescription(`You asked for information on \`${prefix}${command.config.name}\``);
+				helpMessage.addField('Description:', command.config.description);
+				helpMessage.addField('Aliases:', command.config.aliases);
+				helpMessage.addField('Usage:', command.config.usage);
 
-			try {
-				message.channel.send(helpMessage);
-			}
-			catch(err) {
-				console.log(err);
+				try {
+					message.channel.send(helpMessage);
+				}
+				catch(err) {
+					console.log(err);
+				}
 			}
 		} else {
 			commands.forEach(command => {

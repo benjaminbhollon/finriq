@@ -41,7 +41,8 @@ module.exports.execute = async (client, message, args) => {
 
 module.exports.config = {
 	name: 'brand',
-	aliases: ['colors', 'branding', 'colorscheme'],
+  aliases: ['colors', 'branding', 'colorscheme'],
+  module: "Utility",
 	description: 'The Bookery\'s branding and color scheme!',
 	usage: ['brand [colors | logo]']
 };

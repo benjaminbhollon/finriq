@@ -18,6 +18,7 @@ module.exports.execute = async (client, message, args) => {
 module.exports.config = {
   name: 'summon',
   aliases: ['call'],
+  module: "Fun",
   description: 'Summons specified user.',
   usage: ['summon [user]']
 };

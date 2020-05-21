@@ -5,6 +5,7 @@ module.exports.execute = async (client, message, args) => {
 module.exports.config = {
   name: 'hello',
   aliases: ['hey', 'greetings'],
+  module: "Utility",
   description: 'Says hello. Use to test if bot is online.',
   usage: ['hello']
 };

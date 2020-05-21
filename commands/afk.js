@@ -30,6 +30,7 @@ module.exports.execute = async (client, message, args) => {
 module.exports.config = {
 	name: 'afk',
 	aliases: ['afk', 'away'],
+	module: "Utility",
 	description: 'I will mark you as being away. When people tag you, they will be notified that you are not present.',
 	usage: ['afk [message]']
 };

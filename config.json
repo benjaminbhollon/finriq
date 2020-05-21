@@ -1,3 +1,10 @@
 {
-  "prefix": "."
+  "prefix": ".",
+  "modules": [
+    "Utility",
+    "Fun",
+    "Games",
+    "Word-a-Thon",
+    "Read-a-Thon"
+  ]
 }

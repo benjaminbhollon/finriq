@@ -39,6 +39,7 @@ module.exports.execute = async (client, message, args) => {
 module.exports.config = {
   name: 'jail',
   aliases: ['lockup', 'lock'],
+  module: "Fun",
   description: 'Jails specified user.',
   usage: ['jail [user]']
 };
