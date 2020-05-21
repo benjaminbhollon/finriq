@@ -38,7 +38,7 @@ class afkMessageCheckAction {
 			.addField('Are you back?', 'Then react with ✅',true)
 			.addField('If you are not back!', 'Then react with ❌',true)
 			.setFooter('This message will delete itself after 15 seconds')
-			.setColor('#FFEC09');
+			.setColor('#750384');
 		const user = message.author;
 
 		await Afks.sync().then(() => {
