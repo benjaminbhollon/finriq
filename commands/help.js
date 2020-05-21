@@ -50,7 +50,7 @@ module.exports.execute = async (client, message, args) => {
 			console.log(cleanmodules);
 			if (cleanmodules.includes(args[0].toLowerCase())) {
 				commands.forEach(command => {
-					if (command.config.module == args[0].toLowerCase()) {
+					if (command.config.module.toLowerCase() == args[0].toLowerCase()) {
 						helpMessage.addField(`**${prefix}${command.config.name}**`, `${command.config.description}`);
 					}
 				});	
