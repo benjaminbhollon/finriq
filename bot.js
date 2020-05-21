@@ -443,8 +443,8 @@ client.on('message', message => {
           }
           break;*/
         
-        message.channel.send("Currently under construction. Check back later!");
-         break;
+          message.channel.send("Currently under construction. Check back later!");
+          break;
         case "rps":
           message.channel.send('**Rock...**');
           setTimeout(function () {
