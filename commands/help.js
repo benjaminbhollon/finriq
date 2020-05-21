@@ -22,6 +22,7 @@ module.exports.execute = async (client, message, args) => {
 			.setDescription(`Modules available in ${message.guild.name}. Use \`.help [module]\` for more about a specific module.`);
 		modules.forEach(module => {
 			modulelist.concat(`${module}\n`);
+			console.log(module);
 		});
 		console.log(modulelist);
 		helpMessage.addField(`All Modules`, `${modulelist}`);
