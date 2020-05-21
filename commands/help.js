@@ -14,13 +14,16 @@ module.exports.execute = async (client, message, args) => {
 	let commandNames = [];
 
 	if (!args || args.length === 0) {
+		let modulelist;
+		
 		let helpMessage = new Discord.RichEmbed()
 			.setColor('#750384')
 			.setTitle('List of available modules')
 			.setDescription(`Modules available in ${message.guild.name}. Use \`.help [module]\` for more about a specific module.`);
 		modules.forEach(module => {
-			helpMessage.addField(`**${module}**`);
+			modulelist.concat(`**${module}**\n`);
 		});
+		helpMessage.addField(`All Modules`, `**${modulelist}**`);
 		try {
 			return await message.channel.send(helpMessage);
 		}
@@ -47,12 +50,8 @@ module.exports.execute = async (client, message, args) => {
 				console.log(err);
 			}
 		} else {
-			function capitalizeFLetter() { 
-				var input = document.getElementById("input"); 
-				var x = document.getElementById("div"); 
-				var string = input.value; 
-				x.innerHTML = string[0].toUpperCase() +  
-					string.slice(1); 
+			function capitalizeFLetter(input) {
+				return input[0].toUpperCase() + string.slice(1); 
 			} 
 			
 			console.log(cleanmodules);
