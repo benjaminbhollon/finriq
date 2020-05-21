@@ -49,11 +49,22 @@ module.exports.execute = async (client, message, args) => {
 		} else {
 			console.log(cleanmodules);
 			if (cleanmodules.includes(args[0].toLowerCase())) {
+				let helpMessage = new Discord.RichEmbed()
+					.setColor('#750384')
+					.setTitle(`${prefix}${command.config.name}`)
+					.setDescription(`You asked for information on \`${command.config.name}\``);
+
 				commands.forEach(command => {
 					if (command.config.module.toLowerCase() == args[0].toLowerCase()) {
 						helpMessage.addField(`**${prefix}${command.config.name}**`, `${command.config.description}`);
 					}
-				});	
+				});
+				try {
+					message.channel.send(helpMessage);
+				}
+				catch(err) {
+					console.log(err);
+				}	
 			}
 			commands.forEach(command => {
 				commandNames.push(command.config.name);
