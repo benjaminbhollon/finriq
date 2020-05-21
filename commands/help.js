@@ -8,6 +8,7 @@ module.exports.execute = async (client, message, args) => {
 
 	let commands = client.commands;
 	let modules = config.modules;
+	var cleanmodules = modules.map(v => v.toLowerCase());
 	let prefix = config.prefix;
 	let commandNames = [];
 
@@ -30,7 +31,7 @@ module.exports.execute = async (client, message, args) => {
 						|| command.config.aliases.find(alias => alias === args[0].toLowerCase()));
 
 		if (command) {
-			if (modules.includes(command)) {
+			if (cleanmodules.includes(command)) {
 				console.log("Yes");
 				let helpMessage = new Discord.RichEmbed()
 				.setColor('#750384')
