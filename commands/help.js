@@ -54,11 +54,11 @@ module.exports.execute = async (client, message, args) => {
 				let helpMessage = new Discord.RichEmbed()
 					.setColor('#750384')
 					.setTitle(`${command}`)
-					.setDescription(`You asked for commands under the \`${modCmd}\` module`);
+					.setDescription(`You asked for commands under the ${modCmd} module`);
 
 				commands.forEach(command => {
 					if (command.config.module.toLowerCase() == args[0].toLowerCase()) {
-						helpMessage.addField(`**${prefix}${command.config.name}**`, `${command.config.description}`);
+						helpMessage.addField(`**${prefix}${command.config.name}**`);
 					}
 				});
 				try {
