@@ -52,7 +52,7 @@ module.exports.execute = async (client, message, args) => {
 			}
 		} else {
 			function capitalizeFLetter(input) {
-				return input[0].toUpperCase() + string.slice(1); 
+				return input[0].toUpperCase() + input.slice(1); 
 			} 
 			
 			console.log(cleanmodules);
