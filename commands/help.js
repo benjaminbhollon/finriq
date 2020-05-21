@@ -21,9 +21,9 @@ module.exports.execute = async (client, message, args) => {
 			.setTitle('List of available modules')
 			.setDescription(`Modules available in ${message.guild.name}. Use \`.help [module]\` for more about a specific module.`);
 		modules.forEach(module => {
-			modulelist.concat(`**${module}**\n`);
+			modulelist.concat(`${module}\n`);
 		});
-		helpMessage.addField(`All Modules`, `**${modulelist}**`);
+		helpMessage.addField(`All Modules`, `${modulelist}`);
 		try {
 			return await message.channel.send(helpMessage);
 		}
