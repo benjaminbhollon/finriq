@@ -53,8 +53,8 @@ module.exports.execute = async (client, message, args) => {
 
 				let helpMessage = new Discord.RichEmbed()
 					.setColor('#750384')
-					.setTitle(`${modCmd}`)
-					.setDescription(`You asked for information on \`${modCmd}\``);
+					.setTitle(`${command}`)
+					.setDescription(`You asked for commands under the \`${modCmd}\` module`);
 
 				commands.forEach(command => {
 					if (command.config.module.toLowerCase() == args[0].toLowerCase()) {
@@ -67,12 +67,13 @@ module.exports.execute = async (client, message, args) => {
 				catch(err) {
 					console.log(err);
 				}	
+			} else {
+				commands.forEach(command => {
+					commandNames.push(command.config.name);
+					command.config.aliases.forEach(alias => commandNames.push(alias));
+				});
+				return didYouMean(commandNames, args[0].toLowerCase(), message);
 			}
-			commands.forEach(command => {
-				commandNames.push(command.config.name);
-				command.config.aliases.forEach(alias => commandNames.push(alias));
-			});
-			return didYouMean(commandNames, args[0].toLowerCase(), message);
 		}
 	}
 };
