@@ -409,8 +409,7 @@ client.on('message', message => {
                 message.channel.send("You are not the owner of the game. Only the owner of the game can start a new round.");
               } else {
                 message.channel.send("There is no game running. Run `.synopsis start` to start a new game!");
-              }*/
-              message.channel.send("Currently under construction. Check back later!");
+              }
               break;
             case "leaderboard":
                 var leaderboard = "Here are the rankings so far:\n";
@@ -442,7 +441,9 @@ client.on('message', message => {
               message.channel.send('Hmm... I don\'t know that command. Try `.help` to get a list of commands.');
               break;
           }
-          break;
+          break;*/
+        
+        message.channel.send("Currently under construction. Check back later!");
          break;
         case "rps":
           message.channel.send('**Rock...**');
