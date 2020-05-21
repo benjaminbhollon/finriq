@@ -49,10 +49,12 @@ module.exports.execute = async (client, message, args) => {
 		} else {
 			console.log(cleanmodules);
 			if (cleanmodules.includes(args[0].toLowerCase())) {
+				modCmd = args[0].toLowerCase(); // User input
+
 				let helpMessage = new Discord.RichEmbed()
 					.setColor('#750384')
-					.setTitle(`${prefix}${command.config.name}`)
-					.setDescription(`You asked for information on \`${command.config.name}\``);
+					.setTitle(`${modCmd}`)
+					.setDescription(`You asked for information on \`${modCmd}\``);
 
 				commands.forEach(command => {
 					if (command.config.module.toLowerCase() == args[0].toLowerCase()) {
