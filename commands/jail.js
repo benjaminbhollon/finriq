@@ -42,10 +42,3 @@ module.exports.config = {
   description: 'Jails specified user.',
   usage: ['jail [user]']
 };
-
-function setName(name) {
-  function setName(input) {
-    name = input;
-  }
-  return name;
-}

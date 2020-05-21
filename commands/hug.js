@@ -20,10 +20,3 @@ module.exports.config = {
   description: 'Hugs specified user.',
   usage: ['hug [user]']
 };
-
-function setName(name) {
-  function setName(input) {
-    name = input;
-  }
-  return name;
-}
