@@ -4,9 +4,9 @@ const Discord = require('discord.js');
 // Create an instance of a Discord client
 const client = new Discord.Client();
 
-//fs = require('fs');
+fs = require('fs');
 
-//let prompt = require('syncprompt');
+let prompt = require('syncprompt');
 
 /*// Connect to database
 const mysql = require('mysql');
@@ -662,8 +662,6 @@ client.on('message', message => {
     message.react("🙃");
   }
 });
-
-process.env.BOT_TOKEN = "NjkzODQwMDQ0MDMyNzg2NDQ0.XsXTLA.jrK_mfVA6ILpEqFuHGSyfX4yJQw"
 
 // Log our bot in using the token from https://discordapp.com/developers/applications/me
 client.login(process.env.BOT_TOKEN);
