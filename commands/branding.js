@@ -5,13 +5,13 @@ module.exports.execute = async (client, message, args) => {
 		if (args[0] == "colors") {
 
     } else if (args[1] == "logo") {
-      const noLongerAFKMessage = new Discord.RichEmbed()
+      const brandEmbed = new Discord.RichEmbed()
         .setTitle('The Bookery Logo')
 			  .attachFiles(['https://bookery.codingprojects.org/images/bookery-logo.png'])
 	      .setImage('attachment://bookery-logo.png')
         .setColor('#750384');
     } else {
-      const noLongerAFKMessage = new Discord.RichEmbed()
+      const brandEmbed = new Discord.RichEmbed()
         .setTitle('The Bookery Branding')
 			  .setThumbnail('https://bookery.codingprojects.org/images/bookery-logo.png')
 	      .attachFiles(['https://bookery.codingprojects.org/images/color_light.png', 'https://bookery.codingprojects.org/images/color_medium.png', 'https://bookery.codingprojects.org/images/color_dark.png'])
@@ -20,7 +20,9 @@ module.exports.execute = async (client, message, args) => {
         .setImage('attachment://color_dark.png')
         .setColor('#750384');
     }
-	}
+  }
+  
+  return await message.channel.send(brandEmbed);
 }
 
 module.exports.config = {
