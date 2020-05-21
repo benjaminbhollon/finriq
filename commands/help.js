@@ -2,7 +2,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 let prefix;
 if (fs.existsSync('../config.json')) {
-	prefix = require('../config.json');
+	prefix = require('../config.json').prefix;
 } else {
 	prefix = '!';
 }
@@ -17,7 +17,7 @@ module.exports.execute = async (client, message, args) => {
 		let helpMessage = new Discord.RichEmbed()
 			.setColor('#750384')
 			.setTitle('List of available commands')
-			.setDescription('Commands available in' + message.guild.name);
+			.setDescription('Commands available in ' + message.guild.name);
 		commands.forEach(command => {
 			helpMessage.addField(`**${prefix}${command.config.name}**`, `${command.config.description}`);
 		});
