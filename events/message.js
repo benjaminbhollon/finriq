@@ -1,4 +1,5 @@
 const config = require('../config.json');
+const afkAction = require('../eventActions/afkMessageCheckAction');
 
 module.exports = async (client, message) => {
 
