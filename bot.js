@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 // Create an instance of a Discord client
 const client = new Discord.Client();
 
-fs = require('fs');
+//fs = require('fs');
 
 let prompt = require('syncprompt');
 
