@@ -15,7 +15,7 @@ module.exports.execute = async (client, message, args) => {
       const brandEmbed = new Discord.RichEmbed()
         .setTitle('The Bookery Branding')
 			  .setThumbnail('https://bookery.codingprojects.org/images/bookery-logo.png')
-	      .attachFiles(['https://bookery.codingprojects.org/images/color_light.png'])
+	      .attachFiles(['https://bookery.codingprojects.org/images/color_scheme.png'])
         .setImage('attachment://color_scheme.png')
         .setColor('#750384');
         return await message.channel.send(brandEmbed);
