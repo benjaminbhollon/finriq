@@ -16,9 +16,9 @@ module.exports.execute = async (client, message, args) => {
         if (member.displayName.toLowerCase().indexOf(name.toLowerCase()) != -1 || member.user.username.toLowerCase().indexOf(name.toLowerCase()) != -1) name = "<@" + member.id + ">";
       });
       if (name != "@everyone") {
-        return await message.channel.send("_Genocide._");
-      } else {
         return await message.channel.send("_Shoots <@" + name + "> violently._");
+      } else {
+        return await message.channel.send("_Genocide._");
       }
     }
   } else {
