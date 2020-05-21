@@ -1,3 +1,5 @@
+console.log("jail");
+
 module.exports.execute = async (client, message, args) => {
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -42,3 +44,5 @@ module.exports.config = {
   description: 'Jails specified user.',
   usage: ['jail [user]']
 };
+
+console.log("jail 2");

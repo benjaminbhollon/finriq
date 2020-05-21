@@ -1,3 +1,5 @@
+console.log("shoot");
+
 module.exports.execute = async (client, message, args) => {
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -29,3 +31,5 @@ module.exports.config = {
   description: 'Shoots specified user.',
   usage: ['shoot [user]']
 };
+
+console.log("shoot 2");
