@@ -5,7 +5,7 @@ module.exports.execute = async (client, message, args) => {
 
   if (getRandomInt(100) == 99) {
     if (parseInt(args[0])) {
-      return await message.channel.send("_Shoots <@" + args[0] + "> violently._");
+      return await message.channel.send(`_Shoots <@${args[0]}> violently._`);
     } else {
       var name = args.join(" ");
       //Replace with mention if possible
@@ -13,7 +13,7 @@ module.exports.execute = async (client, message, args) => {
         if (member.displayName.toLowerCase().indexOf(name.toLowerCase()) != -1 || member.user.username.toLowerCase().indexOf(name.toLowerCase()) != -1) name = "<@" + member.id + ">";
       });
       if (name != "@everyone") {
-        return await message.channel.send("_Shoots " + name + " violently._");
+        return await message.channel.send(`_Shoots ${name} violently._`);
       } else {
         return await message.channel.send("_Genocide._");
       }
