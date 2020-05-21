@@ -31,34 +31,28 @@ module.exports.execute = async (client, message, args) => {
 						|| command.config.aliases.find(alias => alias === args[0].toLowerCase()));
 
 		if (command) {
-			if (cleanmodules.includes(command)) {
-				console.log("Yes");
-				let helpMessage = new Discord.RichEmbed()
+			let helpMessage = new Discord.RichEmbed()
 				.setColor('#750384')
-				.setTitle(`${command}`)
-				.setDescription(`You asked for commands under the \`${command}\` module`);
-				commands.forEach(command => {
-					if (command.config.module == command) {
-						helpMessage.addField(`**${prefix}${command.config.name}**`, `${command.config.description}`);
-					}
-				});
-			} else {
-				let helpMessage = new Discord.RichEmbed()
-					.setColor('#750384')
-					.setTitle(`${prefix}${command.config.name}`)
-					.setDescription(`You asked for information on \`${prefix}${command.config.name}\``);
-				helpMessage.addField('Description:', command.config.description);
-				helpMessage.addField('Aliases:', command.config.aliases);
-				helpMessage.addField('Usage:', command.config.usage);
+				.setTitle(`${prefix}${command.config.name}`)
+				.setDescription(`You asked for information on \`${prefix}${command.config.name}\``);
+			helpMessage.addField('Description:', command.config.description);
+			helpMessage.addField('Aliases:', command.config.aliases);
+			helpMessage.addField('Usage:', command.config.usage);
 
-				try {
-					message.channel.send(helpMessage);
-				}
-				catch(err) {
-					console.log(err);
-				}
+			try {
+				message.channel.send(helpMessage);
+			}
+			catch(err) {
+				console.log(err);
 			}
 		} else {
+			if (cleanmodules.includes(args[0].toLowerCase())) {
+				commands.forEach(command => {
+					if (command.exports.module == args[0].toLowerCase()) {
+						helpMessage.addField(`**${prefix}${command.config.name}**`, `${command.config.description}`);
+					}
+				});	
+			}
 			commands.forEach(command => {
 				commandNames.push(command.config.name);
 				command.config.aliases.forEach(alias => commandNames.push(alias));
