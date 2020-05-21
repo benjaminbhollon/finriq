@@ -33,8 +33,8 @@ module.exports.execute = async (client, message, args) => {
 			if (modules.includes(command)) {
 				let helpMessage = new Discord.RichEmbed()
 				.setColor('#750384')
-				.setTitle(`${prefix}${command.config.name}`)
-				.setDescription(`You asked for commands under the \`${prefix}${command.config.name}\` module`);
+				.setTitle(`${command}`)
+				.setDescription(`You asked for commands under the \`${command}\` module`);
 				commands.forEach(command => {
 					if (command.config.module == command) {
 						helpMessage.addField(`**${prefix}${command.config.name}**`, `${command.config.description}`);
@@ -135,6 +135,7 @@ function levenshtein(searchTerm, commandName) {
 module.exports.config = {
 	name: 'help',
 	aliases: ['help'],
+	module: "Utility",
 	description: 'I will send you this message, or the usage of a specific command.',
 	usage: ['help', 'help command'],
 };
