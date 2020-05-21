@@ -21,4 +21,5 @@ module.exports = async (client, message) => {
 	
 	afkAction.checkIfUserIsAFK(message);
 	afkAction.checkForMention(message);
+
 };
