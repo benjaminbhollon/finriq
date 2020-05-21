@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 module.exports.execute = async (client, message, args) => {
   if (args.length) {
 		if (args[0] == "colors") {
