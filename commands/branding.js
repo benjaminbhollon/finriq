@@ -4,7 +4,7 @@ module.exports.execute = async (client, message, args) => {
   if (args.length) {
 		if (args[0] == "colors") {
 
-    } else if (args[1] == "logo") {
+    } else if (args[0] == "logo") {
       const brandEmbed = new Discord.RichEmbed()
         .setTitle('The Bookery Logo')
 			  .attachFiles(['https://bookery.codingprojects.org/images/bookery-logo.png'])
@@ -15,10 +15,8 @@ module.exports.execute = async (client, message, args) => {
       const brandEmbed = new Discord.RichEmbed()
         .setTitle('The Bookery Branding')
 			  .setThumbnail('https://bookery.codingprojects.org/images/bookery-logo.png')
-	      .attachFiles(['https://bookery.codingprojects.org/images/color_light.png', 'https://bookery.codingprojects.org/images/color_medium.png', 'https://bookery.codingprojects.org/images/color_dark.png'])
-        .setImage('attachment://color_light.png')
-        .setImage('attachment://color_medium.png')
-        .setImage('attachment://color_dark.png')
+	      .attachFiles(['https://bookery.codingprojects.org/images/color_light.png'])
+        .setImage('attachment://color_scheme.png')
         .setColor('#750384');
         return await message.channel.send(brandEmbed);
     }
