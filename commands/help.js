@@ -21,12 +21,11 @@ module.exports.execute = async (client, message, args) => {
 			.setTitle('List of available modules')
 			.setDescription(`Modules available in ${message.guild.name}. Use \`.help [module]\` for more about a specific module.`);
 		modules.forEach(module => {
-			modulelist.concat(`${module}\n`);
-			console.log(module);
+			modulelist = modulelist.concat(`${module}\n`);
 		});
 		console.log(modulelist);
-		helpMessage.addField(`All Modules`, `${modulelist}`);
 		try {
+			helpMessage.addField(`All Modules`, `${modulelist}`);
 			return await message.channel.send(helpMessage);
 		}
 		catch(err) {
