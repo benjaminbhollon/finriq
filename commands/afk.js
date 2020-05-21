@@ -13,12 +13,7 @@ module.exports.execute = async (client, message, args) => {
 			user: sender.id,
 			cooldown: 300000
 		}).then(() => {
-			try {
-				message.channel.send('I have marked you as AFK. Anyone who pings you will be notified you are away.');
-			}
-			catch(err) {
-				console.log(err);
-			}
+			message.channel.send('I have marked you as AFK. Anyone who pings you will be notified you are away.');
 		}).catch(err => {
 			if (err.name == 'SequelizeUniqueConstraintError') {
 				return;
