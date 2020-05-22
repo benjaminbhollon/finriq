@@ -20,9 +20,7 @@ module.exports.execute = async (client, message, args) => {
 			timestamp: Date.now()
 		}).then(() => {
 			try {
-				message.channel.send('I have marked you as AFK. Anyone who pings you will be notified you are away.').then(() => {
-					message.delete(1500);
-				});
+				message.channel.send('I have marked you as AFK. Anyone who pings you will be notified you are away.').then(msg => msg.delete(5000).catch());
 			}
 			catch(err) {
 				console.log(err);
