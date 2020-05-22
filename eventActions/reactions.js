@@ -1,13 +1,13 @@
-const reactions = require("../config.json").channelReacts;
+const reactions = JSON.parse(require("../config.json").channelReacts);
 
 class reactionCheckAction {
   static async checkIfCorrect(message) {
-    reactions.forEach((id) => {
-      console.log(reactions[id]);
-      /*if (message.channel.id == reactions[id]) {
-        message.react();
-      }*/
-    });
+    for(var i = 0; i < reactions.length; i++) {
+      var obj = reactions[i];
+  
+      console.log(obj.channel);
+      console.log(obj.reaction);
+    }
   }
 }
 
