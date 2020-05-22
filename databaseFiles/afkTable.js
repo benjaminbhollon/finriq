@@ -14,7 +14,8 @@ module.exports = sequelize.define('Afk', {
 		unique: true        
 	},
 	cooldown: {
-		type: Sequelize.INTEGER,
+		type: 'TIMESTAMP',
+		defaultValue: sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
 		allowNull: true,
 		unique: false
 	}
