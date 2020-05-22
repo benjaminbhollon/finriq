@@ -5,8 +5,8 @@
     "Fun",
     "Games"
   ],
-  "version": "2.1.1",
-  "versioninfo": "Added back a little bit of functionality. Reactions in certain channels, playing status.",
+  "version": "2.1.2",
+  "versioninfo": "Added back a little bit of functionality. Reactions in certain channels, playing status. AFK message now auto-deletes itself so you can run it in any channel.",
   "playing": "I love avocado.",
   "channelReacts": [{
     "channel":"711269048591056916",
