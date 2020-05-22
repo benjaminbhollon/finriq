@@ -1,5 +1,9 @@
-module.exports.execute = async (client, message, args) => {
+module.exports.execute = async (client, message, args) => {	try {
   message.delete();
+  } catch(err) {
+    console.log("Delete error" + err);
+  }
+  
   try {
     message.guild.channels.find(channel => channel.name == 'logs').send("Message by " + message.author.tag + " deleted in " + message.channel + ":\n\"" + message.content + "\"");
   }
