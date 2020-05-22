@@ -5,9 +5,12 @@ class reactionCheckAction {
     console.log(reactions.length);
     for(var i = 0; i < reactions.length; i++) {
       var obj = reactions[i];
-
-      if (message.channel.id === obj.channel) {
-        message.react(obj.react);
+      try {
+        if (message.channel.id === obj.channel) {
+          message.react(obj.react);
+        }
+      } catch (err) {
+        console.log("Error with reaction." + err);
       }
     }
   }
