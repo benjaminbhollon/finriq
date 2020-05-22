@@ -5,10 +5,32 @@ const config = require('../config.json');
 
 class afkMessageCheckAction {
 	static async checkIfUserIsAFK(message) {
-		// If the message is a command, we ignore it, to prevent the bot from sending the message right away, when a user goes AFK
-		if (message.content.startsWith(config.prefix)) {
+    var cooldown = false;
+    function cooldownOn() {
+      cooldown = true;
+    }
+    // If the cooldown is on, ignore the message
+    Afks.findAll({where: {user:message.author.id}}).then(result => {
+      if (Date.now() - result.timestamp < 300000) {
+        cooldownOn();
+      }
+    });
+		if (cooldown) {
 			return;
-		}
+		} else if (message.content.toLowerCase().indexOf("good") != -1 && message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1) {
+      const sender = message.author;
+      Afks.destroy({
+        where: {
+          user: sender.id
+        }
+      }).then(result => {
+        // User successfully removed from table
+        if (result == 1) {
+          sender.send(`Welcome back, ${message.member.nickname ? message.member.nickname : message.author.username}!`);
+          return;
+        }
+      });
+    }
 		const sender = message.author;
 		const reactionFilter = (reaction, user) => {
 			if ((reaction.emoji.name === '✅' || reaction.emoji.name === '❌') && user.id == sender.id) {
