@@ -68,7 +68,7 @@ class afkMessageCheckAction {
 				}
 			}).then(result => {
 				if (result.length == 1) {
-          Afks.update({timestamp: Date.now()}, {where: {user: user.id}});
+          Afks.update({timestamp: Date.now()}, {where: {user: user.id}}).success(result => {console.log("Success updating!")}).error(err => {console.log(err)});
 					message.author.send(noLongerAFKMessage).then(msg => {
 						msg.react('✅');
 						msg.react('❌');
