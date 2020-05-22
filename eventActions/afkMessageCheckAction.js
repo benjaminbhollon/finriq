@@ -68,6 +68,7 @@ class afkMessageCheckAction {
 				}
 			}).then(result => {
 				if (result.length == 1) {
+          Afks.set(result, {user:user.id, message: result.message, timestamp: Date.now()});
 					message.author.send(noLongerAFKMessage).then(msg => {
 						msg.react('✅');
 						msg.react('❌');
