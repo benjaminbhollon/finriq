@@ -7,7 +7,23 @@ class afkMessageCheckAction {
 	static async checkIfUserIsAFK(message) {
     var cooldown = false;
     function cooldownOn() {
-      cooldown = true;
+			Afks.sync().then(() =>
+
+				Afks.update({
+					cooldown: Date.now(),
+					where: {
+						user: sender.id
+					}
+				}).then(result => {
+					// User successfully removed from table
+					if (result == 1) {
+						console.log('Update true');
+						return;
+					}
+				}).catch(err => {
+					console.error('Afk update error: ', err);
+
+			}));
     }
     // If the cooldown is on, ignore the message
     Afks.findAll({where: {user:message.author.id}}).then(result => {
