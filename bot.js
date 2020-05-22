@@ -39,6 +39,7 @@ fs.readdir('./commands/', (err, files) => {
 	});
 });
 
+// Set custom status
 try {
 	client.on('ready', () => { client.user.setActivity(config.playing), {type: "playing"} });
 } catch(err) {
