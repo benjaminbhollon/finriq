@@ -5,6 +5,11 @@ const config = require('../config.json');
 
 class afkMessageCheckAction {
 	static async checkIfUserIsAFK(message) {
+		// If the message is a command, we ignore it, to prevent the bot from sending the message right away, when a user goes AFK
+		if (message.content.startsWith(config.prefix)) {
+			return;
+		}
+		
     if (message.content.toLowerCase().indexOf("good") != -1 && message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1) {
       const sender = message.author;
       Afks.destroy({
