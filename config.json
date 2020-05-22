@@ -6,5 +6,9 @@
     "Games"
   ],
   "version": "2.1.0",
-  "versioninfo": "Fix commands broken by 2.0 update."
+  "versioninfo": "Fix some commands broken by 2.0 update.",
+  "channelReacts": {
+    "711269048591056916": ":wave:",
+    "705240176842113024": ":100:"
+  }
 }
