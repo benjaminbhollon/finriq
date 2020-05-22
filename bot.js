@@ -40,7 +40,7 @@ fs.readdir('./commands/', (err, files) => {
 });
 
 try {
-	client.on('ready', () => { client.user.setGame(config.playing) });
+	client.on('ready', () => { client.user.setActivity(config.playing), {type: "playing"} });
 } catch(err) {
 	console.log("Status error!" + err);
 }
