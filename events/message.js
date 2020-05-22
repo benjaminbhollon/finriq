@@ -30,5 +30,5 @@ module.exports = async (client, message) => {
 	
 	afkAction.checkIfUserIsAFK(message);
 	afkAction.checkForMention(message);
-	reactions.reactionCheckAction(message);
+	reactions.checkIfCorrect(message);
 };
