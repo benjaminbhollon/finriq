@@ -5,8 +5,8 @@
     "Fun",
     "Games"
   ],
-  "version": "2.1.0",
-  "versioninfo": "Fix some commands broken by 2.0 update.",
+  "version": "2.1.1",
+  "versioninfo": "Added back a little bit of functionality. Reactions in certain channels, playing status.",
   "playing": "I love avocado.",
   "channelReacts": [{
     "channel":"711269048591056916",
