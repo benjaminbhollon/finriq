@@ -5,6 +5,9 @@ module.exports.execute = async (client, message, args) => {
     return await message.channel.send(`_Hugs <@${args[0]}>._\n_Don't worry, it'll be alright._`);
   } else {
     var name = args.join(" ");
+    if (name == "") {
+      return await message.channel.send(`_Hugs <@${message.author.id}>._\n_Don't worry, it'll be alright._`);
+    }
     //Replace with mention if possible
     message.channel.members.forEach(member => {
       if (member.displayName.toLowerCase().indexOf(name.toLowerCase()) != -1 || member.user.username.toLowerCase().indexOf(name.toLowerCase()) != -1) name = "<@" + member.id + ">";
