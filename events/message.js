@@ -4,8 +4,10 @@ const afkAction = require('../eventActions/afkMessageCheckAction');
 module.exports = async (client, message) => {
 
   if (message.content.toLowerCase().indexOf("good") != -1 && message.content.toLowerCase().indexOf("night") != -1 && message.content.toLowerCase().indexOf("bookery") != -1) {
-    client.commands.get("afk").execute(client, message, []);
+    client.commands.get("afk").execute(client, message, ["Went to sleep."]);
     return await message.react("🌛");
+  } else if (message.content.toLowerCase().indexOf("good") != -1 && message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1) {
+    afkAction.checkIfUserIsAFK(message);
   }
 
 	if (!message.guild || message.author.bot) return;
