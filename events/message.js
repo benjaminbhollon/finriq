@@ -8,6 +8,7 @@ module.exports = async (client, message) => {
     return await message.react("🌛");
   } else if (message.content.toLowerCase().indexOf("good") != -1 && message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1) {
     afkAction.checkIfUserIsAFK(message);
+    return await message.react("🌄");
   }
 
 	if (!message.guild || message.author.bot) return;
