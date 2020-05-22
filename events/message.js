@@ -1,5 +1,6 @@
 const config = require('../config.json');
 const afkAction = require('../eventActions/afkMessageCheckAction');
+const reactions = require('../eventActions/reactions');
 
 module.exports = async (client, message) => {
 
@@ -29,5 +30,5 @@ module.exports = async (client, message) => {
 	
 	afkAction.checkIfUserIsAFK(message);
 	afkAction.checkForMention(message);
-
+	reactions.checkIfCorrect(message);
 };

@@ -5,19 +5,7 @@ const config = require('../config.json');
 
 class afkMessageCheckAction {
 	static async checkIfUserIsAFK(message) {
-    var cooldown = false;
-    function cooldownOn() {
-      cooldown = true;
-    }
-    // If the cooldown is on, ignore the message
-    Afks.findAll({where: {user:message.author.id}}).then(result => {
-      if (Date.now() - result.timestamp < 300000) {
-        cooldownOn();
-      }
-    });
-		if (cooldown) {
-			return;
-		} else if (message.content.toLowerCase().indexOf("good") != -1 && message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1) {
+    if (message.content.toLowerCase().indexOf("good") != -1 && message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1) {
       const sender = message.author;
       Afks.destroy({
         where: {

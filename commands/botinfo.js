@@ -17,7 +17,7 @@ module.exports.execute = async (client, message, args) => {
 
 module.exports.config = {
   name: 'botinfo',
-  aliases: ['bot', 'info'],
+  aliases: ['bot', 'info', 'version'],
   module: "Utility",
   description: 'Learn more about Finriq.',
   usage: ['botinfo']
