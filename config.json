@@ -9,7 +9,11 @@
   "versioninfo": "Fix some commands broken by 2.0 update.",
   "playing": "I love avocado.",
   "channelReacts": [{
-    "channel":"704740519758266451",
+    "channel":"711269048591056916",
     "react": "👋"
+  },
+  {
+    "channel": "705240176842113024",
+    "react": "💯"  
   }]
 }
