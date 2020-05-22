@@ -4,6 +4,7 @@ class reactionCheckAction {
   static async checkIfCorrect(message) {
     for(var i = 0; i < reactions.length; i++) {
       var obj = reactions[i];
+      console.log()
       try {
         if (message.channel.id === obj.channel) {
           message.react(obj.react);

@@ -3,6 +3,12 @@ const Afks = require('../databaseFiles/afkTable.js');
 
 
 module.exports.execute = async (client, message, args) => {
+	try {
+		message.delete();
+	} catch(err) {
+		console.log("Delete error" + err);
+	}
+	
 	const sender = message.author;
 	const afkMessage = args.length > 0 ? args.join(' ') : 'They didn\'t tell us where they went...';
 
@@ -14,7 +20,7 @@ module.exports.execute = async (client, message, args) => {
 			timestamp: Date.now()
 		}).then(() => {
 			try {
-				message.channel.send('I have marked you as AFK. Anyone who pings you will be notified you are away.');
+				message.channel.send('I have marked you as AFK. Anyone who pings you will be notified you are away.').then(msg => msg.delete(5000).catch());
 			}
 			catch(err) {
 				console.log(err);

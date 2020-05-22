@@ -1,4 +1,10 @@
 module.exports.execute = async (client, message, args) => {
+  try {
+		message.delete();
+	} catch(err) {
+		console.log("Delete error" + err);
+  }
+  
   if (parseInt(args[0])) {
     return await message.channel.send(`_:candle: ${message.author} summons <@${args[0]}>. :candle:_`);
   } else {
