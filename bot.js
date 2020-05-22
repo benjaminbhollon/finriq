@@ -48,10 +48,13 @@ try {
 
 // 100 members
 client.on('guildMemberAdd', member => {
-	var memberCount = guild.members.filter(member => !member.user.bot).size;
-	if (memberCount % 1) {
-		const channel = client.channels.cache.get(config.announcementChannel);
-		channel.send(`:tada: We have reached **${memberCount}** members! :tada:`);
+	if (message.channel.type() === "category") {
+		var guild = message.guild;
+		var memberCount = guild.members.filter(member => !member.user.bot).size;
+		if (memberCount % 1) {
+			const channel = client.channels.cache.get(config.announcementChannel);
+			channel.send(`:tada: We have reached **${memberCount}** members! :tada:`);
+		}
 	}
 });
 
