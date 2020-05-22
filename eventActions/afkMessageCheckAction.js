@@ -43,8 +43,7 @@ class afkMessageCheckAction {
 		};
 		const noLongerAFKMessage = new Discord.RichEmbed()
 			.setTitle(`You are currently AFK, ${message.member.nickname ? message.member.nickname : message.author.username}`)
-			.addField('Are you back?', 'Then react with ✅',true)
-			.addField('If you are not back!', 'Then react with ❌',true)
+			.addField('Are you back?', 'Then react with ✅')
 			.setFooter('This message will delete itself after 15 seconds')
 			.setColor('#750384');
 		const user = message.author;
@@ -58,7 +57,6 @@ class afkMessageCheckAction {
 				if (result.length == 1) {
 					message.author.send(noLongerAFKMessage).then(msg => {
 						msg.react('✅');
-						msg.react('❌');
 						// Use reaction filter to remove to remove the user from the database rather than an event
 						let collector = msg.createReactionCollector(reactionFilter, { time: 15000 });
 						collector.on('end', () => {
