@@ -39,7 +39,11 @@ fs.readdir('./commands/', (err, files) => {
 	});
 });
 
-client.on('ready', () => { bot.user.setGame(config.playing) });
+try {
+	client.on('ready', () => { client.user.setGame(config.playing) });
+} catch(err) {
+	console.log("Status error!" + err);
+}
 
 // Connect to given database
 connect.instantiateConnection();
