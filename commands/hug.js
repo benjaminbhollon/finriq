@@ -1,6 +1,11 @@
 module.exports.execute = async (client, message, args) => {
   message.delete();
-  message.guild.channels.find(channel => channel.name == 'logs').send("Message by " + message.author.tag + " deleted in " + message.channel + ":\n\"" + message.content + "\"");
+  try {
+    message.guild.channels.find(channel => channel.name == 'logs').send("Message by " + message.author.tag + " deleted in " + message.channel + ":\n\"" + message.content + "\"");
+  }
+  catch (err) {
+    console.log(err);
+  }
   if (parseInt(args[0])) {
     return await message.channel.send(`_Hugs <@${args[0]}>._\n_Don't worry, it'll be alright._`);
   } else {
