@@ -39,6 +39,8 @@ fs.readdir('./commands/', (err, files) => {
 	});
 });
 
+client.on('ready', () => { bot.user.setGame(config.playing) });
+
 // Connect to given database
 connect.instantiateConnection();
 
