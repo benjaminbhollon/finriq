@@ -2,7 +2,6 @@ const reactions = require("../config.json").channelReacts;
 
 class reactionCheckAction {
   static async checkIfCorrect(message) {
-    console.log(reactions.length);
     for(var i = 0; i < reactions.length; i++) {
       var obj = reactions[i];
       try {
