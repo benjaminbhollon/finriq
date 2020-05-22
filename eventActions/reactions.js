@@ -7,7 +7,7 @@ class reactionCheckAction {
       var obj = reactions[i];
       try {
         if (message.channel.id === obj.channel) {
-          message.react(obj.react);
+          message.react(message.guild.emojis.cache.find(emoji => emoji.name === obj.react));
         }
       } catch (err) {
         console.log("Error with reaction." + err);
