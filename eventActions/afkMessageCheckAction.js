@@ -49,44 +49,21 @@ class afkMessageCheckAction {
 			.setColor('#750384');
 		const user = message.author;
 
-		function refreshAFK() {
-			Afks.sync().then(() =>
-
-				Afks.update({
-					where: {
-						user: sender.id
-					}
-				}).then(result => {
-					// User successfully removed from table
-					if (result == 1) {
-						console.log('Update true');
-						return;
-					}
-				}).catch(err => {
-					console.error('Afk update error: ', err);
-			}));
-		}
-
 		await Afks.sync().then(() => {
-			// If the cooldown is on, ignore the message
-			Afks.findAll({where: {user:message.author.id}}).then(result => {
-				if (Date.now() - result.timestamp < 300000) {
-					Afks.findAll({
-						where: {
-							user: user.id
-						}
-					}).then(result => {
-						if (result.length == 1) {
-							message.author.send(noLongerAFKMessage).then(msg => {
-								msg.react('✅');
-								msg.react('❌');
-								// Use reaction filter to remove to remove the user from the database rather than an event
-								let collector = msg.createReactionCollector(reactionFilter, { time: 15000 });
-								collector.on('end', () => {
-									msg.delete().catch(() => console.log('Tried deleting afk message that was already deleted'));
-								});
-							});
-						}
+			Afks.findAll({
+				where: {
+					user: user.id
+				}
+			}).then(result => {
+				if (result.length == 1) {
+					message.author.send(noLongerAFKMessage).then(msg => {
+						msg.react('✅');
+						msg.react('❌');
+						// Use reaction filter to remove to remove the user from the database rather than an event
+						let collector = msg.createReactionCollector(reactionFilter, { time: 15000 });
+						collector.on('end', () => {
+							msg.delete().catch(() => console.log('Tried deleting afk message that was already deleted'));
+						});
 					});
 				}
 			});
