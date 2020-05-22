@@ -1,6 +1,11 @@
 module.exports.execute = async (client, message, args) => {
   message.delete();
-  message.guild.channels.find(channel => channel.name == 'logs').send("Message by " + message.author.tag + " deleted in " + message.channel + ":\n\"" + message.content + "\"");
+  try {
+    message.guild.channels.find(channel => channel.name == 'logs').send("Message by " + message.author.tag + " deleted in " + message.channel + ":\n\"" + message.content + "\"");
+  }
+  catch (err) {
+    console.log(err);
+  }
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
