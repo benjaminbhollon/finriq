@@ -19,7 +19,7 @@ module.exports.execute = async (client, message, args) => {
 		let helpMessage = new Discord.RichEmbed()
 			.setColor('#750384')
 			.setTitle('List of available modules')
-			.setDescription(`Modules available in ${message.guild.name}. Use \`.help [module]\` for more about a specific module.`);
+			.setDescription(`Modules available in ${message.guild.name}. Use \`.help [module]\` for more about a specific module, or \'.help all\` for all commands.`);
 		modules.forEach(module => {
 			modulelist = modulelist.concat(`${module}\n`);
 		});
@@ -68,6 +68,23 @@ module.exports.execute = async (client, message, args) => {
 					if (command.config.module.toLowerCase() == args[0].toLowerCase()) {
 						helpMessage.addField(`**${prefix}${command.config.name}**`, `${command.config.description}`);
 					}
+				});
+				try {
+					message.channel.send(helpMessage);
+				}
+				catch(err) {
+					console.log(err);
+				}	
+			} else if (args[0].toLowerCase() == "all") {
+				modCmd = args[0].toLowerCase();
+
+				let helpMessage = new Discord.RichEmbed()
+					.setColor('#750384')
+					.setTitle(`${capitalizeFLetter(modCmd)}`)
+					.setDescription(`You asked for all commands`);
+
+				commands.forEach(command => {
+					helpMessage.addField(`**${prefix}${command.config.name}**`, `${command.config.description}`);
 				});
 				try {
 					message.channel.send(helpMessage);
