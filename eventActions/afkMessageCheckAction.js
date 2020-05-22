@@ -11,7 +11,7 @@ class afkMessageCheckAction {
     }
     // If the cooldown is on, ignore the message
     Afks.findAll({where: {user:message.author.id}}).then(result => {
-      if (Date.now() - result.timestamp < 30000) {
+      if (Date.now() - result.timestamp < 300000) {
         cooldownOn();
       }
     });
@@ -68,14 +68,6 @@ class afkMessageCheckAction {
 				}
 			}).then(result => {
 				if (result.length == 1) {
-					Afks.update({
-						title: Date.now()
-					}, {
-						where: { user: user.id }
-					})
-					.then(function (result) {
-						console.log(result);
-					});
 					message.author.send(noLongerAFKMessage).then(msg => {
 						msg.react('✅');
 						msg.react('❌');
