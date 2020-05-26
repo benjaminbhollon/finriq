@@ -1,5 +1,6 @@
 module.exports.execute = async (client, message, args) => {
-  return await message.channel.send(Math.random() < 0.5 ? ":coffee:" : ":coffin:");
+  //return await message.channel.send(Math.random() < 0.5 ? ":coffee:" : ":coffin:");
+  return await message.channel.send(":coffee:");
 };
 
 module.exports.config = {
