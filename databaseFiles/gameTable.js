@@ -3,17 +3,16 @@ const connect = require('./connect.js');
 
 const sequelize = connect.sequelize;
 
-module.exports = sequelize.define('Afk', {
-	message: {
+module.exports = sequelize.define('Games', {
+	gameName: {
+		type: Sequelize.STRING,
+		allowNull: false
+	},
+	content: {
 		type: Sequelize.STRING,
 		allowNull: true
 	},
-	user: {
-		type: Sequelize.STRING,
-		allowNull: false,
-		unique: true        
-	},
-	cooldown: {
+	started: {
 		type: Sequelize.STRING,
 		allowNull: false
 	}

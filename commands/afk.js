@@ -18,7 +18,7 @@ module.exports.execute = async (client, message, args) => {
 		Afks.create({
 			message: afkMessage,
 			user: sender.id,
-			timestamp: Date.now()
+			cooldown: Date.now()
 		}).then(() => {
 			try {
 				message.channel.send('I have marked you as AFK. Anyone who pings you will be notified you are away.').then(msg => msg.delete(5000).catch());
@@ -27,7 +27,7 @@ module.exports.execute = async (client, message, args) => {
 				console.log(err);
 			}
 		}).catch(err => {
-			if (err.name == 'SequelizeUniqueConstraintError') {
+			if (err.name == 'SequelizeUniqueConstraintError' && args[1] != "auto") {
 				Afks.destroy({
 					where: {
 						user: sender.id
@@ -35,7 +35,7 @@ module.exports.execute = async (client, message, args) => {
 				}).then(result => {
 					// User successfully removed from table
 					if (result == 1) {
-						sender.send(`Welcome back, ${message.member.nickname ? message.member.nickname : message.author.username}!`).then(message => message.delete(5000));
+						message.channel.send(`Welcome back, ${message.member.nickname ? message.member.nickname : message.author.username}!`).then(message => message.delete(5000)).catch('Error sending message.');
 						reaction.message.delete().catch(() => console.log('Tried deleting afk message that was already deleted'));
 						return;
 					}

@@ -1,16 +1,27 @@
+const Discord = require('discord.js');
+const logschannel = require('../config.json').channels.logs;
+
 module.exports.execute = async (client, message, args) => {
   try {
-		message.delete();
+		let logMessage = new Discord.RichEmbed()
+				.setColor('#750384')
+				.setTitle(`\`.jail\` command deleted`)
+			logMessage.addField('User:', message.author.tag);
+      logMessage.addField('Message:', message.content);
+      logMessage.addField('Channel:', message.channel);
+      
+    message.delete();
+
+    try {
+      message.guild.channels.get(logschannel).send(logMessage);
+    }
+    catch(err) {
+      console.log(err);
+    }
 	} catch(err) {
 		console.log("Delete error" + err);
   }
   
-  try {
-    message.guild.channels.find(channel => channel.name == 'logs').send("Message by " + message.author.tag + " deleted in " + message.channel + ":\n\"" + message.content + "\"");
-  }
-  catch (err) {
-    console.log(err);
-  }
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }

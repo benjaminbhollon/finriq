@@ -1,6 +1,23 @@
+const Discord = require('discord.js');
+const logschannel = require('../config.json').channels.logs;
+
 module.exports.execute = async (client, message, args) => {
   try {
-		message.delete();
+		let logMessage = new Discord.RichEmbed()
+				.setColor('#750384')
+				.setTitle(`\`.summon\` command deleted`)
+			logMessage.addField('User:', message.author.tag);
+      logMessage.addField('Message:', message.content);
+      logMessage.addField('Channel:', message.channel);
+      
+    message.delete();
+
+    try {
+      message.guild.channels.get(logschannel).send(logMessage);
+    }
+    catch(err) {
+      console.log(err);
+    }
 	} catch(err) {
 		console.log("Delete error" + err);
   }

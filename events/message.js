@@ -1,11 +1,12 @@
 const config = require('../config.json');
 const afkAction = require('../eventActions/afkMessageCheckAction');
 const reactions = require('../eventActions/reactions');
+const backspeak = require('../eventActions/backspeak');
 
 module.exports = async (client, message) => {
 
   if (message.content.toLowerCase().indexOf("good") != -1 && message.content.toLowerCase().indexOf("night") != -1 && message.content.toLowerCase().indexOf("bookery") != -1) {
-    client.commands.get("afk").execute(client, message, ["Went to sleep."]);
+    client.commands.get("afk").execute(client, message, ["Went to sleep.", "auto"]);
     return await message.react("🌛");
   } else if (message.content.toLowerCase().indexOf("good") != -1 && message.content.toLowerCase().indexOf("morning") != -1 && message.content.toLowerCase().indexOf("bookery") != -1) {
     afkAction.checkIfUserIsAFK(message);
@@ -31,4 +32,5 @@ module.exports = async (client, message) => {
 	afkAction.checkIfUserIsAFK(message);
 	afkAction.checkForMention(message);
 	reactions.checkIfCorrect(message);
+	backspeak.checkForGame(message);
 };

@@ -5,9 +5,9 @@
     "Fun",
     "Games"
   ],
-  "version": "2.1.5",
-  "versioninfo": "Saying \"Goodnight Bookery\" is no longer is deleted.",
-  "playing": "I love avocado.",
+  "version": "2.2.0",
+  "versioninfo": "Tons of new features, bug fixes, and more. Much cleaner and overall smoother experience.",
+  "playing": "my 2.2.0 update.",
   "channelReacts": [{
     "channel":"711269048591056916",
     "react": "👋"
@@ -18,7 +18,8 @@
   }],
   "channels": {
     "tos": "713456684915359756",
-    "welcome": "704740519758266451"
+    "welcome": "704740519758266451",
+    "logs": "693512715016208445"
   },
   "emotes": {
     "acceptTOS": "👍"
