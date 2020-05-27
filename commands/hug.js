@@ -1,12 +1,13 @@
 module.exports.execute = async (client, message, args) => {
   try {
-    message.delete();
 
     let logMessage = new Discord.RichEmbed()
 				.setColor('#750384')
 				.setTitle(`\`.hug\` command deleted in ${message.channel}.`)
 			helpMessage.addField('User:', message.author.tag);
-			helpMessage.addField('Message:', message.content);
+      helpMessage.addField('Message:', message.content);
+      
+    message.delete();
 
 			try {
 				message.channel.send(logMessage);
@@ -17,7 +18,7 @@ module.exports.execute = async (client, message, args) => {
   } catch(err) {
     console.log("Delete error" + err);
   }
-  
+
   if (parseInt(args[0])) {
     return await message.channel.send(`_Hugs <@${args[0]}>._\n_Don't worry, it'll be alright._`);
   } else {
