@@ -2,7 +2,7 @@
 const Backspeak = require('../databaseFiles/gameTable.js');
 
 module.exports.execute = async (client, message, args) => {
-  switch(args[0]) {
+  /*switch(args[0]) {
     case "start":
       if (isEmpty(game)) {
         message.channel.send("React to this message with a :pencil2: to join the game! The game won't start until at least " + (args[1] ? args[1] : 2) + " players join! Once the game has started, players can join without reacting to this. Simply start following the instructions and your points will be added to the leaderboard!");
@@ -158,7 +158,8 @@ module.exports.execute = async (client, message, args) => {
     default:
       message.channel.send('Hmm... I don\'t know that command. Try `.help` to get a list of commands.');
       break;
-  }
+  }*/
+  channel.message.send("Under construction.");
 };
 
 module.exports.config = {
