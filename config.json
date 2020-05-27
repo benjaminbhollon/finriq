@@ -5,8 +5,8 @@
     "Fun",
     "Games"
   ],
-  "version": "2.1.4",
-  "versioninfo": "Added back a little bit of functionality. Reactions in certain channels, playing status. AFK message can now be run in any channel. Removed :x: on AFK turn off message. Running .afk again will now turn if off.",
+  "version": "2.1.5",
+  "versioninfo": "Saying \"Goodnight Bookery\" is no longer is deleted.",
   "playing": "I love avocado.",
   "channelReacts": [{
     "channel":"711269048591056916",
@@ -15,5 +15,12 @@
   {
     "channel": "705240176842113024",
     "react": "💯"  
-  }]
+  }],
+  "channels": {
+    "tos": "713456684915359756",
+    "welcome": "704740519758266451"
+  },
+  "emotes": {
+    "acceptTOS": "👍"
+  }
 }
