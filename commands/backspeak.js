@@ -24,12 +24,10 @@ module.exports.execute = async (client, message, args) => {
     }).then(result => {
       if (result.length < 1) {
         shuffle(words);
-        var wordslice = words.slice(0,10).join(" ");
-        var wordslicerev = words.slice(0,10).reverse().join(" ");
 
         Backspeak.create({
           gameName: "backspeak",
-          content: wordslicerev,
+          content: words.slice(0,10).reverse().join(" "),
           started: Date.now()
         }).then(() => {
           try {
@@ -39,7 +37,7 @@ module.exports.execute = async (client, message, args) => {
               setTimeout(function () {
                 message.channel.send('**1...**');
                 setTimeout(function () {
-                  message.channel.send(wordslice);
+                  message.channel.send(words.slice(0,10).join(" "));
                 }, 1000);
               }, 1000);
             }, 1000);
