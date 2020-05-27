@@ -23,9 +23,11 @@ module.exports.execute = async (client, message, args) => {
       }
     }).then(result => {
       if (result.length < 1) {
+        var wordslice = words.slice(0,10).join(" ");
+
         Backspeak.create({
           gameName: "backspeak",
-          content: words.slice(0,10).reverse().join(" "),
+          content: wordslice.reverse(),
           started: Date.now()
         }).then(() => {
           try {
@@ -36,7 +38,7 @@ module.exports.execute = async (client, message, args) => {
               setTimeout(function () {
                 message.channel.send('**1...**');
                 setTimeout(function () {
-                  message.channel.send(words.slice(0,10).join(" "));
+                  message.channel.send(wordslice);
                 }, 1000);
               }, 1000);
             }, 1000);
