@@ -63,7 +63,7 @@ class afkMessageCheckAction {
 			var difference = Math.floor(difference/1000/60);
 	
 			return difference;
-	}
+		}
 
 		await Afks.sync().then(() => {
 			Afks.findAll({
@@ -77,7 +77,7 @@ class afkMessageCheckAction {
 						Afks.update(
 							{ cooldown: Date.now() },
 							{ where: {user: user.id} }
-						).catch("Errrorororororor");
+						).catch(error => {"Update error: " + error});
 						
 						// Use reaction filter to remove to remove the user from the database rather than an event
 						let collector = msg.createReactionCollector(reactionFilter, { time: 15000 });
