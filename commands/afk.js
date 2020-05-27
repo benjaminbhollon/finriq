@@ -27,7 +27,7 @@ module.exports.execute = async (client, message, args) => {
 				console.log(err);
 			}
 		}).catch(err => {
-			if (err.name == 'SequelizeUniqueConstraintError') {
+			if (err.name == 'SequelizeUniqueConstraintError' && afkMessage === "") {
 				Afks.destroy({
 					where: {
 						user: sender.id
