@@ -10,8 +10,8 @@ class backspeakCheckAction {
 				gameName: "backspeak"
 			}
 		}).then(result => {
-			validResp = result[0].content;
-			if (message.content == backspeakListening) {
+			var validResp = result[0].content;
+			if (message.content == validResp) {
 				message.channel.send("And the winner is... " + message.author + "!");
 				Backspeak.destroy({
 					where: {
