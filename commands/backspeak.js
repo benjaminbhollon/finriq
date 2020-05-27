@@ -14,7 +14,7 @@ async function shuffle(array) {
   return array;
 }
 
-async function gameStart(words) {
+async function gameStart(words, message) {
   shuffle(words);
 
   Backspeak.create({
@@ -51,7 +51,7 @@ module.exports.execute = async (client, message, args) => {
       }
     }).then(result => {
       if (result.length < 1) {
-        gameStart(words);
+        gameStart(words, message);
       } else {
         function timedifference(timestamp1, timestamp2) {
           var timestamp1 = new Date(parseInt(timestamp1));
@@ -70,7 +70,7 @@ module.exports.execute = async (client, message, args) => {
 							gameName: "backspeak"
 						}
 					}).then(() => {
-            gameStart(words);
+            gameStart(words, message);
           });
         }
       }
