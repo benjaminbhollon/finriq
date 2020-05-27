@@ -1,3 +1,6 @@
+// Get the game Table stored in the SQLite database
+const Backspeak = require('../databaseFiles/gameTable.js');
+
 module.exports.execute = async (client, message, args) => {
   switch(args[0]) {
     case "start":
@@ -12,7 +15,6 @@ module.exports.execute = async (client, message, args) => {
             return true;
           };
           lastMessage.awaitReactions(filter, {max:1+(args[1] ? args[1] : 2), time:300000,errors:['time']}).then(collected => {
-            game = {owner:message.author,round:0,roundInProgress:false};
             message.channel.send("<@" + game.owner.id + "> We have enough players! Start the first round by running `.synopsis round`!");
           })
           .catch(collected => {
