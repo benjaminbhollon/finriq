@@ -54,13 +54,20 @@ class afkMessageCheckAction {
 			.setColor('#750384');
 		const user = message.author;
 
+		function timedifference(timestamp1, timestamp2) {
+			var difference = Math.floor(difference/1000/60);
+			difference -= minutesDifference*1000*60;
+	
+			return difference;
+	}
+
 		await Afks.sync().then(() => {
 			Afks.findAll({
 				where: {
 					user: user.id
 				}
 			}).then(result => {
-				if (result.length == 1) {
+				if (result.length == 1 && timedifference(result[0].cooldown, Date.now()) >= 3) {
 					message.author.send(noLongerAFKMessage).then(msg => {
 						msg.react('✅');
 						// Use reaction filter to remove to remove the user from the database rather than an event
