@@ -1,11 +1,23 @@
-module.exports.execute = async (client, message, args) => {	try {
-  message.delete();
+module.exports.execute = async (client, message, args) => {
+  try {
+    message.delete();
   } catch(err) {
     console.log("Delete error" + err);
   }
   
   try {
-    message.guild.channels.find(channel => channel.name == 'logs').send("Message by " + message.author.tag.replace(/@everyone/gi, "@.everyone") + " deleted in " + message.channel.replace(/@everyone/gi, "@.everyone") + ":\n\"" + message.content.replace(/@everyone/gi, "@.everyone") + "\"");
+    let logMessage = new Discord.RichEmbed()
+				.setColor('#750384')
+				.setTitle(`\`.hug\` command deleted in ${message.channel}.`)
+			helpMessage.addField('User:', message.author.tag);
+			helpMessage.addField('Message:', message.content);
+
+			try {
+				message.channel.send(logMessage);
+			}
+			catch(err) {
+				console.log(err);
+			}
   }
   catch (err) {
     console.log(err);
