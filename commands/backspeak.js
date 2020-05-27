@@ -83,6 +83,6 @@ module.exports.config = {
   name: 'backspeak',
   aliases: ['backspeak'],
   module: "Games",
-  description: 'Start a game of backspeak! After three seconds I will send a random list of words. Try to be the first to send the same list of words backwards (remember it\'s case sensitive!).',
+  description: 'Start a game of backspeak! After three seconds I will send a random list of words. Try to be the first to send the same list of words backwards. Remember that it\'s case sensitive!',
   usage: ['backspeak']
 };
