@@ -35,7 +35,7 @@ module.exports.execute = async (client, message, args) => {
 				}).then(result => {
 					// User successfully removed from table
 					if (result == 1) {
-						sender.send(`Welcome back, ${message.member.nickname ? message.member.nickname : message.author.username}!`).then(message => message.delete(5000));
+						await message.channel.send(`Welcome back, ${message.member.nickname ? message.member.nickname : message.author.username}!`).then(message => message.delete(5000));
 						reaction.message.delete().catch(() => console.log('Tried deleting afk message that was already deleted'));
 						return;
 					}
