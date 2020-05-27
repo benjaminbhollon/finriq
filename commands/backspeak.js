@@ -72,6 +72,8 @@ module.exports.execute = async (client, message, args) => {
 					}).then(() => {
             gameStart(words, message);
           });
+        } else {
+          message.channel.send("A game is already going on! Wait a minute for it to time out before starting a new one.");
         }
       }
     }));
