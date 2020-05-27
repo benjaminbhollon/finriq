@@ -4,7 +4,9 @@ const Afks = require('../databaseFiles/afkTable.js');
 
 module.exports.execute = async (client, message, args) => {
 	try {
-		message.delete();
+		if (!message.content.toLowerCase().indexOf("good") != -1 && !message.content.toLowerCase().indexOf("night") != -1 && !message.content.toLowerCase().indexOf("bookery") != -1) {
+			message.delete();
+		}
 	} catch(err) {
 		console.log("Delete error" + err);
 	}
