@@ -6,8 +6,8 @@ module.exports.execute = async (client, message, args) => {
     let logMessage = new Discord.RichEmbed()
 				.setColor('#750384')
 				.setTitle(`\`.hug\` command deleted in ${message.channel}.`)
-			helpMessage.addField('User:', message.author.tag);
-      helpMessage.addField('Message:', message.content);
+			logMessage.addField('User:', message.author.tag);
+      logMessage.addField('Message:', message.content);
       
     message.delete();
 
