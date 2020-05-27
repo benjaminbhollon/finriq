@@ -74,10 +74,10 @@ class afkMessageCheckAction {
 				if (result.length == 1 && timedifference(result[0].cooldown, Date.now()) >= 0) {
 					message.author.send(noLongerAFKMessage).then(msg => {
 						msg.react('✅');
-						Afks.update({
-							cooldown: Date.now(),
-							where: user.id
-						});
+						Afks.update(
+							{ cooldown: Date.now() },
+							{ where: user.id }
+						).catch("Errrorororororor");
 						
 						// Use reaction filter to remove to remove the user from the database rather than an event
 						let collector = msg.createReactionCollector(reactionFilter, { time: 15000 });
