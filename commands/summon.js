@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 module.exports.execute = async (client, message, args) => {
   try {
 		let logMessage = new Discord.RichEmbed()

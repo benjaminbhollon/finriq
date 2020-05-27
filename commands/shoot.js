@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 module.exports.execute = async (client, message, args) => {
   try {
 		let logMessage = new Discord.RichEmbed()
@@ -18,7 +20,7 @@ module.exports.execute = async (client, message, args) => {
 	} catch(err) {
 		console.log("Delete error" + err);
   }
-  
+
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
