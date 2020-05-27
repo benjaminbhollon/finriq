@@ -17,31 +17,39 @@ function shuffle(array) {
 module.exports.execute = async (client, message, args) => {
   Backspeak.sync().then(() =>
 
-		Backspeak.create({
-      gameName: "backspeak",
-      content: words.slice(0,10).reverse().join(" "),
-			started: Date.now()
-		}).then(() => {
-			try {
-				shuffle(words);
-        message.channel.send('**3...**');
-        setTimeout(function () {
-          message.channel.send('**2...**');
-          setTimeout(function () {
-            message.channel.send('**1...**');
+    Backspeak.findAll({
+      where: {
+        gameName: "backspeak"
+      }
+    }).then(result => {
+      if (result.length < 1) {
+        Backspeak.create({
+          gameName: "backspeak",
+          content: words.slice(0,10).reverse().join(" "),
+          started: Date.now()
+        }).then(() => {
+          try {
+            shuffle(words);
+            message.channel.send('**3...**');
             setTimeout(function () {
-              message.channel.send(words.slice(0,10).join(" "));
+              message.channel.send('**2...**');
+              setTimeout(function () {
+                message.channel.send('**1...**');
+                setTimeout(function () {
+                  message.channel.send(words.slice(0,10).join(" "));
+                }, 1000);
+              }, 1000);
             }, 1000);
-          }, 1000);
-        }, 1000);
-			}
-			catch(err) {
-				console.log(err);
-			}
-		}).catch(err => {
-			console.error('Backspeak error: ', err);
-		}));
-};
+          }
+          catch(err) {
+            console.log(err);
+          }
+        }).catch(err => {
+          console.error('Backspeak error: ', err);
+        });
+      }
+    }));
+  };
 
 module.exports.config = {
   name: 'backspeak',

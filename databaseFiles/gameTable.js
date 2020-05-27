@@ -8,6 +8,10 @@ module.exports = sequelize.define('Games', {
 		type: Sequelize.STRING,
 		allowNull: false
 	},
+	content: {
+		type: Sequelize.STRING,
+		allowNull: true
+	},
 	started: {
 		type: Sequelize.STRING,
 		allowNull: false
