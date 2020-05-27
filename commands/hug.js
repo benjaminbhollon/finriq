@@ -5,14 +5,15 @@ module.exports.execute = async (client, message, args) => {
 
     let logMessage = new Discord.RichEmbed()
 				.setColor('#750384')
-				.setTitle(`\`.hug\` command deleted in ${message.channel}.`)
+				.setTitle(`\`.hug\` command deleted`)
 			logMessage.addField('User:', message.author.tag);
       logMessage.addField('Message:', message.content);
+      logMessage.addField('Channel:', message.channel);
       
     message.delete();
 
 			try {
-				message.channel.send(logMessage);
+				message.guild.channels.find(channel => channel.name == 'logs').send(logMessage);
 			}
 			catch(err) {
 				console.log(err);
