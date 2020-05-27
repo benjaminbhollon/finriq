@@ -61,8 +61,6 @@ class afkMessageCheckAction {
 			var difference = timestamp2.getTime() - timestamp1.getTime();
 
 			var difference = Math.floor(difference/1000/60);
-			
-			console.log(difference);
 	
 			return difference;
 	}
@@ -76,6 +74,10 @@ class afkMessageCheckAction {
 				if (result.length == 1 && timedifference(result[0].cooldown, Date.now()) >= 3) {
 					message.author.send(noLongerAFKMessage).then(msg => {
 						msg.react('✅');
+						Afks.update({
+							cooldown: Date.now()
+						});
+						
 						// Use reaction filter to remove to remove the user from the database rather than an event
 						let collector = msg.createReactionCollector(reactionFilter, { time: 15000 });
 						collector.on('end', () => {
