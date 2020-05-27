@@ -55,7 +55,8 @@ class afkMessageCheckAction {
 		const user = message.author;
 
 		function timedifference(timestamp1, timestamp2) {
-			var timestamp1 = new Date(timestamp1); // timestamp1 MUST be from the database
+			var timestamp1 = new Date(timestamp1);
+			var timestamp2 = new Date(timestamp2);
 			var difference = timestamp1.getTime() - timestamp2.getTime();
 
 			var difference = Math.floor(difference/1000);
