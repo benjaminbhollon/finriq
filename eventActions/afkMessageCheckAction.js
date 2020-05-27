@@ -71,7 +71,7 @@ class afkMessageCheckAction {
 					user: user.id
 				}
 			}).then(result => {
-				if (result.length == 1 && timedifference(result[0].cooldown, Date.now()) >= 3) {
+				if (result.length == 1 && timedifference(result[0].cooldown, Date.now()) >= 0) {
 					message.author.send(noLongerAFKMessage).then(msg => {
 						msg.react('✅');
 						Afks.update({
