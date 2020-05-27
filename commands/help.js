@@ -23,7 +23,6 @@ module.exports.execute = async (client, message, args) => {
 		modules.forEach(module => {
 			modulelist = modulelist.concat(`${module}\n`);
 		});
-		console.log(modulelist);
 		try {
 			helpMessage.addField(`All Modules`, `${modulelist}`);
 			return await message.channel.send(helpMessage);
@@ -55,7 +54,6 @@ module.exports.execute = async (client, message, args) => {
 				return input[0].toUpperCase() + input.slice(1); 
 			} 
 			
-			console.log(cleanmodules);
 			if (cleanmodules.includes(args[0].toLowerCase())) {
 				modCmd = args[0].toLowerCase(); // User input
 
