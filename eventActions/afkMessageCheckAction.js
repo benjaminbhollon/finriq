@@ -75,7 +75,8 @@ class afkMessageCheckAction {
 					message.author.send(noLongerAFKMessage).then(msg => {
 						msg.react('✅');
 						Afks.update({
-							cooldown: Date.now()
+							cooldown: Date.now(),
+							where: user.id
 						});
 						
 						// Use reaction filter to remove to remove the user from the database rather than an event
