@@ -5,7 +5,7 @@ module.exports.execute = async (client, message, args) => {	try {
   }
   
   try {
-    message.guild.channels.find(channel => channel.name == 'logs').send("Message by " + message.author.tag + " deleted in " + message.channel + ":\n\"" + message.content + "\"");
+    message.guild.channels.find(channel => channel.name == 'logs').send("Message by " + message.author.tag.replace("@everyone", "@.everyone") + " deleted in " + message.channel.replace("@everyone", "@.everyone") + ":\n\"" + message.content.replace("@everyone", "@.everyone") + "\"");
   }
   catch (err) {
     console.log(err);
