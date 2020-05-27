@@ -58,7 +58,7 @@ class afkMessageCheckAction {
 			var timestamp1 = new Date(parseInt(timestamp1));
 			var timestamp2 = new Date(parseInt(timestamp2));
 
-			var difference = timestamp1.getTime() - timestamp2.getTime();
+			var difference = timestamp2.getTime() - timestamp1.getTime();
 			console.log(difference);
 
 			var difference = Math.floor(difference/1000);
