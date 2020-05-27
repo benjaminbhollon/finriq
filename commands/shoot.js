@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const logschannel = require('../config.json').channels.logs;
 
 module.exports.execute = async (client, message, args) => {
   try {
@@ -12,7 +13,7 @@ module.exports.execute = async (client, message, args) => {
     message.delete();
 
     try {
-      message.guild.channels.find(channel => channel.name == 'logs').send(logMessage);
+      message.guild.channels.get(logschannel).send(logMessage);
     }
     catch(err) {
       console.log(err);
