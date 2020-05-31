@@ -6,9 +6,9 @@ class tosActions {
 		if (reaction.message.channel.id === config.channels.tos
             && reaction._emoji.name === config.emotes.acceptTOS) {
 			reaction.message.guild.fetchMember(user.id).then(guildMember => {
-        let role1 = user.guild.roles.find(r => r.id === "698499113188065310");
-        let role2 = user.guild.roles.find(r => r.id === "698499669554102404");
-        let role3 = user.guild.roles.find(r => r.id === "698500041295265844");
+        let role1 = client.guilds.get("698499113188065310");
+        let role2 = client.guilds.get("698499669554102404");
+        let role3 = client.guilds.get("698500041295265844");
 
         // Add roles and send welcome message to the welcome channel
         member.addRole(role1).catch(console.error);
