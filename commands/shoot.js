@@ -2,26 +2,6 @@ const Discord = require('discord.js');
 const logschannel = require('../config.json').channels.logs;
 
 module.exports.execute = async (client, message, args) => {
-  try {
-		let logMessage = new Discord.RichEmbed()
-				.setColor('#750384')
-				.setTitle(`\`.summon\` command deleted`)
-			logMessage.addField('User:', message.author.tag);
-      logMessage.addField('Message:', message.content);
-      logMessage.addField('Channel:', message.channel);
-      
-    message.delete();
-
-    try {
-      message.guild.channels.get(logschannel).send(logMessage);
-    }
-    catch(err) {
-      console.log(err);
-    }
-	} catch(err) {
-		console.log("Delete error" + err);
-  }
-
   function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
@@ -42,7 +22,7 @@ module.exports.execute = async (client, message, args) => {
       }
     }
   } else {
-    return await message.channel.send("_Violence is never the answer. Do... you need a hug?_");
+    return await message.channel.send('Violence is never the answer. Do... you need a `.hug`?');
   }
 };
 
