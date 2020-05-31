@@ -3,7 +3,6 @@ const logschannel = require('../config.json').channels.logs;
 
 module.exports.execute = async (client, message, args) => {
   try {
-
     let logMessage = new Discord.RichEmbed()
 				.setColor('#750384')
 				.setTitle(`\`.hug\` command deleted`)
@@ -27,7 +26,7 @@ module.exports.execute = async (client, message, args) => {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-  if (getRandomInt(100) == 99) {
+  if (getRandomInt(100) == 99 && typeof args[0] !== 'undefined') {
     if (parseInt(args[0])) {
       return await message.channel.send(`_<@${message.author.id}> shoots <@${args[0]}> violently._`);
     } else {
