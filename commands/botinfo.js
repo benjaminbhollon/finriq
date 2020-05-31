@@ -11,7 +11,8 @@ module.exports.execute = async (client, message, args) => {
     .addField('Description', "A helpful guy from Habitica here to assist in everything you might need!")
     .addField('Version', version)
     .addField('Version Info', versioninfo)
-    .addField('GitHub', "Want to help us develop Finriq? Check out the repo on GitHub! https://github.com/benjaminbhollon/finriq");
+    .addField('GitHub', "Want to help us develop Finriq? Check out the repo on GitHub! https://github.com/benjaminbhollon/finriq")
+    .setFooter('Help us test out beta features at https://discord.gg/xqynV24', 'https://cdn.discordapp.com/avatars/712698434670297108/36e2d4d39deac3b81c5b3f051b898bf5.png');
   return await message.channel.send(infoMessage);
 };
 
