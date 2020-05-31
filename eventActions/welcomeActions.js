@@ -2,10 +2,10 @@ const config = require('../config.json');
 
 class tosActions {
 	static userAcceptsTOS(reaction, user, client) {
+    console.log("Hello world!");
 		if (reaction.message.channel.id === config.channels.tos
             && reaction._emoji.name === config.emotes.acceptTOS) {
 			reaction.message.guild.fetchMember(user.id).then(guildMember => {
-        console.log("Hello world!");
         // Send welcome message to the welcome channel
         client.channels.get(config.channels.welcome).send(`🎉 **A new member has arrived!** 🎉\nWelcome to The Bookery <@${user.id}>!`)
           .then(message => {
