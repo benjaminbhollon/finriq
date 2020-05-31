@@ -24,20 +24,20 @@ module.exports.execute = async (client, message, args) => {
   }
 
   if (parseInt(args[0])) {
-    return await message.channel.send(`_Hugs <@${args[0]}>._\n_Don't worry, it'll be alright._`);
+    return await message.channel.send(`_Hugs <@${args[0]}>._\nDon't worry, it'll be alright.`);
   } else {
     var name = args.join(" ");
     if (name == "") {
-      return await message.channel.send(`_Hugs <@${message.author.id}>._\n_Don't worry, it'll be alright._`);
+      return await message.channel.send(`_Hugs <@${message.author.id}>._\nDon't worry, it'll be alright.`);
     }
     //Replace with mention if possible
     message.channel.members.forEach(member => {
       if (member.displayName.toLowerCase().indexOf(name.toLowerCase()) != -1 || member.user.username.toLowerCase().indexOf(name.toLowerCase()) != -1) name = "<@" + member.id + ">";
     });
     if (name != "@everyone") {
-      return await message.channel.send(`_Hugs ${name}._\n_Don't worry, it'll be alright._`);
+      return await message.channel.send(`_Hugs ${name}._\nDon't worry, it'll be alright.`);
     } else {
-      return await message.channel.send(`_Hugs the entire server._\n_Don't worry, it'll be alright._`);
+      return await message.channel.send(`_Hugs the entire server._\nDon't worry, it'll be alright.`);
     }
   }
 };
