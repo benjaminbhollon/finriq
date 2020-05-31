@@ -54,14 +54,16 @@ class afkMessageCheckAction {
 			.setColor('#750384');
 		const user = message.author;
 
+		// call function with variables timestamp1 and timestamp2 in call
 		function timedifference(timestamp1, timestamp2) {
-			var timestamp1 = new Date(parseInt(timestamp1));
-			var timestamp2 = new Date(parseInt(timestamp2));
+			// redefine the variables
+			timestamp1 = new Date(parseInt(timestamp1));
+			timestamp2 = new Date(parseInt(timestamp2));
 
-			var difference = timestamp2.getTime() - timestamp1.getTime();
+			let difference = timestamp2.getTime() - timestamp1.getTime();
 
-			var difference = Math.floor(difference/1000/60);
-	
+			difference = Math.floor(difference/1000/60);
+			
 			return difference;
 		}
 
@@ -77,7 +79,7 @@ class afkMessageCheckAction {
 						Afks.update(
 							{ cooldown: Date.now() },
 							{ where: {user: user.id} }
-						).catch(error => {"Update error: " + error});
+						).catch(error => {'Update error: ' + error});
 						
 						// Use reaction filter to remove to remove the user from the database rather than an event
 						let collector = msg.createReactionCollector(reactionFilter, { time: 15000 });
