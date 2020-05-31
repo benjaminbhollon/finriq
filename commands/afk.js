@@ -11,12 +11,21 @@ module.exports.execute = async (client, message, args) => {
 	}
 	
 	const sender = message.author;
-	const afkMessage = args.length > 0 ? args.join(' ') : 'They didn\'t tell us where they went...';
+
+	if (args[1] == "auto") {
+		const afkMessage = args[0];
+	} else if (args.length > 0) {
+		const afkMessage = args.join(' ');
+	} else {
+		const afkMessage = 'They didn\'t tell us where they went...'
+	}
+
+
 
 	Afks.sync().then(() =>
 
 		Afks.create({
-			message: afkMessage[0],
+			message: afkMessage,
 			user: sender.id,
 			cooldown: Date.now()
 		}).then(() => {
