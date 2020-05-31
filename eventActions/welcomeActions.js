@@ -6,7 +6,17 @@ class tosActions {
 		if (reaction.message.channel.id === config.channels.tos
             && reaction._emoji.name === config.emotes.acceptTOS) {
 			reaction.message.guild.fetchMember(user.id).then(guildMember => {
-        // Send welcome message to the welcome channel
+        let memberRole = message.guild.roles.find(r => r.id === "693502791788003401");
+        let role1 = message.guild.roles.find(r => r.id === "698499113188065310");
+        let role2 = message.guild.roles.find(r => r.id === "698499669554102404");
+        let role3 = message.guild.roles.find(r => r.id === "698500041295265844");
+
+        // Add roles and send welcome message to the welcome channel
+        member.addRole(memberRole).catch(console.error);
+        member.addRole(role1).catch(console.error);
+        member.addRole(role2).catch(console.error);
+        member.addRole(role3).catch(console.error);
+
         client.channels.get(config.channels.welcome).send(`🎉 **A new member has arrived, <@&693517619457818634>!** 🎉\nWelcome to The Bookery <@${user.id}>!`)
           .then(message => {
             message.react(config.emotes.wave);
