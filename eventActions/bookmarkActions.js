@@ -5,7 +5,7 @@ class bookmarkActions {
 
 	static async bookmarkMessage(client, user, reaction) {
 		console.log("Hello");
-		if (reaction._emoji.name === client.emojis.get(config.emotes.bookmark)) {
+		if (reaction._emoji.id === config.emotes.bookmark) {
 			console.log("World");
 			const workingMessage = reaction.message;
 			const booksEmote = "📚";
