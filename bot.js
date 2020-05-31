@@ -3,22 +3,6 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const config = require('./config.json');
 const connect = require('./databaseFiles/connect.js');
-var unirest = require('unirest');
-
-var req = unirest("GET", "https://150000-quotes.p.rapidapi.com/keyword/Life");
-
-req.headers({
-	"x-rapidapi-host": "150000-quotes.p.rapidapi.com",
-	"x-rapidapi-key": "b9ff9a4789mshb1174b62d6f8900p17b784jsnaeae0a7605a6",
-	"useQueryString": true
-});
-
-
-req.end(function (res) {
-	if (res.error) throw new Error(res.error);
-
-	console.log(res.body);
-});
 
 const client = new Discord.Client();
 
