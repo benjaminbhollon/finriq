@@ -6,9 +6,9 @@
     "Games",
     "Writing"
   ],
-  "version": "2.2.2",
-  "versioninfo": "Added the bookmark feature! Use :red_bookmark: to bookmark any message.",
-  "playing": "Detroit: Become Human",
+  "version": "2.2.3",
+  "versioninfo": "Added the bookmark feature! Use :red_bookmark: to bookmark any message. Added welcome feature.",
+  "playing": "welcoming our new members!",
   "channelReacts": [{
     "channel":"711269048591056916",
     "react": "👋"
@@ -18,12 +18,12 @@
     "react": "💯"  
   }],
   "channels": {
-    "tos": "713456684915359756",
-    "welcome": "704740519758266451",
+    "tos": "693628747659608064",
+    "welcome": "693498873083330654",
     "logs": "693512715016208445"
   },
   "emotes": {
-    "acceptTOS": "👍",
+    "acceptTOS": "📕",
     "bookmark": "695723866990968972"
   }
 }
