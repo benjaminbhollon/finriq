@@ -7,7 +7,7 @@ class tosActions {
             && reaction._emoji.name === config.emotes.acceptTOS) {
 			reaction.message.guild.fetchMember(user.id).then(guildMember => {
         // Add roles and send welcome message to the welcome channel
-        client.channels.get(config.channels.welcome).send(`🎉 **A new member has arrived, <@&693517619457818634>!** 🎉\nWelcome to The Bookery <@${user.id}>!`)
+        client.channels.get(config.channels.welcome).send(`🎉 **A new member has arrived!** 🎉\nPlease welcome <@${user.id}> to The Bookery <@&693517619457818634>!`)
           .then(message => {
             message.react(config.emotes.wave);
           });
