@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const logschannel = require('../config.json').channels.logs;
 
+const hugs = array("https://media.discordapp.net/attachments/710900942404583517/716760241756307457/image0.gif", "https://cdn.discordapp.com/attachments/710900942404583517/716760252409839769/image0.gif", "https://media.discordapp.net/attachments/710900942404583517/716761610110238770/image0.gif", "https://cdn.discordapp.com/attachments/710900942404583517/716761622680699050/image0.gif", "https://cdn.discordapp.com/attachments/710900942404583517/716762141054730331/image0.gif")
+
 module.exports.execute = async (client, message, args) => {
   try {
 
@@ -24,20 +26,20 @@ module.exports.execute = async (client, message, args) => {
   }
 
   if (parseInt(args[0])) {
-    return await message.channel.send(`_Hugs <@${args[0]}>._\n_Don't worry, it'll be alright._`);
+    return await message.channel.send(`_Hugs <@${args[0]}>._\n_Don't worry, it'll be alright._\n${hugs[Math.floor(Math.random() * hugs.length)]}`);
   } else {
     var name = args.join(" ");
     if (name == "") {
-      return await message.channel.send(`_Hugs <@${message.author.id}>._\n_Don't worry, it'll be alright._`);
+      return await message.channel.send(`_Hugs <@${message.author.id}>._\n_Don't worry, it'll be alright._\n${hugs[Math.floor(Math.random() * hugs.length)]}`);
     }
     //Replace with mention if possible
     message.channel.members.forEach(member => {
       if (member.displayName.toLowerCase().indexOf(name.toLowerCase()) != -1 || member.user.username.toLowerCase().indexOf(name.toLowerCase()) != -1) name = "<@" + member.id + ">";
     });
     if (name != "@everyone") {
-      return await message.channel.send(`_Hugs ${name}._\n_Don't worry, it'll be alright._`);
+      return await message.channel.send(`_Hugs ${name}._\n_Don't worry, it'll be alright._\n${hugs[Math.floor(Math.random() * hugs.length)]}`);
     } else {
-      return await message.channel.send("_Hugs the entire server._\n_Don't worry, it'll be alright._");
+      return await message.channel.send(`_Hugs the entire server._\n_Don't worry, it'll be alright._\n${hugs[Math.floor(Math.random() * hugs.length)]}`);
     }
   }
 };
