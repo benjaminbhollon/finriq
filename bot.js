@@ -3,6 +3,15 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const config = require('./config.json');
 const connect = require('./databaseFiles/connect.js');
+const unirest = require('unirest');
+
+var req = unirest("GET", "https://timshim-quotes-v1.p.rapidapi.com/quotes");
+
+req.headers({
+	"x-rapidapi-host": "timshim-quotes-v1.p.rapidapi.com",
+	"x-rapidapi-key": "b9ff9a4789mshb1174b62d6f8900p17b784jsnaeae0a7605a6",
+	"useQueryString": true
+});
 
 const client = new Discord.Client();
 
