@@ -29,7 +29,7 @@ module.exports.execute = async (client, message, args) => {
 
   if (getRandomInt(100) == 99) {
     if (parseInt(args[0])) {
-      return await message.channel.send(`_@${message.author.tag} shoots <@${args[0]}> violently._`);
+      return await message.channel.send(`_<@${message.author.id}> shoots <@${args[0]}> violently._`);
     } else {
       var name = args.join(" ");
       //Replace with mention if possible
@@ -37,13 +37,13 @@ module.exports.execute = async (client, message, args) => {
         if (member.displayName.toLowerCase().indexOf(name.toLowerCase()) != -1 || member.user.username.toLowerCase().indexOf(name.toLowerCase()) != -1) name = "<@" + member.id + ">";
       });
       if (name != "@everyone") {
-        return await message.channel.send(`_@${message.author.tag} shoots ${name} violently._`);
+        return await message.channel.send(`_<@${message.author.id}> shoots ${name} violently._`);
       } else {
-        return await message.channel.send(`_@${message.author.tag} commits genocide._`);
+        return await message.channel.send(`_<@${message.author.id}> commits genocide._`);
       }
     }
   } else {
-    return await message.channel.send(`Violence is never the answer, @${message.author.tag}. Do... you need a \`.hug\`?`);
+    return await message.channel.send(`Violence is never the answer, <@${message.author.id}>. Do... you need a \`.hug\`?`);
   }
 };
 
