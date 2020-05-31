@@ -13,6 +13,12 @@ req.headers({
 	"useQueryString": true
 });
 
+req.end(function (res) {
+	if (res.error) throw new Error(res.error);
+
+	console.log(res.body);
+});
+
 const client = new Discord.Client();
 
 fs.readdir('./events/', (err, files) => {
