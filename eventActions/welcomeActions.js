@@ -12,8 +12,8 @@ class tosActions {
             message.react(config.emotes.wave);
           });
         user.send(`\`\`\`fix
-        Welcome to The Bookery!\`\`\`
-To begin, say hello in <#693498873083330654> and read up in <#> for our step by step guide.
+Welcome to The Bookery!\`\`\`
+To begin, say hello in <#693498873083330654> and follow our Quick Start Guide below.
 
 **Quick Start Guide**
 • You can grab some roles in <#693563108077076490>.
