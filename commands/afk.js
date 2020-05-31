@@ -13,11 +13,11 @@ module.exports.execute = async (client, message, args) => {
 	const sender = message.author;
 
 	if (args[1] == "auto") {
-		const afkMessage = args[0];
+		var afkMessage = args[0];
 	} else if (args.length > 0) {
-		const afkMessage = args.join(' ');
+		var afkMessage = args.join(' ');
 	} else {
-		const afkMessage = 'They didn\'t tell us where they went...'
+		var afkMessage = 'They didn\'t tell us where they went...';
 	}
 
 
