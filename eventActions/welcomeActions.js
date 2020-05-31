@@ -11,9 +11,9 @@ class tosActions {
         let role3 = client.guilds.get("698500041295265844");
 
         // Add roles and send welcome message to the welcome channel
-        member.addRole(role1).catch(console.error);
-        member.addRole(role2).catch(console.error);
-        member.addRole(role3).catch(console.error);
+        user.addRole(role1).catch(console.error);
+        user.addRole(role2).catch(console.error);
+        user.addRole(role3).catch(console.error);
 
         client.channels.get(config.channels.welcome).send(`🎉 **A new member has arrived, <@&693517619457818634>!** 🎉\nWelcome to The Bookery <@${user.id}>!`)
           .then(message => {
