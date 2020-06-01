@@ -19,7 +19,7 @@ async function gameStart(invited, message) {
 }
 
 module.exports.execute = async (client, message, args) => {
-  await return message.channel.send("Under construction.")  
+  await message.channel.send("Under construction.")  
 };
 
 module.exports.config = {
