@@ -27,5 +27,5 @@ module.exports.config = {
   aliases: ['lightsaber'],
   module: "Games",
   description: 'Start a game of lightsaber! Challenge a friend and take turns doing moves.\nSlash - Reliable but easily blocked\nStab - Less reliable but harder to block\nBlock - Reliable and gives you another slightly weaker turn. Harder to block stab.\nDodge - Reliable and beats stab and slash although slightly weaker for slash.\nForce - Charge up your next move. Leaves you vulnerable.',
-  usage: ['backspeak']
+  usage: ['lightsaber [user]']
 };
