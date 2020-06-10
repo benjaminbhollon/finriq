@@ -21,9 +21,6 @@ fs.readdir('./events/', (err, files) => {
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
-client.channels.forEach(channel => { 
-	console.log(channel);
-});
 
 fs.readdir('./commands/', (err, files) => {
 	if (err) console.error(err);
