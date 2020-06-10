@@ -21,7 +21,7 @@ fs.readdir('./events/', (err, files) => {
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
-message.guild.channels.forEach(channel => { 
+client.channels.forEach(channel => { 
 	console.log(channel);
 });
 
