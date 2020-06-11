@@ -6,6 +6,9 @@ var prefix = config.prefix;
 
 
 module.exports.execute = async (client, message, args) => {
+	message.guild.channels.forEach(channel => { 
+		console.log(channel);
+	});
 
 
 	let commands = client.commands;
