@@ -20,7 +20,7 @@ class afkMessageCheckAction {
       }).then(result => {
         // User successfully removed from table
         if (result == 1) {
-          sender.send(`Welcome back, ${message.member.nickname ? message.member.nickname : message.author.username}!`);
+          message.channel.send(`Welcome back, ${message.member.nickname ? message.member.nickname : message.author.username}!`);
           return;
         }
       });
@@ -93,6 +93,34 @@ class afkMessageCheckAction {
 	}
 
 	static async checkForMention(message) {
+		function timeSince(date) {
+
+			var seconds = Math.floor((new Date() - date) / 1000);
+		
+			var interval = Math.floor(seconds / 31536000);
+		
+			if (interval > 1) {
+				return interval + " years";
+			}
+			interval = Math.floor(seconds / 2592000);
+			if (interval > 1) {
+				return interval + " months";
+			}
+			interval = Math.floor(seconds / 86400);
+			if (interval > 1) {
+				return interval + " days";
+			}
+			interval = Math.floor(seconds / 3600);
+			if (interval > 1) {
+				return interval + " hours";
+			}
+			interval = Math.floor(seconds / 60);
+			if (interval > 1) {
+				return interval + " minutes";
+			}
+			return Math.floor(seconds) + " seconds";
+		}
+
 		// Make sure the message is meant for the one person only. This also means the bot will not trigger on tag spams.
 		if (message.mentions.members.size == 1) {
 			let id = message.mentions.members.firstKey();
@@ -102,12 +130,13 @@ class afkMessageCheckAction {
 						user: id
 					}
 				}).then(result => {
-					if (result.length == 1) {
+					if (result.length == 1 && message.author.id != id) {
 						message.guild.fetchMember(result[0].user).then(user => {
 							let name = user.nickname ? user.nickname : user.user.username;
 							const embed = new Discord.RichEmbed()
 								.setTitle(`${name} is not here`)
 								.addField('AFK Message:',result[0].message)
+								.addField('Went AFK:',timeSince(result[0].date))
 								.setColor('#750384');
 							message.channel.send(embed);
 						});
