@@ -136,7 +136,7 @@ class afkMessageCheckAction {
 							const embed = new Discord.RichEmbed()
 								.setTitle(`${name} is not here`)
 								.addField('AFK Message:',result[0].message)
-								.addField('Went AFK:',timeSince(result[0].date))
+								.addField('Went AFK:',timeSince(result[0].date),' ago')
 								.setColor('#750384');
 							message.channel.send(embed);
 						});
