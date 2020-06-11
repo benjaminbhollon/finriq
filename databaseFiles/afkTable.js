@@ -16,5 +16,9 @@ module.exports = sequelize.define('Afk', {
 	cooldown: {
 		type: Sequelize.STRING,
 		allowNull: false
+	},
+	date: {
+		type: Sequelize.STRING,
+		allowNull: false
 	}
 });

@@ -27,10 +27,11 @@ module.exports.execute = async (client, message, args) => {
 		Afks.create({
 			message: afkMessage,
 			user: sender.id,
-			cooldown: Date.now()
+			cooldown: Date.now(),
+			date: Date.now()
 		}).then(() => {
 			try {
-				message.channel.send(`I have marked you as AFK, <@${sender.id}>. Anyone who pings you will be notified you are away.\n\`\`\`${afkMessage}\`\`\``).then(msg => msg.delete(5000).catch());
+				message.channel.send(`I have marked you as AFK, <@${sender.id}>. Anyone who pings you will be notified you are away.\n\`\`\`AFK Message: ${afkMessage}\`\`\``).then(msg => msg.delete(5000).catch());
 			}
 			catch(err) {
 				console.log(err);
